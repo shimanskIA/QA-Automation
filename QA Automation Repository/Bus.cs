@@ -4,24 +4,24 @@ using System.Text;
 
 namespace HW3
 {
-    class Bus : Vehicle
+    class Bus : Vehicle, IReadable, ICloneable
     {
-        public int _amountOfPassengerPlaces { get; set; } 
-        public byte _ecologicalLevel { get; set; } 
+        public int AmountOfPassengerPlaces { get; set; } 
+        public byte EcologicalLevel { get; set; } 
         public Bus(string manufacturer, double engineVolume, string transmissionType, double maximalSpeed, int amountOfPassengerPlaces, byte ecologicalLevel) : base(manufacturer, engineVolume, transmissionType, maximalSpeed)
         {
-            _amountOfPassengerPlaces = amountOfPassengerPlaces;
-            _ecologicalLevel = ecologicalLevel;
+            AmountOfPassengerPlaces = amountOfPassengerPlaces;
+            EcologicalLevel = ecologicalLevel;
         }
 
-        public override Vehicle Clone() // method to perform deep copy
+        public object Clone() // method to perform deep copy
         {
-            return new Bus(_manufacturer, _engineVolume, _transmissionType, _maximalSpeed, _amountOfPassengerPlaces, _ecologicalLevel);
+            return new Bus(Manufacturer, EngineVolume, TransmissionType, MaximalSpeed, AmountOfPassengerPlaces, EcologicalLevel);
         }
 
-        public override string GetFullInfo() // method to show info
+        public string GetFullInfo() // method to show info
         {
-            return "That's a " + _manufacturer + " bus with engine of " + _engineVolume + " liters, " + _transmissionType + " type transmission, " + _maximalSpeed + " of maximal speed that can carry " + _amountOfPassengerPlaces + " passengers and has " + _ecologicalLevel + "th ecological level";
+            return "That's a " + Manufacturer + " bus with engine of " + EngineVolume + " liters, " + TransmissionType + " type transmission, " + MaximalSpeed + " of maximal speed that can carry " + AmountOfPassengerPlaces + " passengers and has " + EcologicalLevel + "th ecological level";
         }
     }
 }

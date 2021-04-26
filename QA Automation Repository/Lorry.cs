@@ -4,22 +4,22 @@ using System.Text;
 
 namespace HW3
 {
-    class Lorry : Vehicle
+    class Lorry : Vehicle, IReadable, ICloneable
     {
-        public double _liftingCapacity { get; set; } // in kilograms
+        public double LiftingCapacity { get; set; } // in kilograms
         public Lorry(string manufacturer, double engineVolume, string transmissionType, double maximalSpeed, double liftingCapacity) : base(manufacturer, engineVolume, transmissionType, maximalSpeed)
         {
-            _liftingCapacity = liftingCapacity;
+            LiftingCapacity = liftingCapacity;
         }
 
-        public override Vehicle Clone() // method performing deep copy
+        public object Clone() // method performing deep copy
         {
-            return new Lorry(_manufacturer, _engineVolume, _transmissionType, _maximalSpeed, _liftingCapacity);
+            return new Lorry(Manufacturer, EngineVolume, TransmissionType, MaximalSpeed, LiftingCapacity);
         }
 
-        public override string GetFullInfo() // method showing info
+        public string GetFullInfo() // method showing info
         {
-            return "That's a " + _manufacturer + " lorry with engine of " + _engineVolume + " liters, " + _transmissionType + " type transmission, " + _maximalSpeed + " of maximal speed that can also carry " + _liftingCapacity + " kilograms of weight";
+            return "That's a " + Manufacturer + " lorry with engine of " + EngineVolume + " liters, " + TransmissionType + " type transmission, " + MaximalSpeed + " of maximal speed that can also carry " + LiftingCapacity + " kilograms of weight";
         }
     }
 }

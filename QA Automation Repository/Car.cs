@@ -4,22 +4,22 @@ using System.Text;
 
 namespace HW3
 {
-    class Car : Vehicle
+    class Car : Vehicle, IReadable, ICloneable
     {
-        public byte _amountOfPassengerPlaces { get; set; } // should be less than 255
+        public byte AmountOfPassengerPlaces { get; set; } // should be less than 255
         public Car(string manufacturer, double engineVolume, string transmissionType, double maximalSpeed, byte amountOfPassengerPlaces) : base (manufacturer, engineVolume, transmissionType, maximalSpeed)
         {
-            _amountOfPassengerPlaces = amountOfPassengerPlaces;
+            AmountOfPassengerPlaces = amountOfPassengerPlaces;
         }
         
-        public override Vehicle Clone() // method to perform deep copy
+        public object Clone() // method to perform deep copy
         {
-            return new Car(_manufacturer, _engineVolume, _transmissionType, _maximalSpeed, _amountOfPassengerPlaces);
+            return new Car(Manufacturer, EngineVolume, TransmissionType, MaximalSpeed, AmountOfPassengerPlaces);
         }
 
-        public override string GetFullInfo() // method to show info
+        public string GetFullInfo() // method to show info
         {
-            return "That's a " + _manufacturer + " car with engine of " + _engineVolume + " liters, " + _transmissionType + " type transmission, " + _maximalSpeed + " of maximal speed that can also carry " + _amountOfPassengerPlaces + " passengers";
+            return "That's a " + Manufacturer + " car with engine of " + EngineVolume + " liters, " + TransmissionType + " type transmission, " + MaximalSpeed + " of maximal speed that can also carry " + AmountOfPassengerPlaces + " passengers";
         }
     }
 }
