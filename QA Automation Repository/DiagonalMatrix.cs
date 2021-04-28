@@ -5,11 +5,11 @@ using System.Text;
 namespace HW4
 {
     // class for diagonal matrix
-    class DiagonalMatrix : Matrix
+    class DiagonalMatrix<T> : Matrix<T>
     {
-        public DiagonalMatrix(double[] array) // used empty constructor as base
+        public DiagonalMatrix(T[] array) // used empty constructor as base
         {
-                Array = new double[array.Length];
+                Array = new T[array.Length];
                 for (int i = 0; i < array.Length; i++)
                 {
                     Array[i] = array[i];
@@ -18,17 +18,17 @@ namespace HW4
                 Columns = Rows;
         }
 
-        public override double this[int i, int j] // indexators
+        public override T this[int i, int j] // indexators
         {
             get
             {
                 if (i == j)
                 {
-                    return Array[i];
+                    return Array[i]; // check indexators
                 }
                 else
                 {
-                    return 0; // non-diagonal element
+                    return (T)(object)0; // non-diagonal element
                 }
             }
 
@@ -36,7 +36,7 @@ namespace HW4
             {
                 if (i == j)
                 {
-                    Array[i] = (double)value;
+                    Array[i] = (T)value;
                 }
                 else
                 {
@@ -53,7 +53,7 @@ namespace HW4
                 {
                     if (i == j)
                     {
-                        Console.Write("{0, 4}", Array[i]);
+                        Console.Write("{0, 4}", Array[i]); // output to main
                     }
                     else
                     {

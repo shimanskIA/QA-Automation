@@ -5,17 +5,17 @@ using System.Text;
 namespace HW4
 {
     // class for square matrix
-    class Matrix
+    class Matrix<T> 
     {
-        public double[] Array { get; protected set; }
+        public T[] Array { get; protected set; }
         public int Rows { get; protected set; }
         public int Columns { get; protected set; }
 
-        public Matrix(double[] array, int rows)
+        public Matrix(T[] array, int rows)
         {
             if (array.Length % rows == 0)
             {
-                Array = new double[array.Length];
+                Array = new T[array.Length];
                 for (int i = 0; i < array.Length; i++)
                 {
                     Array[i] = array[i];
@@ -29,12 +29,12 @@ namespace HW4
             }
         }
 
-        public Matrix()
+        protected Matrix()
         {
 
         }
 
-        public virtual double this[int i, int j] // indexators
+        public virtual T this[int i, int j] // indexators
         {
             get
             {
@@ -43,7 +43,7 @@ namespace HW4
 
             set
             {
-                Array[i * (Rows - 1) + j] = (double)value;
+                Array[i * (Rows - 1) + j] = (T)value;
             }
         }
 
