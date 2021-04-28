@@ -5,7 +5,7 @@ using System.Text;
 namespace HW4
 {
     // class for square matrix
-    class Matrix<T> 
+    class Matrix<T> : IMyCloneable<T>
     {
         public T[] Array { get; protected set; }
         public int Rows { get; protected set; }
@@ -38,12 +38,26 @@ namespace HW4
         {
             get
             {
-                return Array[i * (Rows - 1) + j];
+                if (i < 0 || j < 0 || i >= Rows || j >= Columns)
+                {
+                    throw new Exception("Indexes must be positive and may not exceed the array bounds");
+                }
+                else
+                {
+                    return Array[i * (Rows - 1) + j];
+                }
             }
 
             set
             {
-                Array[i * (Rows - 1) + j] = (T)value;
+                if (i < 0 || j < 0 || i >= Rows || j >= Columns)
+                {
+                    throw new Exception("Indexes must be positive and may not exceed the array bounds");
+                }
+                else
+                {
+                    Array[i * (Rows - 1) + j] = (T)value;
+                }
             }
         }
 
@@ -57,6 +71,24 @@ namespace HW4
                 }
                 Console.WriteLine("");
             }
+        }
+
+        public virtual T[] GetMatrix() // methode for output of copies of array elements (not into the console)
+        {
+            return Clone();
+        }
+
+        public virtual T[] Clone() // methode for copying array elements
+        {
+            T[] copied_array = new T[Array.Length];
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    copied_array[i * (Rows - 1) + j] = Array[i * (Rows - 1) + j];
+                }
+            }
+            return copied_array;
         }
     }
 }

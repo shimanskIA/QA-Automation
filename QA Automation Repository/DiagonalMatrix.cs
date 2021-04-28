@@ -5,7 +5,7 @@ using System.Text;
 namespace HW4
 {
     // class for diagonal matrix
-    class DiagonalMatrix<T> : Matrix<T>
+    class DiagonalMatrix<T> : Matrix<T>, IMyCloneable<T>
     {
         public DiagonalMatrix(T[] array) // used empty constructor as base
         {
@@ -24,7 +24,14 @@ namespace HW4
             {
                 if (i == j)
                 {
-                    return Array[i]; // check indexators
+                    if (i < 0 || i >= Rows)
+                    {
+                        throw new Exception("Indexes must be positive and may not exceed the array bounds");
+                    }
+                    else
+                    {
+                        return Array[i]; 
+                    }
                 }
                 else
                 {
@@ -36,7 +43,14 @@ namespace HW4
             {
                 if (i == j)
                 {
-                    Array[i] = (T)value;
+                    if (i < 0 || i >= Rows)
+                    {
+                        throw new Exception("Indexes must be positive and may not exceed the array bounds"); 
+                    }
+                    else
+                    {
+                        Array[i] = (T)value;
+                    }
                 }
                 else
                 {
@@ -53,7 +67,7 @@ namespace HW4
                 {
                     if (i == j)
                     {
-                        Console.Write("{0, 4}", Array[i]); // output to main
+                        Console.Write("{0, 4}", Array[i]); 
                     }
                     else
                     {
@@ -62,6 +76,21 @@ namespace HW4
                 }
                 Console.WriteLine("");
             }
+        }
+
+        public override T[] GetMatrix() // methode for output of copies of array elements (not into the console)
+        {
+            return Clone();
+        }
+
+        public override T[] Clone() // methode for copying array elements
+        {
+            T[] copied_array = new T[Array.Length];
+            for (int i = 0; i < Rows; i++)
+            {
+                copied_array[i] = Array[i];
+            }
+            return copied_array;
         }
 
     }
