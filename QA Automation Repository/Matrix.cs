@@ -61,19 +61,21 @@ namespace HW4
             }
         }
 
-        public virtual void PrintMatrix() //matrix output to console
+        public virtual string GetMatrixView() // matrix output to main in the sqare form
         {
+            StringBuilder str = new StringBuilder();
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
                 {
-                    Console.Write("{0,5}", Array[i * (Rows - 1) + j]);
+                    str.Append(String.Format("{0, 5}", Array[i * (Rows - 1) + j]));
                 }
-                Console.WriteLine("");
+                str.Append("\n");
             }
+            return str.ToString();
         }
 
-        public virtual T[] GetMatrix() // methode for output of copies of array elements (not into the console)
+        public virtual T[] GetMatrix() // methode for output of copies of array elements to main in linear form
         {
             return Clone();
         }

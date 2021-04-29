@@ -59,26 +59,28 @@ namespace HW4
             }
         }
 
-        public override void PrintMatrix() // matrix output to console
+        public override string GetMatrixView() // matrix output to main in the sqare form
         {
+            StringBuilder str = new StringBuilder();
             for (int i = 0; i < Rows; i++)
             {
                 for (int j = 0; j < Columns; j++)
                 {
                     if (i == j)
                     {
-                        Console.Write("{0, 4}", Array[i]); 
+                        str.Append(String.Format("{0, 4}", Array[i])); 
                     }
                     else
                     {
-                        Console.Write("{0, 4}", 0);
+                        str.Append(String.Format("{0, 4}", 0));
                     }
                 }
-                Console.WriteLine("");
+                str.Append("\n");
             }
+            return str.ToString();
         }
 
-        public override T[] GetMatrix() // methode for output of copies of array elements (not into the console)
+        public override T[] GetMatrix() // methode for output of copies of array elements to main in linear form
         {
             return Clone();
         }

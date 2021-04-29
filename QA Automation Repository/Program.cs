@@ -7,25 +7,91 @@ namespace HW4
         static void Main(string[] args)
         {
             Matrix<int> matrix1 = new Matrix<int>(new [] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 4);
-            matrix1.PrintMatrix();
+            string array_view = matrix1.GetMatrixView();
+            Console.WriteLine(array_view);
             Console.WriteLine();
-            Console.WriteLine(matrix1[2, 2]);
+
+            while (true)
+            {
+                try
+                {
+                    int row = Convert.ToInt32(Console.ReadLine());
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(matrix1[row, column]);
+                    break;
+                }
+                catch
+                {
+
+                }
+            }
+
             Console.WriteLine(matrix1[1, 0]);
             Console.WriteLine();
-            matrix1[1, 1] = 25;
+
+            while (true)
+            {
+                try
+                {
+                    int row = Convert.ToInt32(Console.ReadLine());
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    int count = Convert.ToInt32(Console.ReadLine());
+                    matrix1[row, column] = count;
+                    break;
+                }
+                catch
+                {
+
+                }
+            }
+
             matrix1[1, 2] = 25;
-            matrix1.PrintMatrix();
+            array_view = matrix1.GetMatrixView();
+            Console.WriteLine(array_view);
             Console.WriteLine();
             DiagonalMatrix<int> matrix2 = new DiagonalMatrix<int>(new [] { 1, 1, 1, 2, 5, 7 });
-            matrix2.PrintMatrix();
+            array_view = matrix2.GetMatrixView();
+            Console.WriteLine(array_view);
             Console.WriteLine();
-            Console.WriteLine(matrix2[3, 3]);
+
+            while (true)
+            {
+                try
+                {
+                    int row = Convert.ToInt32(Console.ReadLine());
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(matrix2[row, column]);
+                    break;
+                }
+                catch
+                {
+
+                }
+            }
+
             Console.WriteLine(matrix2[1, 1]);
             Console.WriteLine(matrix2[1, 4]);
             Console.WriteLine();
-            matrix2[1, 1] = 25;
+
+            while (true)
+            {
+                try
+                {
+                    int row = Convert.ToInt32(Console.ReadLine());
+                    int column = Convert.ToInt32(Console.ReadLine());
+                    int count = Convert.ToInt32(Console.ReadLine());
+                    matrix2[row, column] = count;
+                    break;
+                }
+                catch
+                {
+
+                }
+            }
+
             matrix2[2, 2] = 25;
-            matrix2.PrintMatrix();
+            array_view = matrix2.GetMatrixView();
+            Console.WriteLine(array_view);
             Console.WriteLine();
             int[] temp1 = matrix1.GetMatrix();
             int[] temp2 = matrix2.GetMatrix();
