@@ -6,6 +6,6 @@ namespace HW5
 {
     abstract class TriangleFactory
     {
-        public abstract Triangle CreateTriangle(double side1, double side2, double side3);
+        public abstract Triangle CreateTriangle(Point point1, Point point2, Point point3);
     }
 }

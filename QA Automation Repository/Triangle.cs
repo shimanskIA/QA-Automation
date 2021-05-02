@@ -7,18 +7,25 @@ namespace HW5
 {
     abstract class Triangle
     {
-        public double Side1 { get; set; }
-        public double Side2 { get; set; }
-        public double Side3 { get; set; }
+        public Point Point1 { get; set; }
+        public Point Point2 { get; set; }
+        public Point Point3 { get; set; }
         private Color _color;
         public string GetColor { get { return _color.ToString(); } }
         public Color SetColor { set { _color = value; } }
 
-        public Triangle(double side1, double side2, double side3)
+        public Triangle(Point point1, Point point2, Point point3)
         {
-            Side1 = side1;
-            Side2 = side2;
-            Side3 = side3;
+            if (Math.Abs((point2.X - point1.X) * (point3.Y - point1.Y) - (point3.X - point1.X) * (point2.Y - point1.Y)) > 1e-10)
+            {
+                Point1 = point1;
+                Point2 = point2;
+                Point3 = point3;
+            }
+            else
+            {
+                throw new Exception("The points lie on the same line");
+            }
         }
 
         public abstract double CalculateArea();

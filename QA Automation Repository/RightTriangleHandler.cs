@@ -6,16 +6,21 @@ namespace HW5
 {
     class RightTriangleHandler : TriangleHandler
     {
-        public override void HandleTriangleRequest(double side1, double side2, double side3)
+        // description of an element in chain 
+        public override void HandleTriangleRequest(Point point1, Point point2, Point point3)
         {
-            if (side3 * side3 - side2 * side2 - side1 * side1 < Double.Epsilon)
+
+            try
             {
-                RightTriangleFactory right_triangle_factory = new RightTriangleFactory();
-                OutputTriangle = right_triangle_factory.CreateTriangle(side1, side2, side3);
+                RightTriangleFactory right_triangle_factory = new RightTriangleFactory(); 
+                OutputTriangle = right_triangle_factory.CreateTriangle(point1, point2, point3);
             }
-            else if (Successor != null)
+            catch
             {
-                Successor.HandleTriangleRequest(side1, side2, side3);
+                if (Successor != null)
+                {
+                    Successor.HandleTriangleRequest(point1, point2, point3);
+                }
             }
         }
     }
