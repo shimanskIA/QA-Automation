@@ -6,7 +6,15 @@ namespace HW5
     {
         static void Main(string[] args)
         {
-            TriangleBuilder tb = new TriangleBuilder();
+            // creating of the chain of responsibilities
+            TriangleBuilder h1 = new RightTriangleBuilder();
+            TriangleBuilder h2 = new EquilateralTriangleBuilder();
+            TriangleBuilder h3 = new IsoscelesTriangleBuilder();
+            TriangleBuilder h4 = new BasicTriangleBuilder();
+            h1.Successor = h2;
+            h2.Successor = h3;
+            h3.Successor = h4;
+            // start of processing
             Triangle some_triangle;
             while (true)
             {
@@ -18,7 +26,7 @@ namespace HW5
                 double y3 = Convert.ToDouble(Console.ReadLine());
                 try
                 {
-                    some_triangle = tb.CreateTriangle(new Point(x1, y1), new Point(x2, y2), new Point(x3, y3));
+                    some_triangle = h1.HandleTriangleRequest(new Point(x1, y1), new Point(x2, y2), new Point(x3, y3));
                     break;
                 }
                 catch

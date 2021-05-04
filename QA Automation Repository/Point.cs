@@ -15,5 +15,10 @@ namespace HW5
             X = x;
             Y = y;
         }
+
+        public double CountDistance(Point point)
+        {
+            return Math.Sqrt((X - point.X) * (X - point.X) + (Y - point.Y) * (Y - point.Y));
+        }
     }
 }
