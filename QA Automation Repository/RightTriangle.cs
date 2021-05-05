@@ -53,5 +53,10 @@ namespace HW5
             Leg1 = Math.Min(Math.Min(side1, side2), Math.Min(side2, side3));
             Leg2 = Math.Sqrt(Hypotenuse * Hypotenuse - Leg1 * Leg1);
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

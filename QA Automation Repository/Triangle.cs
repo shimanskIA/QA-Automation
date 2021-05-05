@@ -45,5 +45,39 @@ namespace HW5
         {
             return Math.Abs((point2.X - point1.X) * (point3.Y - point1.Y) - (point3.X - point1.X) * (point2.Y - point1.Y)) > 1e-10; // using 1e-10 as epsilon
         }
+
+        // methode to compare two objects
+        public override bool Equals(object some_triangle)
+        {
+            if (some_triangle is Triangle)
+            {
+                var some_abstract_triangle = some_triangle as Triangle;
+                if (
+                    Math.Abs(some_abstract_triangle.Point1.X - Point1.X) < 1e-10 &&
+                    Math.Abs(some_abstract_triangle.Point2.X - Point2.X) < 1e-10 &&
+                    Math.Abs(some_abstract_triangle.Point3.X - Point3.X) < 1e-10 &&
+                    Math.Abs(some_abstract_triangle.Point1.Y - Point1.Y) < 1e-10 &&
+                    Math.Abs(some_abstract_triangle.Point2.Y - Point2.Y) < 1e-10 &&
+                    Math.Abs(some_abstract_triangle.Point3.Y - Point3.Y) < 1e-10) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // methode that return a hash code of the object
+        public override int GetHashCode()
+        {
+            return (Point1, Point2, Point3).GetHashCode();
+        }
+
     }
 }
