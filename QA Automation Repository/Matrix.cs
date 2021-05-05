@@ -31,7 +31,9 @@ namespace HW4
 
         protected Matrix()
         {
-
+            Array = default;
+            Rows = 0;
+            Columns = 0;
         }
 
         public virtual T this[int i, int j] // indexators
