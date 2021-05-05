@@ -95,5 +95,40 @@ namespace HW4
             return copied_array;
         }
 
+        // methode to compare two objects
+        public override bool Equals(object some_object)
+        {
+            if (some_object is DiagonalMatrix<T>)
+            {
+                var some_diagonal_matrix = some_object as DiagonalMatrix<double>;
+                var this_matrix = this as DiagonalMatrix<double>;
+                if (some_diagonal_matrix.Array.Length == Array.Length)
+                {
+                    for (int i = 0; i < Array.Length; i++)
+                    {
+                        if (Math.Abs(this_matrix.Array[i] - some_diagonal_matrix.Array[i]) > 1e-10)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // methode that return a hash code of the object
+        public override int GetHashCode()
+        {
+            return Array.GetHashCode();
+        }
+
     }
 }

@@ -6,7 +6,12 @@ namespace HW4
     {
         static void Main(string[] args)
         {
-            Matrix<int> matrix1 = new Matrix<int>(new [] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}, 4);
+            Matrix<int> matrix1 = new Matrix<int>(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 4);
+            Matrix<double> matrix3 = new Matrix<double>(new[] { 1.0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 4);
+            Matrix<double> matrix4 = new Matrix<double>(new[] { 1.00000001, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }, 4);
+            bool eq = matrix3.Equals(matrix4);
+            Console.WriteLine(eq);
+            Console.WriteLine();
             string array_view = matrix1.GetMatrixView();
             Console.WriteLine(array_view);
             Console.WriteLine();

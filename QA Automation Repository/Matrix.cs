@@ -5,7 +5,7 @@ using System.Text;
 namespace HW4
 {
     // class for square matrix
-    class Matrix<T> : IMyCloneable<T>
+    class Matrix<T> : IMyCloneable<T> 
     {
         public T[] Array { get; protected set; }
         public int Rows { get; protected set; }
@@ -93,6 +93,40 @@ namespace HW4
                 }
             }
             return copied_array;
+        }
+
+        // methode to compare two objects
+        public override bool Equals(object some_object)
+        {
+            if (some_object is Matrix<T>)
+            {
+                var some_matrix = some_object as Matrix<double>;
+                var this_matrix = this as Matrix<double>;
+                if (some_matrix.Array.Length == Array.Length && some_matrix.Rows == Rows) 
+                {
+                    for (int i = 0; i < Array.Length; i++) 
+                    {
+                        if (Math.Abs(this_matrix.Array[i] - some_matrix.Array[i]) > 1e-10)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return (Array, Rows).GetHashCode();
         }
     }
 }
