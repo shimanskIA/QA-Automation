@@ -25,7 +25,7 @@ namespace HW6
         }
 
         // methode to get count of cars that have some parameters
-        public int GetCount(Func<Car, bool> compare)
+        public int GetCount(Predicate<Car> compare)
         {
             int temp_count = 0;
             {
