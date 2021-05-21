@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<people>
+  <students>
+    <student id="0">
+      <name>name 1</name>
+      <surname>surname 1</surname>
+      <age>18</age>
+      <group_number>1</group_number>
+      <course>1</course>
+      <specialties>
+        <specialty id="0"></specialty>
+      </specialties>
+    </student>
+    <student id="1">
+      <name>name 2</name>
+      <surname>surname 2</surname>
+      <age>19</age>
+      <group_number>1</group_number>
+      <course>2</course>
+      <specialties>
+        <specialty id="1"></specialty>
+      </specialties>
+    </student>
+    <student id="2">
+      <name>name 3</name>
+      <surname>surname 3</surname>
+      <age>18</age>
+      <group_number>1</group_number>
+      <course>1</course>
+      <specialties>
+        <specialty id="2"></specialty>
+      </specialties>
+    </student>
+    <student id="3">
+      <name>name 4</name>
+      <surname>surname 4</surname>
+      <age>21</age>
+      <group_number>1</group_number>
+      <course>4</course>
+      <specialties>
+        <specialty id="3"></specialty>
+      </specialties>
+    </student>
+    <student id="4">
+      <name>name 5</name>
+      <surname>surname 5</surname>
+      <age>20</age>
+      <group_number>1</group_number>
+      <course>3</course>
+      <specialties>
+        <specialty id="1"></specialty>
+      </specialties>
+    </student>
+    <student id="5">
+      <name>name 6</name>
+      <surname>surname 6</surname>
+      <age>19</age>
+      <group_number>1</group_number>
+      <course>2</course>
+      <specialties>
+        <specialty id="3"></specialty>
+        <specialty id="0"></specialty>
+      </specialties>
+    </student>
+    <student id="6">
+      <name>name 7</name>
+      <surname>surname 7</surname>
+      <age>18</age>
+      <group_number>1</group_number>
+      <course>1</course>
+      <specialties>
+        <specialty id="2"></specialty>
+      </specialties>
+    </student>
+    <student id="7">
+      <name>name 8</name>
+      <surname>surname 8</surname>
+      <age>21</age>
+      <group_number>1</group_number>
+      <course>1</course>
+      <specialties>
+        <specialty id="1"></specialty>
+      </specialties>
+    </student>
+    <student id="8">
+      <name>name 9</name>
+      <surname>surname 9</surname>
+      <age>17</age>
+      <group_number>1</group_number>
+      <course>1</course>
+      <specialties>
+        <specialty id="0"></specialty>
+      </specialties>
+    </student>
+    <student id="9">
+      <name>name 10</name>
+      <surname>surname 10</surname>
+      <age>22</age>
+      <group_number>4</group_number>
+      <course>5</course>
+      <specialties>
+        <specialty id="3"></specialty>
+        <specialty id="2"></specialty>
+      </specialties>
+    </student>
+    <student id="10">
+      <name>name 11</name>
+      <surname>surname 11</surname>
+      <age>19</age>
+      <group_number>1</group_number>
+      <course>2</course>
+      <specialties>
+        <specialty id="3"></specialty>
+      </specialties>
+    </student>
+    <student id="11">
+      <name>name 12</name>
+      <surname>surname 12</surname>
+      <age>20</age>
+      <group_number>1</group_number>
+      <course>3</course>
+      <specialties>
+        <specialty id="2"></specialty>
+      </specialties>
+    </student>
+    <student id="12">
+      <name>name 13</name>
+      <surname>surname 13</surname>
+      <age>18</age>
+      <group_number>1</group_number>
+      <course>1</course>
+      <specialties>
+        <specialty id="2"></specialty>
+      </specialties>
+    </student>
+    <student id="13">
+      <name>name 14</name>
+      <surname>surname 14</surname>
+      <age>18</age>
+      <group_number>1</group_number>
+      <course>1</course>
+      <specialties>
+        <specialty id="0"></specialty>
+      </specialties>
+    </student>
+    <student id="14">
+      <name>name 15</name>
+      <surname>surname 15</surname>
+      <age>20</age>
+      <group_number>1</group_number>
+      <course>3</course>
+      <specialties>
+        <specialty id="3"></specialty>
+        <specialty id="2"></specialty>
+      </specialties>
+    </student>
+  </students>
+  <science_workers>
+    <science_worker id="15">
+      <name>name 16</name>
+      <surname>surname 16</surname>
+      <age>55</age>
+      <experience>31</experience>
+      <loan>5000</loan>
+      <administration_duty>Dean</administration_duty>
+      <science_degree>Professor</science_degree>
+      <diploma_protection_year>1995</diploma_protection_year>
+      <diploma_theme>Theme 1</diploma_theme>
+      <lectured_subjects>
+        <subject id ="0"></subject>
+      </lectured_subjects>
+    </science_worker>
+    <science_worker id="16">
+      <name>name 17</name>
+      <surname>surname 17</surname>
+      <age>52</age>
+      <experience>25</experience>
+      <loan>3750</loan>
+      <administration_duty>DeputyDean</administration_duty>
+      <science_degree>Docent</science_degree>
+      <diploma_protection_year>1992</diploma_protection_year>
+      <diploma_theme>Theme 2</diploma_theme>
+      <lectured_subjects>
+        <subject id ="0"></subject>
+      </lectured_subjects>
+    </science_worker>
+    <science_worker id="17">
+      <name>name 18</name>
+      <surname>surname 18</surname>
+      <age>68</age>
+      <experience>39</experience>
+      <loan>6000</loan>
+      <administration_duty>Dean</administration_duty>
+      <science_degree>PhDoctor</science_degree>
+      <diploma_protection_year>1983</diploma_protection_year>
+      <diploma_theme>Theme 3</diploma_theme>
+      <lectured_subjects>
+        <subject id ="5"></subject>
+        <subject id ="6"></subject>
+        <subject id ="8"></subject>
+      </lectured_subjects>
+    </science_worker>
+    <science_worker id="18">
+      <name>name 19</name>
+      <surname>surname 19</surname>
+      <age>65</age>
+      <experience>32</experience>
+      <loan>6000</loan>
+      <administration_duty>DeputyDean</administration_duty>
+      <science_degree>Professor</science_degree>
+      <diploma_protection_year>1989</diploma_protection_year>
+      <diploma_theme>Theme 4</diploma_theme>
+      <lectured_subjects>
+        <subject id ="5"></subject>
+        <subject id ="6"></subject>
+      </lectured_subjects>
+    </science_worker>
+    <science_worker id="18">
+      <name>name 19</name>
+      <surname>surname 19</surname>
+      <age>65</age>
+      <experience>32</experience>
+      <loan>6000</loan>
+      <administration_duty>DeputyDean</administration_duty>
+      <science_degree>Professor</science_degree>
+      <diploma_protection_year>1989</diploma_protection_year>
+      <diploma_theme>Theme 4</diploma_theme>
+      <lectured_subjects>
+        <subject id ="5"></subject>
+        <subject id ="6"></subject>
+      </lectured_subjects>
+    </science_worker>
+  </science_workers>
+</people>

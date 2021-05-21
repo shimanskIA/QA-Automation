@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<departments>
+  <faculties>
+    <faculty id ="0">
+      <department_head id="15"></department_head>
+      <science_workers>
+        <science_worker id="15"></science_worker>
+        <science_worker id="16"></science_worker>
+        <science_worker id="28"></science_worker>
+        <science_worker id="29"></science_worker>
+        <science_worker id="30"></science_worker>
+        <science_worker id="31"></science_worker>
+      </science_workers>
+      <staff_workers>
+        <staff_worker id="19"></staff_worker>
+      </staff_workers>
+      <specialties>
+        <specialty id="0"></specialty>
+        <specialty id="1"></specialty>
+      </specialties>
+    </faculty>
+    <faculty id ="1">
+      <department_head id="17"></department_head>
+      <science_workers>
+        <science_worker id="17"></science_worker>
+        <science_worker id="18"></science_worker>
+        <science_worker id="32"></science_worker>
+        <science_worker id="33"></science_worker>
+      </science_workers>
+      <staff_workers>
+        <staff_worker id="20"></staff_worker>
+      </staff_workers>
+      <specialties>
+        <specialty id="2"></specialty>
+        <specialty id="3"></specialty>
+      </specialties>
+    </faculty>
+  </faculties>
+  <administration id ="3">
+    <department_head id="29"></department_head>
+    <science_workers>
+      <science_worker id="29"></science_worker>
+      <science_worker id="33"></science_worker>
+    </science_workers>
+    <staff_workers>
+      <staff_worker id="21"></staff_worker>
+      <staff_worker id="22"></staff_worker>
+    </staff_workers>
+    <budget>10000</budget>
+  </administration>
+  <security id ="4">
+    <department_head id="23"></department_head>
+    <staff_workers>
+      <staff_worker id="23"></staff_worker>
+      <staff_worker id="24"></staff_worker>
+    </staff_workers>
+    <equipment_types>
+      <equipment_type>
+        <name>PepperSpray</name>
+        <amount>10</amount>
+      </equipment_type>
+      <equipment_type>
+        <name>Handcuffs</name>
+        <amount>5</amount>
+      </equipment_type>
+    </equipment_types>
+  </security>
+  <maintenance id ="5">
+    <department_head id="25"></department_head>
+    <staff_workers>
+      <staff_worker id="25"></staff_worker>
+      <staff_worker id="26"></staff_worker>
+    </staff_workers>
+    <equipment_types>
+      <equipment_type>
+        <name>Mop</name>
+        <amount>10</amount>
+      </equipment_type>
+      <equipment_type>
+        <name>Rag</name>
+        <amount>5</amount>
+      </equipment_type>
+    </equipment_types>
+  </maintenance>
+  <research_department id ="5">
+    <department_head id="27"></department_head>
+    <science_workers>
+      <science_worker id="27"></science_worker>
+      <science_worker id="28"></science_worker>
+    </science_workers>
+    <publications>
+      <publication name="publication1"></publication>
+      <publication name="publication2"></publication>
+      <publication name="publication3"></publication>
+      <publication name="publication4"></publication>
+    </publications>
+  </research_department>
+</departments>

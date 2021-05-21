@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<universities>
+  <university id ="0">
+    <name>Oxford</name>
+    <departments>
+      <department id ="0"></department>
+      <department id ="1"></department>
+      <department id ="2"></department>
+      <department id ="3"></department>
+      <department id ="4"></department>
+      <department id ="5"></department>
+    </departments>
+    <students>
+      <student id ="0"></student>
+      <student id ="1"></student>
+      <student id ="2"></student>
+      <student id ="3"></student>
+      <student id ="4"></student>
+      <student id ="5"></student>
+      <student id ="6"></student>
+      <student id ="7"></student>
+      <student id ="8"></student>
+      <student id ="9"></student>
+      <student id ="10"></student>
+      <student id ="11"></student>
+      <student id ="12"></student>
+      <student id ="13"></student>
+      <student id ="14"></student>
+    </students>
+    <science_workers>
+      <science_worker id ="15"></science_worker>
+      <science_worker id ="16"></science_worker>
+      <science_worker id ="17"></science_worker>
+      <science_worker id ="18"></science_worker>
+      <science_worker id ="27"></science_worker>
+      <science_worker id ="28"></science_worker>
+      <science_worker id ="29"></science_worker>
+      <science_worker id ="30"></science_worker>
+      <science_worker id ="31"></science_worker>
+      <science_worker id ="32"></science_worker>
+      <science_worker id ="33"></science_worker>
+    </science_workers>
+    <staff_workers>
+      <staff_worker id ="19"></staff_worker>
+      <staff_worker id ="20"></staff_worker>
+      <staff_worker id ="21"></staff_worker>
+      <staff_worker id ="22"></staff_worker>
+      <staff_worker id ="23"></staff_worker>
+      <staff_worker id ="24"></staff_worker>
+      <staff_worker id ="25"></staff_worker>
+      <staff_worker id ="26"></staff_worker>
+    </staff_workers>
+  </university>
+</universities>
