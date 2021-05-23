@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HW7
 {
-    class InventoryControl<T>
+    public class InventoryControl<T>
     {
         public int Amount { get; set; }
         public T Item { get; set; }

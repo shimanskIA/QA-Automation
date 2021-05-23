@@ -1,16 +1,41 @@
 ﻿using HW7.Entities.People;
+using HW7.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace HW7.Entities.Departments
 {
-    class Administration : Department
+    public class Administration : Department
     {
         public double Budget { get; set; }
         public Administration(Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, double budget) : base(departmentHead, scienceWorkers, staffWorkers)
         {
             Budget = budget;
+        }
+
+        public override void Serialize() 
+        {
+            xmlDocument = new XmlDocument();
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Departments.xml");
+            XmlElement xmlRoot = xmlDocument.DocumentElement;
+            departmentElement = xmlDocument.CreateElement("administration");
+            base.Serialize();
+            XmlAttribute budgetAttribute = xmlDocument.CreateAttribute("budget");
+
+            XmlText budgetText = xmlDocument.CreateTextNode(Budget.ToString());
+
+            budgetAttribute.AppendChild(budgetText);
+
+            departmentElement.Attributes.Append(budgetAttribute);
+            xmlRoot.AppendChild(departmentElement);
+            xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Departments.xml");
+        }
+
+        public override List<Department> Deserealize()
+        {
+            return base.Deserealize();
         }
 
         public Administration(Person departmentHead, double budget) : base(departmentHead)

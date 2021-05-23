@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<staff_workers>
+  <staff_worker id="19" name="Name1" surname="One" age="35" experience="10" loan="4100" administrational_duties="DepartmentHead" vacancy="HeadEngineer" />
+  <staff_worker id="20" name="Name2" surname="Two" age="58" experience="22" loan="3200" administrational_duties="NoDuties" vacancy="Engineer" />
+  <staff_worker id="21" name="Name3" surname="Three" age="47" experience="14" loan="2500" administrational_duties="DepartmentHead" vacancy="HeadOfSecurity" />
+  <staff_worker id="22" name="Name4" surname="Four" age="42" experience="10" loan="1600" administrational_duties="NoDuties" vacancy="SecurityGuard" />
+  <staff_worker id="23" name="Name5" surname="Five" age="61" experience="43" loan="900" administrational_duties="NoDuties" vacancy="Cleaner" />
+  <staff_worker id="24" name="Name6" surname="Six" age="70" experience="50" loan="2100" administrational_duties="DepartmentHead" vacancy="HeadOfClericalWorkers" />
+  <staff_worker id="25" name="Name7" surname="Seven" age="44" experience="8" loan="1200" administrational_duties="NoDuties" vacancy="ClericalWorker" />
+</staff_workers>

@@ -20,9 +20,9 @@ namespace HW7
             Student Student6 = new Student("Name6", "Six", 18, 3, 1);
             Student Student7 = new Student("Name7", "Seven", 21, 1, 4);
             Student Student8 = new Student("Name8", "Eight", 21, 8, 4);
-            Student Student9 = new Student("Name9", "Eight", 18, 9, 1);
-            Student Student10 = new Student("Name10", "Eight", 17, 3, 1);
-            Student Student11 = new Student("Name11", "Eight", 22, 1, 5);
+            Student Student9 = new Student("Name9", "Nine", 18, 9, 1);
+            Student Student10 = new Student("Name10", "Ten", 17, 3, 1);
+            Student Student11 = new Student("Name11", "Eleven", 22, 1, 5);
             ScienceWorker SciWorker1 = new ScienceWorker("Name1", "One", 50, 25, 5000, AdministrationDuties.Dean, ScienceDegrees.Professor, 1992, "Theme1");
             ScienceWorker SciWorker2 = new ScienceWorker("Name2", "Two", 65, 40, 4000, AdministrationDuties.DeputyDean, ScienceDegrees.Docent, 1986, "Theme2");
             ScienceWorker SciWorker3 = new ScienceWorker("Name3", "Three", 42, 19, 2100, AdministrationDuties.NoDuties, ScienceDegrees.Lecturer, 2005, "Theme3");
@@ -36,8 +36,8 @@ namespace HW7
             StaffWorker StaffWorker3 = new StaffWorker("Name3", "Three", 47, 14, 2500, AdministrationDuties.DepartmentHead, StaffVacancies.HeadOfSecurity);
             StaffWorker StaffWorker4 = new StaffWorker("Name4", "Four", 42, 10, 1600, AdministrationDuties.NoDuties, StaffVacancies.SecurityGuard);
             StaffWorker StaffWorker5 = new StaffWorker("Name5", "Five", 61, 43, 900, AdministrationDuties.NoDuties, StaffVacancies.Cleaner);
-            StaffWorker StaffWorker6 = new StaffWorker("Name5", "Five", 70, 50, 2100, AdministrationDuties.DepartmentHead, StaffVacancies.HeadOfClericalWorkers);
-            StaffWorker StaffWorker7 = new StaffWorker("Name5", "Five", 44, 8, 1200, AdministrationDuties.NoDuties, StaffVacancies.ClericalWorker);
+            StaffWorker StaffWorker6 = new StaffWorker("Name6", "Six", 70, 50, 2100, AdministrationDuties.DepartmentHead, StaffVacancies.HeadOfClericalWorkers);
+            StaffWorker StaffWorker7 = new StaffWorker("Name7", "Seven", 44, 8, 1200, AdministrationDuties.NoDuties, StaffVacancies.ClericalWorker);
             Specialty CS = new Specialty("ComputerSecurity");
             Specialty AI = new Specialty("AppliedInformatics");
             Specialty TS = new Specialty("Translation");
@@ -78,6 +78,8 @@ namespace HW7
             SciWorker5.Add(Translation);
             SciWorker5.Add(Culture);
             SciWorker6.Add(Linguistic);
+            List<Specialty> Specialties = new List<Specialty>() { CS, AI, TS, IR };
+            List<AcademicSubject> Subjects = new List<AcademicSubject>() { Programming, MCs, CT, Linguistic, Culture, Translation};
             List<ScienceWorker> SciWorkers = new List<ScienceWorker>() { SciWorker1, SciWorker2, SciWorker3, SciWorker4, SciWorker5, SciWorker6, SciWorker7, SciWorker8 };
             List<StaffWorker> StaffWorkers = new List<StaffWorker>() { StaffWorker1, StaffWorker2, StaffWorker3, StaffWorker4, StaffWorker5, StaffWorker6, StaffWorker7}; 
             List<Student> Students = new List<Student>() { Student1, Student2, Student3, Student4, Student5, Student6, Student7, Student8, Student9, Student10, Student11 };
@@ -124,10 +126,14 @@ namespace HW7
             OxfordUniversity.AddDepartment(HumaintarianFaculty);
             OxfordUniversity.AddDepartment(AdministrativeDepartment);
             OxfordUniversity.AddDepartment(SecurityDepartment);
+            OxfordUniversity.AddDepartment(Maintenance);
             OxfordUniversity.AddDepartment(Research);
             OxfordUniversity.Students = Students;
             OxfordUniversity.StaffWorkers = StaffWorkers;
             OxfordUniversity.ScienceWorkers = SciWorkers;
+            OxfordUniversity.Subjects = Subjects;
+            OxfordUniversity.Specialties = Specialties;
+            OxfordUniversity.Serialize();
             var test = Students.Where(x => x.Specialties.Intersect(x.Specialties.Where(x => x.Subjects.Contains(CT))).Count() == 1).ToList();
         }
     }

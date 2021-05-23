@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<science_workers>
+  <science_worker id="11" name="Name1" surname="One" age="50" experience="25" loan="5000" administrational_duties="Dean" science_degree="Professor" diploma_protection_year="1992" diploma_theme="Theme1">
+    <subjects>
+      <subject id="0" />
+      <subject id="2" />
+    </subjects>
+  </science_worker>
+  <science_worker id="12" name="Name2" surname="Two" age="65" experience="40" loan="4000" administrational_duties="DeputyDean" science_degree="Docent" diploma_protection_year="1986" diploma_theme="Theme2">
+    <subjects>
+      <subject id="1" />
+    </subjects>
+  </science_worker>
+  <science_worker id="13" name="Name3" surname="Three" age="42" experience="19" loan="2100" administrational_duties="NoDuties" science_degree="Lecturer" diploma_protection_year="2005" diploma_theme="Theme3">
+    <subjects>
+      <subject id="1" />
+      <subject id="2" />
+    </subjects>
+  </science_worker>
+  <science_worker id="14" name="Name4" surname="Four" age="59" experience="36" loan="7100" administrational_duties="Dean" science_degree="PhCandidate" diploma_protection_year="1991" diploma_theme="Theme4">
+    <subjects>
+      <subject id="3" />
+      <subject id="4" />
+      <subject id="5" />
+    </subjects>
+  </science_worker>
+  <science_worker id="15" name="Name5" surname="Five" age="78" experience="54" loan="11500" administrational_duties="Rector" science_degree="PhDoctor" diploma_protection_year="1971" diploma_theme="Theme5">
+    <subjects>
+      <subject id="5" />
+      <subject id="4" />
+    </subjects>
+  </science_worker>
+  <science_worker id="16" name="Name6" surname="Six" age="66" experience="48" loan="5100" administrational_duties="ViceRectorForEducationalWork" science_degree="Professor" diploma_protection_year="1979" diploma_theme="Theme6">
+    <subjects>
+      <subject id="3" />
+    </subjects>
+  </science_worker>
+  <science_worker id="17" name="Name7" surname="Seven" age="29" experience="4" loan="2200" administrational_duties="NoDuties" science_degree="SeniorLecturer" diploma_protection_year="2015" diploma_theme="Theme7">
+    <subjects />
+  </science_worker>
+  <science_worker id="18" name="Name8" surname="Eight" age="34" experience="9" loan="3300" administrational_duties="NoDuties" science_degree="Docent" diploma_protection_year="2010" diploma_theme="Theme8">
+    <subjects />
+  </science_worker>
+</science_workers>

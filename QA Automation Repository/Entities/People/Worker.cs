@@ -1,10 +1,12 @@
-﻿using System;
+﻿using HW7.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace HW7.Entities.People
 {
-    abstract class Worker : Person
+    public abstract class Worker : Person, ISerializable<Worker>
     {
         public int Experience { get; set; }
         public double Loan { get; set; }
@@ -14,6 +16,31 @@ namespace HW7.Entities.People
             Experience = experience;
             Loan = loan;
             AdministrationDuty = administrationDuty;
+        }
+
+        public override void Serialize()
+        {
+            base.Serialize();
+            XmlAttribute experienceAttribute = xmlDocument.CreateAttribute("experience");
+            XmlAttribute loanAttribute = xmlDocument.CreateAttribute("loan");
+            XmlAttribute dutiesAttribute = xmlDocument.CreateAttribute("administrational_duties");
+
+            XmlText experienceText = xmlDocument.CreateTextNode(Experience.ToString());
+            XmlText loanText = xmlDocument.CreateTextNode(Loan.ToString());
+            XmlText dutiesText = xmlDocument.CreateTextNode(AdministrationDuty.ToString());
+
+            experienceAttribute.AppendChild(experienceText);
+            loanAttribute.AppendChild(loanText);
+            dutiesAttribute.AppendChild(dutiesText);
+
+            peopleElement.Attributes.Append(experienceAttribute);
+            peopleElement.Attributes.Append(loanAttribute);
+            peopleElement.Attributes.Append(dutiesAttribute);
+        }
+
+        public new List<Worker> Deserealize()
+        {
+            return new List<Worker>();
         }
     }
 }

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<departments>
+  <faculty id="0" department_head="11" name="Radiophysics faculty">
+    <science_workers>
+      <science_worker id="11" />
+      <science_worker id="12" />
+      <science_worker id="13" />
+      <science_worker id="17" />
+    </science_workers>
+    <staff_workers />
+    <specialties>
+      <specialty id="0" />
+      <specialty id="1" />
+    </specialties>
+  </faculty>
+  <faculty id="1" department_head="14" name="Language faculty">
+    <science_workers>
+      <science_worker id="14" />
+      <science_worker id="15" />
+      <science_worker id="16" />
+      <science_worker id="18" />
+    </science_workers>
+    <staff_workers />
+    <specialties>
+      <specialty id="2" />
+      <specialty id="3" />
+    </specialties>
+  </faculty>
+  <administration id="2" department_head="15" budget="45000">
+    <science_workers>
+      <science_worker id="15" />
+      <science_worker id="16" />
+    </science_workers>
+    <staff_workers />
+  </administration>
+  <security id="4" department_head="21">
+    <science_workers />
+    <staff_workers>
+      <staff_worker id="21" />
+      <staff_worker id="22" />
+    </staff_workers>
+    <equipment_warehouse>
+      <equipment item="PepperSpray" amount="5" />
+      <equipment item="MetalDetector" amount="10" />
+    </equipment_warehouse>
+  </security>
+  <maintenance id="3" department_head="24">
+    <science_workers />
+    <staff_workers>
+      <staff_worker id="24" />
+      <staff_worker id="25" />
+      <staff_worker id="23" />
+    </staff_workers>
+    <equipment_warehouse>
+      <equipment item="Mop" amount="5" />
+      <equipment item="Rag" amount="7" />
+    </equipment_warehouse>
+  </maintenance>
+  <research_department id="5" department_head="15">
+    <science_workers>
+      <science_worker id="15" />
+      <science_worker id="16" />
+      <science_worker id="14" />
+      <science_worker id="11" />
+    </science_workers>
+    <staff_workers>
+      <staff_worker id="19" />
+      <staff_worker id="20" />
+    </staff_workers>
+    <publications>
+      <publication theme="publication1" />
+      <publication theme="publication2" />
+      <publication theme="publication3" />
+    </publications>
+  </research_department>
+</departments>

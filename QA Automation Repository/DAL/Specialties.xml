@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<specialties>
+  <specialty id="0" name="ComputerSecurity">
+    <subjects>
+      <subject id="0" />
+      <subject id="1" />
+    </subjects>
+  </specialty>
+  <specialty id="1" name="AppliedInformatics">
+    <subjects>
+      <subject id="0" />
+      <subject id="2" />
+    </subjects>
+  </specialty>
+  <specialty id="2" name="Translation">
+    <subjects>
+      <subject id="3" />
+      <subject id="4" />
+    </subjects>
+  </specialty>
+  <specialty id="3" name="InternationalRight">
+    <subjects>
+      <subject id="4" />
+      <subject id="5" />
+    </subjects>
+  </specialty>
+</specialties>

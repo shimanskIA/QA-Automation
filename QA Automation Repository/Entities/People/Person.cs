@@ -1,16 +1,20 @@
-﻿using System;
+﻿using HW7.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace HW7.Entities.People
 {
-    abstract class Person
+    public abstract class Person : ISerializable<Person>
     {
         public int Id { get; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
         protected static int AmountOfObjects { get; set; } = 0;
+        public XmlDocument xmlDocument { get; protected set; }
+        public XmlElement peopleElement { get; protected set; }
 
         public Person(string name, string surname, int age)
         {
@@ -19,6 +23,34 @@ namespace HW7.Entities.People
             Age = age;
             Id = AmountOfObjects;
             AmountOfObjects++;
+        }
+
+        public virtual void Serialize()
+        {
+            XmlAttribute idAttribute = xmlDocument.CreateAttribute("id");
+            XmlAttribute nameAttribute = xmlDocument.CreateAttribute("name");
+            XmlAttribute surnameAttribute = xmlDocument.CreateAttribute("surname");
+            XmlAttribute ageAttribute = xmlDocument.CreateAttribute("age");
+
+            XmlText idText = xmlDocument.CreateTextNode(Id.ToString());
+            XmlText nameText = xmlDocument.CreateTextNode(Name);
+            XmlText surnameText = xmlDocument.CreateTextNode(Surname);
+            XmlText ageText = xmlDocument.CreateTextNode(Age.ToString());
+
+            idAttribute.AppendChild(idText);
+            nameAttribute.AppendChild(nameText);
+            surnameAttribute.AppendChild(surnameText);
+            ageAttribute.AppendChild(ageText);
+
+            peopleElement.Attributes.Append(idAttribute);
+            peopleElement.Attributes.Append(nameAttribute);
+            peopleElement.Attributes.Append(surnameAttribute);
+            peopleElement.Attributes.Append(ageAttribute);
+        }
+
+        public List<Person> Deserealize()
+        {
+            return new List<Person>();
         }
 
         public override int GetHashCode()

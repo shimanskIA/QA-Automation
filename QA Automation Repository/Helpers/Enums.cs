@@ -63,4 +63,16 @@ namespace HW7
         Drill,
         Insulation
     }
+
+    public enum FileNames
+    { 
+        Departments,
+        ScienceWorkers,
+        Specialties,
+        StaffWorkers,
+        Students,
+        Subjects,
+        Universities
+    }
+
 }

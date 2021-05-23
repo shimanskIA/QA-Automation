@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<universities>
+  <university id="0" name="Oxford">
+    <departments>
+      <department id="0" />
+      <department id="1" />
+      <department id="2" />
+      <department id="4" />
+      <department id="3" />
+      <department id="5" />
+    </departments>
+    <students>
+      <student id="0" />
+      <student id="1" />
+      <student id="2" />
+      <student id="3" />
+      <student id="4" />
+      <student id="5" />
+      <student id="6" />
+      <student id="7" />
+      <student id="8" />
+      <student id="9" />
+      <student id="10" />
+    </students>
+    <science_workers>
+      <science_worker id="11" />
+      <science_worker id="12" />
+      <science_worker id="13" />
+      <science_worker id="14" />
+      <science_worker id="15" />
+      <science_worker id="16" />
+      <science_worker id="17" />
+      <science_worker id="18" />
+    </science_workers>
+    <staff_workers>
+      <staff_worker id="19" />
+      <staff_worker id="20" />
+      <staff_worker id="21" />
+      <staff_worker id="22" />
+      <staff_worker id="23" />
+      <staff_worker id="24" />
+      <staff_worker id="25" />
+    </staff_workers>
+    <specialties>
+      <specialty id="0" />
+      <specialty id="1" />
+      <specialty id="2" />
+      <specialty id="3" />
+    </specialties>
+    <subjects>
+      <subject id="0" />
+      <subject id="1" />
+      <subject id="2" />
+      <subject id="3" />
+      <subject id="4" />
+      <subject id="5" />
+    </subjects>
+  </university>
+</universities>
