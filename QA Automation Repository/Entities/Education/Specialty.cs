@@ -1,4 +1,5 @@
-﻿using HW7.Interfaces;
+﻿using HW7.Helpers;
+using HW7.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,7 +12,7 @@ namespace HW7.Entities.Education
         public int Id { get; set; }
         public string Name { get; set; }
         public List<AcademicSubject> Subjects { get; set; }
-        private static int AmountOfObjects { get; set; } = 0;
+        private static int AutoIncrement { get; set; } = 0;
         private static List<int> ForbiddenIDs { get; set; } = new List<int>();
 
         public Specialty(int id, string name, List<AcademicSubject> subjects) 
@@ -28,13 +29,13 @@ namespace HW7.Entities.Education
         public Specialty(string name)
         {
             Name = name;
-            while (ForbiddenIDs.Contains(AmountOfObjects))
+            while (ForbiddenIDs.Contains(AutoIncrement))
             {
-                AmountOfObjects++;
+                AutoIncrement++;
             }
-            Id = AmountOfObjects;
+            Id = AutoIncrement;
             ForbiddenIDs.Add(Id);
-            AmountOfObjects++;
+            AutoIncrement++;
             Subjects = new List<AcademicSubject>();
         }
 
@@ -56,15 +57,7 @@ namespace HW7.Entities.Education
             XmlText idText = xmlDocument.CreateTextNode(Id.ToString());
             XmlText nameText = xmlDocument.CreateTextNode(Name);
             XmlElement subjectsElement = xmlDocument.CreateElement("subjects");
-            foreach (var subject in Subjects)
-            {
-                XmlElement subjectElement = xmlDocument.CreateElement("subject");
-                XmlText subjectText = xmlDocument.CreateTextNode(subject.Id.ToString());
-                XmlAttribute subjectIdAttribute = xmlDocument.CreateAttribute("id");
-                subjectIdAttribute.AppendChild(subjectText);
-                subjectElement.Attributes.Append(subjectIdAttribute);
-                subjectsElement.AppendChild(subjectElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, subjectsElement, "subject", "Id", "id", Subjects);
 
             idAttribute.AppendChild(idText);
             nameAttribute.AppendChild(nameText);

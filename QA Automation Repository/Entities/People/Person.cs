@@ -12,10 +12,10 @@ namespace HW7.Entities.People
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
-        protected static int AmountOfObjects { get; set; } = 0;
+        protected static int AutoIncrement { get; set; } = 0;
         private static List<int> ForbiddenIDs { get; set; } = new List<int>();
-        public XmlDocument xmlDocument { get; protected set; }
-        public XmlElement peopleElement { get; protected set; }
+        protected XmlDocument xmlDocument { get; set; }
+        protected XmlElement peopleElement { get; set; }
 
         public Person(int id, string name, string surname, int age)
         {
@@ -34,13 +34,13 @@ namespace HW7.Entities.People
             Name = name;
             Surname = surname;
             Age = age;
-            while (ForbiddenIDs.Contains(AmountOfObjects))
+            while (ForbiddenIDs.Contains(AutoIncrement))
             {
-                AmountOfObjects++;
+                AutoIncrement++;
             }
-            Id = AmountOfObjects;
+            Id = AutoIncrement;
             ForbiddenIDs.Add(Id);
-            AmountOfObjects++;
+            AutoIncrement++;
         }
 
         public virtual void Serialize()

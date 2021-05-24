@@ -13,7 +13,7 @@ namespace HW7.Entities.Education
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsCreditSubject { get; set; }
-        private static int AmountOfObjects { get; set; } = 0;
+        private static int AutoIncrement { get; set; } = 0;
         private static List<int> ForbiddenIDs { get; set; } = new List<int>();
 
         public AcademicSubject(string name, string description, bool isCreditSubject)
@@ -21,13 +21,13 @@ namespace HW7.Entities.Education
             Name = name;
             Description = description;
             IsCreditSubject = isCreditSubject;
-            while (ForbiddenIDs.Contains(AmountOfObjects))
+            while (ForbiddenIDs.Contains(AutoIncrement))
             {
-                AmountOfObjects++;
+                AutoIncrement++;
             }
-            Id = AmountOfObjects;
+            Id = AutoIncrement;
             ForbiddenIDs.Add(Id);
-            AmountOfObjects++;
+            AutoIncrement++;
         }
 
         public AcademicSubject(int id, string name, string description, bool isCreditSubject)

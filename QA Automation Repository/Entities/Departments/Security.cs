@@ -1,4 +1,5 @@
 ﻿using HW7.Entities.People;
+using HW7.Helpers;
 using HW7.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -39,19 +40,7 @@ namespace HW7.Entities.Departments
             base.Serialize();
 
             XmlElement equipmentsElement = xmlDocument.CreateElement("equipment_warehouse");
-            foreach (var equipment in Equipment)
-            {
-                XmlElement equipmentElement = xmlDocument.CreateElement("equipment");
-                XmlText itemText = xmlDocument.CreateTextNode(equipment.Item.ToString());
-                XmlText amountText = xmlDocument.CreateTextNode(equipment.Amount.ToString());
-                XmlAttribute itemAttribute = xmlDocument.CreateAttribute("item");
-                XmlAttribute amountAttribute = xmlDocument.CreateAttribute("amount");
-                itemAttribute.AppendChild(itemText);
-                amountAttribute.AppendChild(amountText);
-                equipmentElement.Attributes.Append(itemAttribute);
-                equipmentElement.Attributes.Append(amountAttribute);
-                equipmentsElement.AppendChild(equipmentElement);
-            }
+            HelperMethods.GroupFillXMLElement(xmlDocument, equipmentsElement, "equipment", Equipment);
 
             departmentElement.AppendChild(equipmentsElement);
             xmlRoot.AppendChild(departmentElement);

@@ -9,7 +9,7 @@ namespace HW7.Entities.Builders
 {
     class SpecialtyBuilder : Builder<Specialty>
     {
-        public List<AcademicSubject> Subjects { get; set; }
+        protected List<AcademicSubject> Subjects { get; set; }
 
         public SpecialtyBuilder(List<AcademicSubject> subjects)
         {

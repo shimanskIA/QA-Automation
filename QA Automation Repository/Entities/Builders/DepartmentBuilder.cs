@@ -11,9 +11,9 @@ namespace HW7.Entities.Builders
 {
     class DepartmentBuilder : Builder<Department>
     {
-        public List<ScienceWorker> ScienceWorkers { get; set; }
-        public List<StaffWorker> StaffWorkers { get; set; }
-        public List<Specialty> Specialties { get; set; }
+        protected List<ScienceWorker> ScienceWorkers { get; set; }
+        protected List<StaffWorker> StaffWorkers { get; set; }
+        protected List<Specialty> Specialties { get; set; }
 
         public DepartmentBuilder(List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<Specialty> specialties)
         {

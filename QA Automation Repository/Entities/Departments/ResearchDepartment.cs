@@ -31,15 +31,7 @@ namespace HW7.Entities.Departments
             base.Serialize();
 
             XmlElement publicationsElement = xmlDocument.CreateElement("publications");
-            foreach (var publication in Publications)
-            {
-                XmlElement publicationElement = xmlDocument.CreateElement("publication");
-                XmlText publicationText = xmlDocument.CreateTextNode(publication);
-                XmlAttribute publicationAttribute = xmlDocument.CreateAttribute("theme");
-                publicationAttribute.AppendChild(publicationText);
-                publicationElement.Attributes.Append(publicationAttribute);
-                publicationsElement.AppendChild(publicationElement);
-            }
+            HelperMethods.SimpleFillXMLElement(xmlDocument, publicationsElement, "publication", "theme", Publications);
 
             departmentElement.AppendChild(publicationsElement);
             xmlRoot.AppendChild(departmentElement);

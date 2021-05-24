@@ -14,10 +14,10 @@ namespace HW7.Entities.Departments
         public Person DepartmentHead { get; set; }
         public List<ScienceWorker> ScienceWorkers { get; set; }
         public List<StaffWorker> StaffWorkers { get; set; }
-        protected static int AmountOfObjects { get; set; } = 0;
+        protected static int AutoIncrement { get; set; } = 0;
         private static List<int> ForbiddenIDs { get; set; } = new List<int>();
-        public XmlDocument xmlDocument { get; protected set; }
-        public XmlElement departmentElement { get; protected set; }
+        protected XmlDocument xmlDocument { get; set; }
+        protected XmlElement departmentElement { get; set; }
 
         public Department(int id, Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers)
         {
@@ -36,13 +36,13 @@ namespace HW7.Entities.Departments
             DepartmentHead = departmentHead;
             ScienceWorkers = new List<ScienceWorker>();
             StaffWorkers = new List<StaffWorker>();
-            while (ForbiddenIDs.Contains(AmountOfObjects))
+            while (ForbiddenIDs.Contains(AutoIncrement))
             {
-                AmountOfObjects++;
+                AutoIncrement++;
             }
-            Id = AmountOfObjects;
+            Id = AutoIncrement;
             ForbiddenIDs.Add(Id);
-            AmountOfObjects++;
+            AutoIncrement++;
         }
 
         public void AddScienceWorkers(ScienceWorker scienceWorker)

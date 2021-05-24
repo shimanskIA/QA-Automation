@@ -10,7 +10,7 @@ namespace HW7.Entities.Builders
 {
     class StudentBuilder : PersonBuilder<Student>
     {
-        public List<Specialty> Specialties { get; set; }
+        protected List<Specialty> Specialties { get; set; }
 
         public StudentBuilder(List<Specialty> specialties)
         {

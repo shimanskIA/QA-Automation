@@ -10,7 +10,7 @@ namespace HW7.Entities.Builders
 {
     class ScienceWorkersBuilder : WorkerBuilder<ScienceWorker>
     {
-        public List<AcademicSubject> Subjects { get; set; }
+        protected List<AcademicSubject> Subjects { get; set; }
 
         public ScienceWorkersBuilder(List<AcademicSubject> subjects)
         {

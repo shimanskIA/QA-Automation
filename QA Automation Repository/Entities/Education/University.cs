@@ -20,7 +20,7 @@ namespace HW7.Entities.Education
         public List<StaffWorker> StaffWorkers { get; set; }
         public List<Specialty> Specialties { get; set; }
         public List<AcademicSubject> Subjects { get; set; }
-        private static int AmountOfObjects { get; set; } = 0;
+        private static int AutoIncrement { get; set; } = 0;
         private static List<int> ForbiddenIDs { get; set; } = new List<int>();
 
         public University(int id, string name, List<Department> departments, List<Student> students, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<Specialty> specialties, List<AcademicSubject> subjects)
@@ -42,13 +42,13 @@ namespace HW7.Entities.Education
         public University(string name)
         {
             Name = name;
-            while (ForbiddenIDs.Contains(AmountOfObjects))
+            while (ForbiddenIDs.Contains(AutoIncrement))
             {
-                AmountOfObjects++;
+                AutoIncrement++;
             }
-            Id = AmountOfObjects;
+            Id = AutoIncrement;
             ForbiddenIDs.Add(Id);
-            AmountOfObjects++;
+            AutoIncrement++;
             Departments = new List<Department>();
             Students = new List<Student>();
             ScienceWorkers = new List<ScienceWorker>();
