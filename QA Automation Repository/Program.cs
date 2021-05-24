@@ -134,7 +134,16 @@ namespace HW7
             OxfordUniversity.Subjects = Subjects;
             OxfordUniversity.Specialties = Specialties;
             OxfordUniversity.Serialize();
-            var test = Students.Where(x => x.Specialties.Intersect(x.Specialties.Where(x => x.Subjects.Contains(CT))).Count() == 1).ToList();
+            University newUniversity = new University();
+            newUniversity.Deserealize();
+            var test1 = newUniversity.ScienceWorkers.Where(x => x.ScienceDegree == ScienceDegrees.Professor && x.LecturedSubjects.Count >= 1).ToList();
+            var test2 = newUniversity.Students.Where(x => x.Specialties.Contains(AI)).ToList();
+            var test3 = newUniversity.Students.Where(x => x.Specialties.Intersect(x.Specialties.Where(x => x.Subjects.Contains(CT))).Count() == 1).ToList();
+            var test4 = newUniversity.Specialties.Select(x => x.Subjects);
+            var test5 = newUniversity.ScienceWorkers.Where(x => x.ScienceDegree == ScienceDegrees.Professor || x.ScienceDegree == ScienceDegrees.Docent).ToList().Count;
+            var test6 = newUniversity.Subjects;
+            var test7 = newUniversity.StaffWorkers.Count + newUniversity.ScienceWorkers.Count;
+            var test8 = newUniversity.Departments.Where(x => x.GetType() == typeof(Faculty)).Where(x => (x as Faculty).Name == "Radiophysics faculty").Select(x => (x.ScienceWorkers.Where(x => x.ScienceDegree == ScienceDegrees.Docent), x.ScienceWorkers.Where(x => x.ScienceDegree == ScienceDegrees.Docent).Select(x => x.LecturedSubjects))).ToList();
         }
     }
 }

@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using HW7.Helpers;
+using HW7.Entities.Builders;
 
 namespace HW7.Entities.Education
 {
-    public class University : ISerializable<University>
+    public class University : ISerializable, IDeserealizable
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -20,8 +21,9 @@ namespace HW7.Entities.Education
         public List<Specialty> Specialties { get; set; }
         public List<AcademicSubject> Subjects { get; set; }
         private static int AmountOfObjects { get; set; } = 0;
+        private static List<int> ForbiddenIDs { get; set; } = new List<int>();
 
-        public University(string name, List<Department> departments, List<Student> students, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<Specialty> specialties, List<AcademicSubject> subjects)
+        public University(int id, string name, List<Department> departments, List<Student> students, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<Specialty> specialties, List<AcademicSubject> subjects)
         {
             Name = name;
             Departments = departments;
@@ -30,13 +32,33 @@ namespace HW7.Entities.Education
             StaffWorkers = staffWorkers;
             Specialties = specialties;
             Subjects = subjects;
-            Id = AmountOfObjects;
-            AmountOfObjects++;
+            Id = id;
+            if (!ForbiddenIDs.Contains(id))
+            {
+                ForbiddenIDs.Add(id);
+            }
         }
 
         public University(string name)
         {
             Name = name;
+            while (ForbiddenIDs.Contains(AmountOfObjects))
+            {
+                AmountOfObjects++;
+            }
+            Id = AmountOfObjects;
+            ForbiddenIDs.Add(Id);
+            AmountOfObjects++;
+            Departments = new List<Department>();
+            Students = new List<Student>();
+            ScienceWorkers = new List<ScienceWorker>();
+            StaffWorkers = new List<StaffWorker>();
+            Specialties = new List<Specialty>();
+            Subjects = new List<AcademicSubject>();
+        }
+
+        public University()
+        {
             Departments = new List<Department>();
             Students = new List<Student>();
             ScienceWorkers = new List<ScienceWorker>();
@@ -60,70 +82,22 @@ namespace HW7.Entities.Education
             XmlText nameText = xmlDocument.CreateTextNode(Name);
 
             XmlElement departmentsElement = xmlDocument.CreateElement("departments");
-            foreach (var department in Departments)
-            {
-                XmlElement departmentElement = xmlDocument.CreateElement("department");
-                XmlText departmentText = xmlDocument.CreateTextNode(department.Id.ToString());
-                XmlAttribute departmentIdAttribute = xmlDocument.CreateAttribute("id");
-                departmentIdAttribute.AppendChild(departmentText);
-                departmentElement.Attributes.Append(departmentIdAttribute);
-                departmentsElement.AppendChild(departmentElement);
-            }
-
+            HelperMethods.FillXMLElement(xmlDocument,departmentsElement, "department", "Id", "id", Departments);
+            
             XmlElement studentsElement = xmlDocument.CreateElement("students");
-            foreach (var student in Students)
-            {
-                XmlElement studentElement = xmlDocument.CreateElement("student");
-                XmlText studentText = xmlDocument.CreateTextNode(student.Id.ToString());
-                XmlAttribute studentIdAttribute = xmlDocument.CreateAttribute("id");
-                studentIdAttribute.AppendChild(studentText);
-                studentElement.Attributes.Append(studentIdAttribute);
-                studentsElement.AppendChild(studentElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, studentsElement, "student", "Id", "id", Students);
 
             XmlElement scienceWorkersElement = xmlDocument.CreateElement("science_workers");
-            foreach (var scienceWorker in ScienceWorkers)
-            {
-                XmlElement scienceWorkerElement = xmlDocument.CreateElement("science_worker");
-                XmlText scienceWorkerText = xmlDocument.CreateTextNode(scienceWorker.Id.ToString());
-                XmlAttribute workerIdAttribute = xmlDocument.CreateAttribute("id");
-                workerIdAttribute.AppendChild(scienceWorkerText);
-                scienceWorkerElement.Attributes.Append(workerIdAttribute);
-                scienceWorkersElement.AppendChild(scienceWorkerElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, scienceWorkersElement, "science_worker", "Id", "id", ScienceWorkers);
 
             XmlElement staffWorkersElement = xmlDocument.CreateElement("staff_workers");
-            foreach (var staffWorker in StaffWorkers)
-            {
-                XmlElement staffWorkerElement = xmlDocument.CreateElement("staff_worker");
-                XmlText staffWorkerText = xmlDocument.CreateTextNode(staffWorker.Id.ToString());
-                XmlAttribute workerIdAttribute = xmlDocument.CreateAttribute("id");
-                workerIdAttribute.AppendChild(staffWorkerText);
-                staffWorkerElement.Attributes.Append(workerIdAttribute);
-                staffWorkersElement.AppendChild(staffWorkerElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, staffWorkersElement, "staff_worker", "Id", "id", StaffWorkers);
 
             XmlElement specialtiesElement = xmlDocument.CreateElement("specialties");
-            foreach (var specialty in Specialties)
-            {
-                XmlElement specialtyElement = xmlDocument.CreateElement("specialty");
-                XmlText specialtyText = xmlDocument.CreateTextNode(specialty.Id.ToString());
-                XmlAttribute specialtyIdAttribute = xmlDocument.CreateAttribute("id");
-                specialtyIdAttribute.AppendChild(specialtyText);
-                specialtyElement.Attributes.Append(specialtyIdAttribute);
-                specialtiesElement.AppendChild(specialtyElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, specialtiesElement, "specialty", "Id", "id", Specialties);
 
             XmlElement subjectsElement = xmlDocument.CreateElement("subjects");
-            foreach (var subject in Subjects)
-            {
-                XmlElement subjectElement = xmlDocument.CreateElement("subject");
-                XmlText subjectText = xmlDocument.CreateTextNode(subject.Id.ToString());
-                XmlAttribute subjectIdAttribute = xmlDocument.CreateAttribute("id");
-                subjectIdAttribute.AppendChild(subjectText);
-                subjectElement.Attributes.Append(subjectIdAttribute);
-                subjectsElement.AppendChild(subjectElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, subjectsElement, "subject", "Id", "id", Subjects);
 
             idAttribute.AppendChild(idText);
             nameAttribute.AppendChild(nameText);
@@ -155,9 +129,50 @@ namespace HW7.Entities.Education
 
         }
 
-        public List<University> Deserealize()
+        public void Deserealize()
         {
-            return new List<University>();
+            XmlDocument xmlDocument = new XmlDocument();
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Subjects.xml");
+            SubjectBuilder subjectBuilder = new SubjectBuilder();
+            List<AcademicSubject> subjects = subjectBuilder.Build(xmlDocument);
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Specialties.xml");
+            SpecialtyBuilder specialtyBuilder = new SpecialtyBuilder(subjects);
+            List<Specialty> specialties = specialtyBuilder.Build(xmlDocument);
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Students.xml");
+            StudentBuilder studentBuilder = new StudentBuilder(specialties);
+            List<Student> students = studentBuilder.Build(xmlDocument);
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//ScienceWorkers.xml");
+            ScienceWorkersBuilder scienceWorkersBuilder = new ScienceWorkersBuilder(subjects);
+            List<ScienceWorker> scienceWorkers = scienceWorkersBuilder.Build(xmlDocument);
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//StaffWorkers.xml");
+            StaffWorkersBuilder staffWorkersBuilder = new StaffWorkersBuilder();
+            List<StaffWorker> staffWorkers = staffWorkersBuilder.Build(xmlDocument);
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Departments.xml");
+            DepartmentBuilder departmentsBuilder = new DepartmentBuilder(scienceWorkers, staffWorkers, specialties);
+            List<Department> departments = departmentsBuilder.Build(xmlDocument);
+
+            xmlDocument.Load("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Universities.xml");
+            XmlElement xmlRoot = xmlDocument.DocumentElement;
+            XmlNode xmlNode = xmlRoot.FirstChild;
+            if (xmlNode.Attributes.Count > 0)
+            {
+                XmlNode attribute = xmlNode.Attributes.GetNamedItem("id");
+                if (attribute != null)
+                {
+                    Id = Convert.ToInt32(attribute.Value);
+                }
+                attribute = xmlNode.Attributes.GetNamedItem("name");
+                if (attribute != null)
+                {
+                    Name = attribute.Value;
+                }     
+            }
+            Departments = departments;
+            Students = students;
+            ScienceWorkers = scienceWorkers;
+            StaffWorkers = staffWorkers;
+            Specialties = specialties;
+            Subjects = subjects;
         }
 
         public new int GetHashCode()

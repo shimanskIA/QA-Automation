@@ -8,12 +8,12 @@ using System.Xml;
 
 namespace HW7.Entities.People
 {
-    public class Student : Person, ISerializable<Student>
+    public class Student : Person, ISerializable
     {
         public int GroupNumber { get; set; }
         public int Course { get; set; }
         public List<Specialty> Specialties { get; set; }
-        public Student(string name, string surname, int age, int groupNumber, int course, List<Specialty> specialties) : base (name, surname, age)
+        public Student(int id, string name, string surname, int age, int groupNumber, int course, List<Specialty> specialties) : base (id, name, surname, age)
         {
             GroupNumber = groupNumber;
             Course = course;
@@ -59,11 +59,6 @@ namespace HW7.Entities.People
             peopleElement.AppendChild(specialtiesElement);
             xmlRoot.AppendChild(peopleElement);
             xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Students.xml");
-        }
-
-        public new List<Student> Deserealize()
-        {
-            return new List<Student>();
         }
 
         public void Add(Specialty specialty)

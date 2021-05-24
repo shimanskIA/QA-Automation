@@ -6,25 +6,34 @@ using System.Xml;
 
 namespace HW7.Entities.Education
 {
-    public class Specialty : ISerializable<Specialty>
+    public class Specialty : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public List<AcademicSubject> Subjects { get; set; }
         private static int AmountOfObjects { get; set; } = 0;
+        private static List<int> ForbiddenIDs { get; set; } = new List<int>();
 
-        public Specialty(string name, List<AcademicSubject> subjects) 
+        public Specialty(int id, string name, List<AcademicSubject> subjects) 
         {
             Name = name;
             Subjects = subjects;
-            Id = AmountOfObjects;
-            AmountOfObjects++;
+            Id = id;
+            if (!ForbiddenIDs.Contains(id))
+            {
+                ForbiddenIDs.Add(id);
+            }
         }
 
         public Specialty(string name)
         {
             Name = name;
+            while (ForbiddenIDs.Contains(AmountOfObjects))
+            {
+                AmountOfObjects++;
+            }
             Id = AmountOfObjects;
+            ForbiddenIDs.Add(Id);
             AmountOfObjects++;
             Subjects = new List<AcademicSubject>();
         }
@@ -65,11 +74,6 @@ namespace HW7.Entities.Education
             specialtyElement.AppendChild(subjectsElement);
             xmlRoot.AppendChild(specialtyElement);
             xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Specialties.xml");
-        }
-
-        public List<Specialty> Deserealize()
-        {
-            return new List<Specialty>();
         }
 
         public override int GetHashCode()

@@ -8,13 +8,13 @@ using System.Xml;
 
 namespace HW7.Entities.People
 {
-    public class ScienceWorker : Worker, ISerializable<ScienceWorker>
+    public class ScienceWorker : Worker, ISerializable
     {
         public ScienceDegrees ScienceDegree { get; set; }
         public int DiplomaProtectionYear { get; set; }
         public string DiplomaTheme { get; set; }
         public List<AcademicSubject> LecturedSubjects { get; set; }
-        public ScienceWorker(string name, string surname, int age, int experience, double loan, AdministrationDuties administrationDuty, ScienceDegrees scienceDegree, int diplomaProtectionYear, string diplomaTheme, List<AcademicSubject> lecturedSubjects) : base(name, surname, age, experience, loan, administrationDuty)
+        public ScienceWorker(int id, string name, string surname, int age, int experience, double loan, AdministrationDuties administrationDuty, ScienceDegrees scienceDegree, int diplomaProtectionYear, string diplomaTheme, List<AcademicSubject> lecturedSubjects) : base(id, name, surname, age, experience, loan, administrationDuty)
         {
             ScienceDegree = scienceDegree;
             DiplomaProtectionYear = diplomaProtectionYear;
@@ -71,11 +71,6 @@ namespace HW7.Entities.People
             peopleElement.AppendChild(subjectsElement);
             xmlRoot.AppendChild(peopleElement);
             xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//ScienceWorkers.xml");
-        }
-
-        public new List<ScienceWorker> Deserealize()
-        {
-            return new List<ScienceWorker>();
         }
     }
 }

@@ -7,21 +7,39 @@ using System.Xml;
 
 namespace HW7.Entities.Education
 {
-    public class AcademicSubject : ISerializable<AcademicSubject>
+    public class AcademicSubject : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsCreditSubject { get; set; }
         private static int AmountOfObjects { get; set; } = 0;
-        
+        private static List<int> ForbiddenIDs { get; set; } = new List<int>();
+
         public AcademicSubject(string name, string description, bool isCreditSubject)
         {
             Name = name;
             Description = description;
             IsCreditSubject = isCreditSubject;
+            while (ForbiddenIDs.Contains(AmountOfObjects))
+            {
+                AmountOfObjects++;
+            }
             Id = AmountOfObjects;
+            ForbiddenIDs.Add(Id);
             AmountOfObjects++;
+        }
+
+        public AcademicSubject(int id, string name, string description, bool isCreditSubject)
+        {
+            Name = name;
+            Description = description;
+            IsCreditSubject = isCreditSubject;
+            Id = id;
+            if (!ForbiddenIDs.Contains(id))
+            {
+                ForbiddenIDs.Add(id);
+            }
         }
 
         public void Serialize()
@@ -51,11 +69,6 @@ namespace HW7.Entities.Education
             subjectElement.Attributes.Append(creditAttribute);
             xmlRoot.AppendChild(subjectElement);
             xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Subjects.xml");
-        }
-
-        public List<AcademicSubject> Deserealize()
-        {
-            return new List<AcademicSubject>();
         }
 
         public override int GetHashCode()

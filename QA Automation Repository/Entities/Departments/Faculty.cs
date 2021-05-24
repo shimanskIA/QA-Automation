@@ -1,5 +1,6 @@
 ﻿using HW7.Entities.Education;
 using HW7.Entities.People;
+using HW7.Helpers;
 using HW7.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace HW7.Entities.Departments
         public string Name { get; set; }
         public List<Specialty> Specialties { get; set; }
 
-        public Faculty(string name, Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<Specialty> specialties) : base(departmentHead, scienceWorkers, staffWorkers)
+        public Faculty(int id, string name, Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<Specialty> specialties) : base(id, departmentHead, scienceWorkers, staffWorkers)
         {
             Name = name;
             Specialties = specialties;
@@ -42,15 +43,7 @@ namespace HW7.Entities.Departments
             XmlText nameText = xmlDocument.CreateTextNode(Name);
 
             XmlElement specialtiesElement = xmlDocument.CreateElement("specialties");
-            foreach (var specialty in Specialties)
-            {
-                XmlElement specialtyElement = xmlDocument.CreateElement("specialty");
-                XmlText specialtyText = xmlDocument.CreateTextNode(specialty.Id.ToString());
-                XmlAttribute idAttribute = xmlDocument.CreateAttribute("id");
-                idAttribute.AppendChild(specialtyText);
-                specialtyElement.Attributes.Append(idAttribute);
-                specialtiesElement.AppendChild(specialtyElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, specialtiesElement, "specialty", "Id", "id", Specialties);
 
             nameAttribute.AppendChild(nameText);
 
@@ -58,11 +51,6 @@ namespace HW7.Entities.Departments
             departmentElement.AppendChild(specialtiesElement);
             xmlRoot.AppendChild(departmentElement);
             xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Departments.xml");
-        }
-
-        public override List<Department> Deserealize()
-        {
-            return base.Deserealize();
         }
     }
 }

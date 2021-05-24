@@ -1,4 +1,5 @@
 ﻿using HW7.Entities.People;
+using HW7.Helpers;
 using HW7.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,23 +8,27 @@ using System.Xml;
 
 namespace HW7.Entities.Departments
 {
-    public abstract class Department : ISerializable<Department>
+    public abstract class Department : ISerializable
     {
         public int Id { get; set; }
         public Person DepartmentHead { get; set; }
         public List<ScienceWorker> ScienceWorkers { get; set; }
         public List<StaffWorker> StaffWorkers { get; set; }
         protected static int AmountOfObjects { get; set; } = 0;
+        private static List<int> ForbiddenIDs { get; set; } = new List<int>();
         public XmlDocument xmlDocument { get; protected set; }
         public XmlElement departmentElement { get; protected set; }
 
-        public Department(Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers)
+        public Department(int id, Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers)
         {
             DepartmentHead = departmentHead;
             ScienceWorkers = scienceWorkers;
             StaffWorkers = staffWorkers;
-            Id = AmountOfObjects;
-            AmountOfObjects++;
+            Id = id;
+            if (!ForbiddenIDs.Contains(id))
+            {
+                ForbiddenIDs.Add(id);
+            }
         }
 
         public Department(Person departmentHead)
@@ -31,7 +36,12 @@ namespace HW7.Entities.Departments
             DepartmentHead = departmentHead;
             ScienceWorkers = new List<ScienceWorker>();
             StaffWorkers = new List<StaffWorker>();
+            while (ForbiddenIDs.Contains(AmountOfObjects))
+            {
+                AmountOfObjects++;
+            }
             Id = AmountOfObjects;
+            ForbiddenIDs.Add(Id);
             AmountOfObjects++;
         }
 
@@ -53,27 +63,10 @@ namespace HW7.Entities.Departments
             XmlText idText = xmlDocument.CreateTextNode(Id.ToString());
             XmlText headText = xmlDocument.CreateTextNode(DepartmentHead.Id.ToString());
             XmlElement scienceWorkersElement = xmlDocument.CreateElement("science_workers");
-            foreach (var scienceWorker in ScienceWorkers)
-            {
-                XmlElement scienceWorkerElement = xmlDocument.CreateElement("science_worker");
-                XmlText scienceWorkerText = xmlDocument.CreateTextNode(scienceWorker.Id.ToString());
-                XmlAttribute workerIdAttribute = xmlDocument.CreateAttribute("id");
-                workerIdAttribute.AppendChild(scienceWorkerText);
-                scienceWorkerElement.Attributes.Append(workerIdAttribute);
-                scienceWorkersElement.AppendChild(scienceWorkerElement);
-            }
+            HelperMethods.FillXMLElement(xmlDocument, scienceWorkersElement, "science_worker", "Id", "id", ScienceWorkers);
 
             XmlElement staffWorkersElement = xmlDocument.CreateElement("staff_workers");
-            foreach (var staffWorker in StaffWorkers)
-            {
-                XmlElement staffWorkerElement = xmlDocument.CreateElement("staff_worker");
-                XmlText staffWorkerText = xmlDocument.CreateTextNode(staffWorker.Id.ToString());
-                XmlAttribute workerIdAttribute = xmlDocument.CreateAttribute("id");
-                workerIdAttribute.AppendChild(staffWorkerText);
-                staffWorkerElement.Attributes.Append(workerIdAttribute);
-                staffWorkersElement.AppendChild(staffWorkerElement);
-            }
-
+            HelperMethods.FillXMLElement(xmlDocument, staffWorkersElement, "staff_worker", "Id", "id", StaffWorkers);
 
             idAttribute.AppendChild(idText);
             headAttribute.AppendChild(headText);
@@ -82,11 +75,6 @@ namespace HW7.Entities.Departments
             departmentElement.Attributes.Append(headAttribute);
             departmentElement.AppendChild(scienceWorkersElement);
             departmentElement.AppendChild(staffWorkersElement);
-        }
-
-        public virtual List<Department> Deserealize()
-        {
-            return new List<Department>();
         }
 
         public override int GetHashCode()

@@ -10,7 +10,7 @@ namespace HW7.Entities.Departments
     public class MaintenanceDepartment : Department
     {
         public List<InventoryControl<MaintenanceEquipmentTypes>> Equipment;
-        public MaintenanceDepartment(Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<InventoryControl<MaintenanceEquipmentTypes>> equipment) : base(departmentHead, scienceWorkers, staffWorkers)
+        public MaintenanceDepartment(int id, Person departmentHead, List<ScienceWorker> scienceWorkers, List<StaffWorker> staffWorkers, List<InventoryControl<MaintenanceEquipmentTypes>> equipment) : base(id, departmentHead, scienceWorkers, staffWorkers)
         {
             Equipment = equipment;
         }
@@ -56,11 +56,6 @@ namespace HW7.Entities.Departments
             departmentElement.AppendChild(equipmentsElement);
             xmlRoot.AppendChild(departmentElement);
             xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//Departments.xml");
-        }
-
-        public override List<Department> Deserealize()
-        {
-            return base.Deserealize();
         }
     }
 }

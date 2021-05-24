@@ -6,9 +6,14 @@ using System.Xml;
 
 namespace HW7.Entities.People
 {
-    public class StaffWorker : Worker, ISerializable<StaffWorker>
+    public class StaffWorker : Worker, ISerializable
     {
         public StaffVacancies Vacancy { get; set; }
+        public StaffWorker(int id, string name, string surname, int age, int experience, double loan, AdministrationDuties administrationDuty, StaffVacancies vacancy) : base(id, name, surname, age, experience, loan, administrationDuty)
+        {
+            Vacancy = vacancy;
+        }
+
         public StaffWorker(string name, string surname, int age, int experience, double loan, AdministrationDuties administrationDuty, StaffVacancies vacancy) : base(name, surname, age, experience, loan, administrationDuty)
         {
             Vacancy = vacancy;
@@ -30,11 +35,6 @@ namespace HW7.Entities.People
             peopleElement.Attributes.Append(vacancyAttribute);
             xmlRoot.AppendChild(peopleElement);
             xmlDocument.Save("C://Users//Наташа Лапушка//Desktop//QA Automation//Homework 7//HW7//HW7//DAL//StaffWorkers.xml");
-        }
-
-        public new List<StaffWorker> Deserealize()
-        {
-            return new List<StaffWorker>();
         }
     }
 }

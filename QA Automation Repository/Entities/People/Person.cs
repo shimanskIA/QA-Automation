@@ -6,22 +6,40 @@ using System.Xml;
 
 namespace HW7.Entities.People
 {
-    public abstract class Person : ISerializable<Person>
+    public abstract class Person : ISerializable
     {
         public int Id { get; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
         protected static int AmountOfObjects { get; set; } = 0;
+        private static List<int> ForbiddenIDs { get; set; } = new List<int>();
         public XmlDocument xmlDocument { get; protected set; }
         public XmlElement peopleElement { get; protected set; }
+
+        public Person(int id, string name, string surname, int age)
+        {
+            Name = name;
+            Surname = surname;
+            Age = age;
+            Id = id;
+            if (!ForbiddenIDs.Contains(id))
+            {
+                ForbiddenIDs.Add(id);
+            }
+        }
 
         public Person(string name, string surname, int age)
         {
             Name = name;
             Surname = surname;
             Age = age;
+            while (ForbiddenIDs.Contains(AmountOfObjects))
+            {
+                AmountOfObjects++;
+            }
             Id = AmountOfObjects;
+            ForbiddenIDs.Add(Id);
             AmountOfObjects++;
         }
 
@@ -46,11 +64,6 @@ namespace HW7.Entities.People
             peopleElement.Attributes.Append(nameAttribute);
             peopleElement.Attributes.Append(surnameAttribute);
             peopleElement.Attributes.Append(ageAttribute);
-        }
-
-        public List<Person> Deserealize()
-        {
-            return new List<Person>();
         }
 
         public override int GetHashCode()

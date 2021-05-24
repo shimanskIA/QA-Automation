@@ -6,11 +6,18 @@ using System.Xml;
 
 namespace HW7.Entities.People
 {
-    public abstract class Worker : Person, ISerializable<Worker>
+    public abstract class Worker : Person, ISerializable
     {
         public int Experience { get; set; }
         public double Loan { get; set; }
         public AdministrationDuties AdministrationDuty { get; set; }
+        public Worker(int id, string name, string surname, int age, int experience, double loan, AdministrationDuties administrationDuty) : base(id, name, surname, age)
+        {
+            Experience = experience;
+            Loan = loan;
+            AdministrationDuty = administrationDuty;
+        }
+
         public Worker(string name, string surname, int age, int experience, double loan, AdministrationDuties administrationDuty) : base(name, surname, age)
         {
             Experience = experience;
@@ -36,11 +43,6 @@ namespace HW7.Entities.People
             peopleElement.Attributes.Append(experienceAttribute);
             peopleElement.Attributes.Append(loanAttribute);
             peopleElement.Attributes.Append(dutiesAttribute);
-        }
-
-        public new List<Worker> Deserealize()
-        {
-            return new List<Worker>();
         }
     }
 }

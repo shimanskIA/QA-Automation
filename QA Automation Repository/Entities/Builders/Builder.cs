@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace HW7.Entities.Builders
 {
-    abstract class Builder
+    public abstract class Builder<T>
     {
-        public Builder()
-        {
-
-        }
-
-        public abstract Builder Build();
+        public abstract List<T> Build(XmlDocument xmlDocument);
     }
 }
