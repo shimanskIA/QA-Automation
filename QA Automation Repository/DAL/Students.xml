@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<students>
+  <student id="0" name="Name1" surname="One" age="20" group="6" course="3">
+    <specialties>
+      <specialty id="0" />
+    </specialties>
+  </student>
+  <student id="1" name="Name2" surname="Two" age="21" group="5" course="4">
+    <specialties>
+      <specialty id="1" />
+    </specialties>
+  </student>
+  <student id="2" name="Name3" surname="Three" age="19" group="4" course="4">
+    <specialties>
+      <specialty id="0" />
+    </specialties>
+  </student>
+  <student id="3" name="Name4" surname="Four" age="20" group="3" course="3">
+    <specialties>
+      <specialty id="0" />
+    </specialties>
+  </student>
+  <student id="4" name="Name5" surname="Five" age="21" group="5" course="4">
+    <specialties>
+      <specialty id="0" />
+    </specialties>
+  </student>
+  <student id="5" name="Name6" surname="Six" age="18" group="3" course="1">
+    <specialties>
+      <specialty id="1" />
+    </specialties>
+  </student>
+  <student id="6" name="Name7" surname="Seven" age="21" group="1" course="4">
+    <specialties>
+      <specialty id="1" />
+    </specialties>
+  </student>
+  <student id="7" name="Name8" surname="Eight" age="21" group="8" course="4">
+    <specialties>
+      <specialty id="1" />
+    </specialties>
+  </student>
+  <student id="8" name="Name9" surname="Nine" age="18" group="9" course="1">
+    <specialties>
+      <specialty id="2" />
+    </specialties>
+  </student>
+  <student id="9" name="Name10" surname="Ten" age="17" group="3" course="1">
+    <specialties>
+      <specialty id="2" />
+    </specialties>
+  </student>
+  <student id="10" name="Name11" surname="Eleven" age="22" group="1" course="5">
+    <specialties>
+      <specialty id="3" />
+    </specialties>
+  </student>
+</students>

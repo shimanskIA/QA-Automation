@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<subjects>
+  <subject id="0" name="Programming" description="Desc1" is_credit_subject="True" />
+  <subject id="1" name="Microcontrollers" description="Desc2" is_credit_subject="True" />
+  <subject id="2" name="CloudTechnologies" description="Desc3" is_credit_subject="False" />
+  <subject id="3" name="Linguistic" description="Desc4" is_credit_subject="True" />
+  <subject id="4" name="Culture" description="Desc5" is_credit_subject="True" />
+  <subject id="5" name="Translation" description="Desc6" is_credit_subject="True" />
+</subjects>
