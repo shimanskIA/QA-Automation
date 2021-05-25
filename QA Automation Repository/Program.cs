@@ -4,6 +4,7 @@ using HW7.Entities.People;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HW7.Helpers;
 
 namespace HW7
 {
@@ -139,7 +140,7 @@ namespace HW7
             var test1 = newUniversity.ScienceWorkers.Where(x => x.ScienceDegree == ScienceDegrees.Professor && x.LecturedSubjects.Count >= 1).ToList();
             var test2 = newUniversity.Students.Where(x => x.Specialties.Contains(AI)).ToList();
             var test3 = newUniversity.Students.Where(x => x.Specialties.Intersect(x.Specialties.Where(x => x.Subjects.Contains(CT))).Count() == 1).ToList();
-            var test4 = newUniversity.Specialties.Select(x => x.Subjects);
+            var test4 = newUniversity.GetDoubledSubjects();
             var test5 = newUniversity.ScienceWorkers.Where(x => x.ScienceDegree == ScienceDegrees.Professor || x.ScienceDegree == ScienceDegrees.Docent).ToList().Count;
             var test6 = newUniversity.Subjects;
             var test7 = newUniversity.StaffWorkers.Count + newUniversity.ScienceWorkers.Count;

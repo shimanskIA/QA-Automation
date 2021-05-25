@@ -1,4 +1,5 @@
 ﻿using HW7.Entities.Departments;
+using HW7.Entities.Education;
 using HW7.Entities.People;
 using HW7.Interfaces;
 using System;
