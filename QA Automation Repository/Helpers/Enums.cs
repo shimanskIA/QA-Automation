@@ -10,7 +10,7 @@ namespace Task4.Helpers
         Hybrid
     }
 
-    public enum Manufacturers
+    public enum Manufacturers // suits as for chassis as for vehicles
     {
         BMW,
         Mercedes,

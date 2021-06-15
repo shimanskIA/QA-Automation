@@ -4,7 +4,7 @@ using Task4.Helpers;
 
 namespace Task4.Entities.Vehicles
 {
-    class Scooter : Vehicle
+    public class Scooter : Vehicle
     {
         public double TimeFrom0To100 { get; set; } // time to reach 100 kilometers per hour in seconds
 
@@ -18,7 +18,7 @@ namespace Task4.Entities.Vehicles
             if (obj.GetType().Equals(typeof(Scooter)))
             {
                 if ((obj as Scooter).TimeFrom0To100 - TimeFrom0To100 < 1e-10 &&
-                    (obj as Vehicle).Equals(this))
+                    base.Equals(obj))
                 {
                     return true;
                 }
@@ -35,13 +35,10 @@ namespace Task4.Entities.Vehicles
 
         public override int GetHashCode()
         {
-            string tmp = TimeFrom0To100.ToString();
-            int index = tmp.IndexOf(".");
-            tmp.Remove(index + 5);
-            return HashCode.Combine(base.GetHashCode(), tmp);
+            return HashCode.Combine(base.GetHashCode(), Math.Round(TimeFrom0To100, 5));
         }
 
-        public override string GetInformation()
+        public override string GetInformation() // method to get infos about this scooter
         {
             return "A scooter" + base.GetInformation() + ", that can reach 100 km/h in just " + TimeFrom0To100 + " seconds, wow!";
         }

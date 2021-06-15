@@ -4,14 +4,14 @@ using Task4.Interfaces;
 
 namespace Task4.Entities.Details
 {
-    class Engine : IReadable
+    public class Engine : IReadable
     {
-        public int Power { get; set; }
-        public double Volume { get; set; }
+        public uint Power { get; set; } // in horse powers
+        public double Volume { get; set; } // in liters
         public EngineTypes EngineType { get; set; }
-        public int SerialNumber { get; set; }
+        public uint SerialNumber { get; set; } // 7 numbers
 
-        public Engine(int power, double volume, EngineTypes engineType, int serialNumber)
+        public Engine(uint power, double volume, EngineTypes engineType, uint serialNumber)
         {
             Power = power;
             Volume = volume;
@@ -51,10 +51,7 @@ namespace Task4.Entities.Details
 
         public override int GetHashCode()
         {
-            string tmp = Volume.ToString();
-            int index = tmp.IndexOf(".");
-            tmp.Remove(index + 5);
-            return HashCode.Combine(Power, tmp, EngineType, SerialNumber);
+            return HashCode.Combine(Power, Math.Round(Volume, 5), EngineType, SerialNumber);
         }
 
         public string GetInformation()

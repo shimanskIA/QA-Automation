@@ -4,10 +4,10 @@ using Task4.Helpers;
 
 namespace Task4.Entities.Vehicles
 {
-    class Bus : Vehicle
+    public class Bus : Vehicle
     {
         public int AmountOfPassengerPlaces { get; set; }
-        public byte EcologicalLevel { get; set; }
+        public byte EcologicalLevel { get; set; } // 1, 2, 3 or so
 
         public Bus(Manufacturers manufacturer, Engine engine, Chassis chassis, Transmission transmission, int amountOfPassengerPlaces, byte ecologicalLevel) : base(manufacturer, engine, chassis, transmission)
         {
@@ -21,7 +21,7 @@ namespace Task4.Entities.Vehicles
             {
                 if ((obj as Bus).AmountOfPassengerPlaces == AmountOfPassengerPlaces &&
                     (obj as Bus).EcologicalLevel == EcologicalLevel &&
-                    (obj as Vehicle).Equals(this))
+                    base.Equals(obj))
                 {
                     return true;
                 }
@@ -41,7 +41,7 @@ namespace Task4.Entities.Vehicles
             return HashCode.Combine(base.GetHashCode(), AmountOfPassengerPlaces, EcologicalLevel);
         }
 
-        public override string GetInformation()
+        public override string GetInformation() // method to get infos about this bus
         {
             return "A bus" + base.GetInformation() + ", that can also carry " + AmountOfPassengerPlaces + " passengers and has " + EcologicalLevel + " ecological level";
         }

@@ -4,7 +4,7 @@ using Task4.Helpers;
 
 namespace Task4.Entities.Vehicles
 {
-    class Lorry : Vehicle
+    public class Lorry : Vehicle
     {
         public double LiftingCapacity { get; set; } // in kilograms
 
@@ -18,7 +18,7 @@ namespace Task4.Entities.Vehicles
             if (obj.GetType().Equals(typeof(Lorry)))
             {
                 if ((obj as Lorry).LiftingCapacity - LiftingCapacity < 1e-10 &&
-                    (obj as Vehicle).Equals(this))
+                    base.Equals(obj))
                 {
                     return true;
                 }
@@ -35,13 +35,10 @@ namespace Task4.Entities.Vehicles
 
         public override int GetHashCode()
         {
-            string tmp = LiftingCapacity.ToString();
-            int index = tmp.IndexOf(".");
-            tmp.Remove(index + 5);
-            return HashCode.Combine(base.GetHashCode(), tmp);
+            return HashCode.Combine(base.GetHashCode(), Math.Round(LiftingCapacity, 5));
         }
 
-        public override string GetInformation()
+        public override string GetInformation() // method to get infos about this lorry
         {
             return "A lorry" + base.GetInformation() + ", that can also carry " + LiftingCapacity + " kilogramms";
         }

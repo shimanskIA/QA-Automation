@@ -3,11 +3,11 @@ using Task4.Interfaces;
 
 namespace Task4.Entities.Details
 {
-    class Chassis : IReadable
+    public class Chassis : IReadable
     {
         public int AmountOfWheels { get; set; }
-        public double MaximalLoad { get; set; }
-        public int SerialNumber { get; set; }
+        public double MaximalLoad { get; set; } // in kilograms
+        public int SerialNumber { get; set; } // 7 numbers
 
         public Chassis(int amountOfWheels, double maximalLoad, int serialNumber)
         {
@@ -46,10 +46,7 @@ namespace Task4.Entities.Details
 
         public override int GetHashCode()
         {
-            string tmp = MaximalLoad.ToString();
-            int index = tmp.IndexOf(".");
-            tmp.Remove(index + 5);
-            return HashCode.Combine(AmountOfWheels, tmp, SerialNumber);
+            return HashCode.Combine(AmountOfWheels, Math.Round(MaximalLoad, 5), SerialNumber);
         }
 
         public string GetInformation()

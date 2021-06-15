@@ -4,7 +4,7 @@ using Task4.Helpers;
 
 namespace Task4.Entities.Vehicles
 {
-    class Car : Vehicle
+    public class Car : Vehicle
     {
         public byte AmountOfPassengerPlaces { get; set; } // should be less than 255
         
@@ -18,7 +18,7 @@ namespace Task4.Entities.Vehicles
             if (obj.GetType().Equals(typeof(Car)))
             {
                 if ((obj as Car).AmountOfPassengerPlaces == AmountOfPassengerPlaces &&
-                    (obj as Vehicle).Equals(this))
+                    base.Equals(obj))
                 {
                     return true;
                 }
@@ -38,7 +38,7 @@ namespace Task4.Entities.Vehicles
             return HashCode.Combine(base.GetHashCode(), AmountOfPassengerPlaces);
         }
 
-        public override string GetInformation()
+        public override string GetInformation() // method to get infos about this car
         {
             return "A car" + base.GetInformation() + ", that can also carry " + AmountOfPassengerPlaces + " passengers";
         }
