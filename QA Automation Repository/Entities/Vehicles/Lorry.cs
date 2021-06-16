@@ -17,7 +17,7 @@ namespace Task4.Entities.Vehicles
         {
             if (obj.GetType().Equals(typeof(Lorry)))
             {
-                if ((obj as Lorry).LiftingCapacity - LiftingCapacity < 1e-10 &&
+                if (Math.Abs((obj as Lorry).LiftingCapacity - LiftingCapacity) < 1e-10 &&
                     base.Equals(obj))
                 {
                     return true;

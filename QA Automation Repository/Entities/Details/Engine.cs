@@ -32,7 +32,7 @@ namespace Task4.Entities.Details
             if (obj.GetType().Equals(typeof(Engine)))
             {
                 if ((obj as Engine).Power == Power && 
-                    (obj as Engine).Volume - Volume < 1e-10 && 
+                    Math.Abs((obj as Engine).Volume - Volume) < 1e-10 && 
                     (obj as Engine).EngineType == EngineType && 
                     (obj as Engine).SerialNumber == SerialNumber)
                 {

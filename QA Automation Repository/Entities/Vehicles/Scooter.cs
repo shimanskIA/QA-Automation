@@ -17,7 +17,7 @@ namespace Task4.Entities.Vehicles
         {
             if (obj.GetType().Equals(typeof(Scooter)))
             {
-                if ((obj as Scooter).TimeFrom0To100 - TimeFrom0To100 < 1e-10 &&
+                if (Math.Abs((obj as Scooter).TimeFrom0To100 - TimeFrom0To100) < 1e-10 &&
                     base.Equals(obj))
                 {
                     return true;

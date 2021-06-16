@@ -28,7 +28,7 @@ namespace Task4.Entities.Details
             if (obj.GetType().Equals(typeof(Chassis)))
             {
                 if ((obj as Chassis).AmountOfWheels == AmountOfWheels &&
-                    (obj as Chassis).MaximalLoad - MaximalLoad < 1e-10 &&
+                    Math.Abs((obj as Chassis).MaximalLoad - MaximalLoad) < 1e-10 &&
                     (obj as Chassis).SerialNumber == SerialNumber)
                 {
                     return true;
