@@ -1,7 +1,7 @@
 ﻿
 namespace Task4.Interfaces
 {
-    interface IReadable
+    public interface IReadable
     {
         public string GetInformation();
     }
