@@ -4,11 +4,11 @@ using Task5.Interfaces;
 
 namespace Task5.Entities
 {
-    class Bird : IFlyable
+    public class Bird : IFlyable
     {
-        public Coordinate ActualCoordinate { get; set; }
-        public BirdSpecies Species { get; set; }
-        public bool IsExtincting { get; set; }
+        public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
+        public BirdSpecies Species { get; set; } 
+        public bool IsExtincting { get; set; } // whether this species is in a 'red book'
 
         public Bird(Coordinate coordinate, BirdSpecies species, bool isExtincting)
         {
@@ -24,7 +24,7 @@ namespace Task5.Entities
             IsExtincting = default;
         }
 
-        public void FlyTo(Coordinate coordinate)
+        public void FlyTo(Coordinate coordinate) // changes the actual coordinate if distance is less than 1500 km
         {
             if (ActualCoordinate.GetDistance(coordinate) <= 1500)
             {
@@ -38,7 +38,7 @@ namespace Task5.Entities
             }
         }
 
-        public double GetFlyTime(Coordinate coordinate)
+        public double GetFlyTime(Coordinate coordinate) // speed chosen randomly from 0 to 20 km/h
         {
             Random random = new Random();
             double speed = 20 * random.NextDouble();

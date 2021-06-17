@@ -1,13 +1,14 @@
 ﻿using System;
+using Task5.Interfaces;
 
 namespace Task5.Entities
 {
-    class Drone
+    public class Drone : IFlyable
     {
-        public Coordinate ActualCoordinate { get; set; }
-        public double Price { get; set; }
-        public double MaximalHeight { get; set; }
-        public double MaximalDistance { get; set; }
+        public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
+        public double Price { get; set; } // in us dollars
+        public double MaximalHeight { get; set; } // in kilometers
+        public double MaximalDistance { get; set; } // in kilometers
 
         public Drone(Coordinate coordinate, double price, double maximalHeight, double maximalDistance)
         {
@@ -25,7 +26,7 @@ namespace Task5.Entities
             MaximalDistance = default;
         }
 
-        public void FlyTo(Coordinate coordinate)
+        public void FlyTo(Coordinate coordinate) // changes the actual coordinate if distance is less than maximal distance of the flight
         {
             if (ActualCoordinate.GetDistance(coordinate) <= MaximalDistance)
             {
@@ -39,7 +40,7 @@ namespace Task5.Entities
             }
         }
 
-        public double GetFlyTime(Coordinate coordinate)
+        public double GetFlyTime(Coordinate coordinate) // each 10 minutes of flight makes a 1 minute pause then moves again
         {
             if (ActualCoordinate.GetDistance(coordinate) <= MaximalDistance)
             {

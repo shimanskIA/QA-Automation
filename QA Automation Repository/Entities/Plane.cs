@@ -6,12 +6,12 @@ namespace Task5.Entities
 {
     public class Plane : IFlyable
     {
-        public Coordinate ActualCoordinate { get; set; }
+        public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
         public PlaneManufacturers Manufacturers { get; set; }
-        public double MaximalSpeed { get; set; }
-        public double MaximalHeight { get; set; }
+        public double MaximalSpeed { get; set; } // in km/h
+        public double MaximalHeight { get; set; } // in kilometers
         public int AmountOfEngines { get; set; }
-        public double Wingspan { get; set; }
+        public double Wingspan { get; set; } // in meters
 
         public Plane(Coordinate actualCoordinate, PlaneManufacturers manufacturers, double maximalHeight, double maximalSpeed, int amountOfEngines, double wingspan)
         {
@@ -32,7 +32,7 @@ namespace Task5.Entities
             Wingspan = default;
         }
 
-        public void FlyTo(Coordinate coordinate)
+        public void FlyTo(Coordinate coordinate) // changes the actual coordinate if distance is less than 25000 km
         {
             if (ActualCoordinate.GetDistance(coordinate) <= 25000)
             {
@@ -42,11 +42,14 @@ namespace Task5.Entities
             }
             else
             {
-                throw new ArgumentOutOfRangeException("planes are not able to fly more than 25000 km");
+                // some airport coordinates
+                ActualCoordinate.X = 100;
+                ActualCoordinate.Y = 100;
+                ActualCoordinate.Z = 100;
             }
         }
 
-        public double GetFlyTime(Coordinate coordinate)
+        public double GetFlyTime(Coordinate coordinate) // every 10 kilometers the speed increases in 10 km/h
         {
             double speed = 200;
             double distance = ActualCoordinate.GetDistance(coordinate);
