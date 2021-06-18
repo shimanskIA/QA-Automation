@@ -9,16 +9,18 @@ namespace Task5.Entities
         public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
         public PlaneManufacturers Manufacturers { get; set; }
         public double MaximalSpeed { get; set; } // in km/h
+        public double TakeoffSpeed { get; set; } // in km/h
         public double MaximalHeight { get; set; } // in kilometers
         public int AmountOfEngines { get; set; }
         public double Wingspan { get; set; } // in meters
 
-        public Plane(Coordinate actualCoordinate, PlaneManufacturers manufacturers, double maximalHeight, double maximalSpeed, int amountOfEngines, double wingspan)
+        public Plane(Coordinate coordinate, PlaneManufacturers manufacturers, double maximalHeight, double maximalSpeed, double takeoffSpeed, int amountOfEngines, double wingspan)
         {
-            ActualCoordinate = actualCoordinate;
+            ActualCoordinate = new Coordinate(coordinate.X, coordinate.Y, coordinate.Z);
             Manufacturers = manufacturers;
             MaximalHeight = maximalHeight;
             MaximalSpeed = maximalSpeed;
+            TakeoffSpeed = takeoffSpeed;
             AmountOfEngines = amountOfEngines;
             Wingspan = wingspan;
         }
@@ -29,6 +31,7 @@ namespace Task5.Entities
             MaximalHeight = default;
             AmountOfEngines = default;
             MaximalSpeed = default;
+            TakeoffSpeed = default;
             Wingspan = default;
         }
 
@@ -51,24 +54,31 @@ namespace Task5.Entities
 
         public double GetFlyTime(Coordinate coordinate) // every 10 kilometers the speed increases in 10 km/h
         {
-            double speed = 200;
             double distance = ActualCoordinate.GetDistance(coordinate);
-            int amountOfSpeedChanges = (int)(distance / 10);
-            double lastDistance = distance - amountOfSpeedChanges * 10;
-            double time = 0;
-            for (int i = 0; i < amountOfSpeedChanges; i++)
+            double actualSpeed = TakeoffSpeed;
+            if (distance <= 25000)
             {
-                time += 10 / speed;
-                if (speed > MaximalSpeed || Math.Abs(speed - MaximalSpeed) < 1e-10)
+                int amountOfSpeedChanges = (int)(distance / 10);
+                double lastDistance = distance - amountOfSpeedChanges * 10;
+                double time = 0;
+                for (int i = 0; i < amountOfSpeedChanges; i++)
                 {
-                    speed = MaximalSpeed;
+                    time += 10 / actualSpeed;
+                    if (MaximalSpeed - 10 - actualSpeed < 0)
+                    {
+                        actualSpeed = MaximalSpeed;
+                    }
+                    else
+                    {
+                        actualSpeed += 10;
+                    }
                 }
-                else
-                {
-                    speed += 10;
-                }
+                return time += (lastDistance / actualSpeed);
             }
-            return time += (lastDistance / speed);
+            else
+            {
+                throw new ArgumentOutOfRangeException("planes are not able to fly more than 25000 km");
+            }
         }
     }
 }

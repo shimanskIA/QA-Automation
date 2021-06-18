@@ -9,12 +9,14 @@ namespace Task5.Entities
         public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
         public BirdSpecies Species { get; set; } 
         public bool IsExtincting { get; set; } // whether this species is in a 'red book'
+        public double Speed { get; set; } // in km/h
 
-        public Bird(Coordinate coordinate, BirdSpecies species, bool isExtincting)
+        public Bird(Coordinate coordinate, BirdSpecies species, bool isExtincting, double speed)
         {
-            ActualCoordinate = coordinate;
+            ActualCoordinate = new Coordinate(coordinate.X, coordinate.Y, coordinate.Z);
             Species = species;
             IsExtincting = isExtincting;
+            Speed = speed;
         }
 
         public Bird()
@@ -22,6 +24,7 @@ namespace Task5.Entities
             ActualCoordinate = default;
             Species = default;
             IsExtincting = default;
+            Speed = default;
         }
 
         public void FlyTo(Coordinate coordinate) // changes the actual coordinate if distance is less than 1500 km
@@ -40,9 +43,15 @@ namespace Task5.Entities
 
         public double GetFlyTime(Coordinate coordinate) // speed chosen randomly from 0 to 20 km/h
         {
-            Random random = new Random();
-            double speed = 20 * random.NextDouble();
-            return ActualCoordinate.GetDistance(coordinate) / speed;
+            double distance = ActualCoordinate.GetDistance(coordinate);
+            if (distance <= 1500)
+            {
+                return ActualCoordinate.GetDistance(coordinate) / Speed;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("birds are not able to fly more than 1500 km");
+            }
         }
     }
 }

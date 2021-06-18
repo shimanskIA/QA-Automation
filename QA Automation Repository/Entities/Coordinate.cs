@@ -58,5 +58,10 @@ namespace Task5.Entities
                 return false;
             }
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Math.Round(X, 5), Math.Round(Y, 5), Math.Round(Z, 5));
+        }
     }
 }

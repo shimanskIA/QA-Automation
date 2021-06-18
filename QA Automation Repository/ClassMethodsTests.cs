@@ -10,16 +10,17 @@ namespace MSTestsForTask5
     [TestClass]
     public class ClassMethodsTests
     {
-        private readonly Coordinate _coordinate = new Coordinate(1, 1, 1);
+        private static readonly Coordinate _coordinate = new Coordinate(1, 1, 1);
+        private static readonly double _speed = new Random().NextDouble() * 20;
         private readonly Bird _bird;
         private readonly Plane _plane;
         private readonly Drone _drone;
 
         public ClassMethodsTests()
         {
-            _bird = new Bird(_coordinate, BirdSpecies.Raven, false);
-            _plane = new Plane(_coordinate, PlaneManufacturers.Boeing, 13000.5, 900.8, 4, 19.35);
-            _drone = new Drone(_coordinate, 1000, 8000, 1200);
+            _bird = new Bird(_coordinate, BirdSpecies.Raven, false, _speed);
+            _plane = new Plane(_coordinate, PlaneManufacturers.Boeing, 13000.5, 900.8, 205.6, 4, 19.35);
+            _drone = new Drone(_coordinate, 1000, 8000, 1200, 80);
         }
 
         [TestMethod]
@@ -173,18 +174,62 @@ namespace MSTestsForTask5
             yield return new object[] { new Coordinate(1, 1, Double.MaxValue) };
         }
 
-        /*[TestMethod]
-        [DynamicData(nameof(GetDataForBirdGetFlyTimeTest), DynamicDataSourceType.Method)]
+        [TestMethod]
+        [DynamicData(nameof(GetDataForGetFlyTimePositiveTest), DynamicDataSourceType.Method)]
 
-        public void BirdGetFlyTimePositiveTest(IFlyable flyableObject, Coordinate coordinate, double resultTime)
+        public void GetFlyTimePositiveTest(IFlyable flyableObject, Coordinate coordinate, double resultTime)
         {
             Assert.IsTrue(flyableObject.GetFlyTime(coordinate) - resultTime < 1e-10);
         }
 
-        public static IEnumerable<object[]> GetDataForBirdGetFlyTimeTest()
+        public static IEnumerable<object[]> GetDataForGetFlyTimePositiveTest()
         {
-            yield return new object[] { _bird, };
-        }*/
+            yield return new object[] { new Bird(_coordinate, BirdSpecies.Raven, false, _speed) , new Coordinate(100, 100, 100), 171.4730299493 / _speed};
+            yield return new object[] { new Bird(_coordinate, BirdSpecies.Raven, false, _speed), new Coordinate(4, 5, 6), 7.0710678119 / _speed };
+            yield return new object[] { new Drone(_coordinate, 2000, 6.5, 950, 45), new Coordinate(100, 100, 100), 4.1771784434};
+            yield return new object[] { new Drone(_coordinate, 2000, 6.5, 950, 45), new Coordinate(4, 5, 6), 9.4280904158 };
+            yield return new object[] { new Plane(_coordinate, PlaneManufacturers.Airbus, 11, 950, 220, 4, 33.5), new Coordinate(100, 100, 100), GetTimeForPlane(220, 950, 171.473299491) };
+            yield return new object[] { new Plane(_coordinate, PlaneManufacturers.Airbus, 11, 880, 185, 4, 33.5), new Coordinate(1500, 66, 777), GetTimeForPlane(185, 880, 1689.2015865491) };
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(GetDataForGetFlyTimeExceptionTest), DynamicDataSourceType.Method)]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), "this flyable object is not able to fly more than maximal distance")]
+
+        public void GetFlyTimeExceptionTest(IFlyable flyableObject, Coordinate coordinate)
+        {
+            flyableObject.GetFlyTime(coordinate);
+        }
+
+        public static IEnumerable<object[]> GetDataForGetFlyTimeExceptionTest()
+        {
+            yield return new object[] { new Bird(_coordinate, BirdSpecies.Raven, false, _speed), new Coordinate(1, 1, 1502) };
+            yield return new object[] { new Bird(_coordinate, BirdSpecies.Raven, false, _speed), new Coordinate(Double.MaxValue, 1, 1) };
+            yield return new object[] { new Drone(_coordinate, 2000, 6.5, 950, 45), new Coordinate(1, 1, 952) };
+            yield return new object[] { new Drone(_coordinate, 2000, 6.5, 950, 45), new Coordinate(Double.MaxValue, 1, 1) };
+            yield return new object[] { new Plane(_coordinate, PlaneManufacturers.Airbus, 11, 950, 220, 4, 33.5), new Coordinate(1, 1, 25002) };
+            yield return new object[] { new Plane(_coordinate, PlaneManufacturers.Airbus, 11, 950, 220, 4, 33.5), new Coordinate(Double.MaxValue, 100, 100) };
+        }
+
+        private static double GetTimeForPlane(double takeoffSpeed, double maximalSpeed, double distance) // when we imagine that someone else wrote GetFlyTime() method in task5 for plane and i have to test it
+        {
+            double time = 0.0;
+            double speed = takeoffSpeed;
+            int amountOf10kmSegments = (int)(distance / 10);
+            for (int i = 0; i < amountOf10kmSegments; i++)
+            {
+                time += 10 / speed;
+                if (speed > maximalSpeed - 10)
+                {
+                    speed = maximalSpeed;
+                }
+                else
+                {
+                    speed += 10;
+                }
+            }
+            return time + (distance % 10) * speed;
+        }
 
     }
 }

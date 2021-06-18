@@ -7,15 +7,18 @@ namespace Task5.Entities
     {
         public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
         public double Price { get; set; } // in us dollars
+
+        public double Speed { get; set; } // in km/h
         public double MaximalHeight { get; set; } // in kilometers
         public double MaximalDistance { get; set; } // in kilometers
 
-        public Drone(Coordinate coordinate, double price, double maximalHeight, double maximalDistance)
+        public Drone(Coordinate coordinate, double price, double maximalHeight, double maximalDistance, double speed)
         {
-            ActualCoordinate = coordinate;
+            ActualCoordinate = new Coordinate(coordinate.X, coordinate.Y, coordinate.Z);
             Price = price;
             MaximalHeight = maximalHeight;
             MaximalDistance = maximalDistance;
+            Speed = speed;
         }
 
         public Drone()
@@ -24,6 +27,7 @@ namespace Task5.Entities
             Price = default;
             MaximalHeight = default;
             MaximalDistance = default;
+            Speed = default;
         }
 
         public void FlyTo(Coordinate coordinate) // changes the actual coordinate if distance is less than maximal distance of the flight
@@ -42,10 +46,11 @@ namespace Task5.Entities
 
         public double GetFlyTime(Coordinate coordinate) // each 10 minutes of flight makes a 1 minute pause then moves again
         {
-            if (ActualCoordinate.GetDistance(coordinate) <= MaximalDistance)
+            double distance = ActualCoordinate.GetDistance(coordinate);
+            if (distance <= MaximalDistance)
             {
                 double speed = 50;
-                double baseTime = ActualCoordinate.GetDistance(coordinate) / speed;
+                double baseTime = distance / speed;
                 int amountOfStops = (int)(baseTime / (1.0 / 6.0));
                 return baseTime + amountOfStops * (1.0 / 60.0);
             }
