@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Task4.Helpers
+﻿namespace Task4.Helpers
 {
-    public class SerialClass
+    public class SerialClass // a class created to enable serialization of an object of anonymous class that appears in one of linq statementns
     {
         public EngineTypes EngineType { get; set; }
         public uint SerialNumber { get; set; }

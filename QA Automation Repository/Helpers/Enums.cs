@@ -1,5 +1,4 @@
-﻿
-namespace Task4.Helpers
+﻿namespace Task4.Helpers
 {
     public enum EngineTypes
     { 
