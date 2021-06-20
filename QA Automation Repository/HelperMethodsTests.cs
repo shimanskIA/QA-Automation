@@ -2,7 +2,7 @@
 using Microsoft.XmlDiffPatch;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Xml;
 using Task4.Entities.Details;
 using Task4.Entities.Vehicles;
@@ -41,13 +41,10 @@ namespace MSTestsForTask4
             5000);
         private static readonly List<Vehicle> _vehiclesForPositiveTest = new List<Vehicle>() { _auto1, _bus1, _lorry1, _scooter1, _auto2 };
         private static readonly List<Vehicle> _vehiclesForNegativeTest = new List<Vehicle>() { _auto1, _scooter1, _auto2 };
-        private static readonly XmlDocument xmlDocumentRes;
 
-        static HelperMethodsTests()
-        {
-            xmlDocumentRes = new XmlDocument();
-            xmlDocumentRes.Load("Vehicles.xml");
-        }
+        private static readonly string resultFileName = "Vehicles.xml";
+        private static readonly string fileForPositiveTestName = "VehiclesPositiveTest.xml";
+        private static readonly string fileForNegativeTestName = "VehiclesNegativeTest.xml";
 
         private void XmlWriterMethodPositiveTestHelper<T>(List<T> objects, string fileName, string resFileName)
         {
@@ -68,7 +65,7 @@ namespace MSTestsForTask4
 
         public static IEnumerable<object[]> GetDataXmlWriterMethodPositiveTest()
         {
-            yield return new object[] { _vehiclesForPositiveTest, "VehiclesPositiveTest.xml", "Vehicles.xml" };
+            yield return new object[] { _vehiclesForPositiveTest, fileForPositiveTestName,  resultFileName};
         }
 
         private void XmlWriterMethodNegativeTestHelper<T>(List<T> objects, string fileName, string resFileName)
@@ -90,7 +87,43 @@ namespace MSTestsForTask4
 
         public static IEnumerable<object[]> GetDataXmlWriterMethodNegativeTest()
         {
-            yield return new object[] { _vehiclesForNegativeTest, "VehiclesNegativeTest.xml", "Vehicles.xml" };
+            yield return new object[] { _vehiclesForNegativeTest, fileForNegativeTestName, resultFileName };
+        }
+
+        private void XmlReaderMethodPostiveTestHelper<T>(List<T> objects, string fileName)
+        {
+            Assert.IsTrue(objects.SequenceEqual(Helper.XmlReader<T>(fileName)));
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(GetDataXmReaderMethodPositiveTest), DynamicDataSourceType.Method)]
+
+        public void XmlReaderMethodPositiveTest(List<Vehicle> objects, string fileName)
+        {
+            XmlReaderMethodPostiveTestHelper(objects, fileName);
+        }
+
+        public static IEnumerable<object[]> GetDataXmReaderMethodPositiveTest()
+        {
+            yield return new object[] { _vehiclesForPositiveTest, resultFileName };
+        }
+
+        private void XmlReaderMethodNegativeTestHelper<T>(List<T> objects, string fileName)
+        {
+            Assert.IsFalse(objects.SequenceEqual(Helper.XmlReader<T>(fileName)));
+        }
+
+        [TestMethod]
+        [DynamicData(nameof(GetDataXmReaderMethodNegativeTest), DynamicDataSourceType.Method)]
+
+        public void XmlReaderMethodNegativeTest(List<Vehicle> objects, string fileName)
+        {
+            XmlReaderMethodNegativeTestHelper(objects, fileName);
+        }
+
+        public static IEnumerable<object[]> GetDataXmReaderMethodNegativeTest()
+        {
+            yield return new object[] { _vehiclesForNegativeTest, resultFileName };
         }
     }
 }

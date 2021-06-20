@@ -46,7 +46,7 @@ namespace Task4.Entities
             return Helper.XmlReader<T>(fileName);
         }
 
-        public string GetInformation() // gets information about all vehicles in list
+        public string GetInformation() // gets information about all vehicles in a list
         {
             string fullInformation = "";
             foreach (var vehicle in Vehicles)
