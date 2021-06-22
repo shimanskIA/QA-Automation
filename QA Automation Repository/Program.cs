@@ -14,8 +14,8 @@ namespace Task4
         {
             Func<Vehicle, bool> chooseMoreThan15 = x => x.VehicleEngine.Volume >= 1.5;
             Func<Vehicle, bool> choose2x2Transmission = x => x.VehicleTransmission.TransmissionType == "2x2";
-            Func<Vehicle, bool> chooseVehicleType = x => x.GetType().Equals(typeof(Lorry)) || x.GetType().Equals(typeof(Bus));
             Func<Vehicle, string> transmissionComparer = x => x.VehicleTransmission.TransmissionType;
+            Func<Vehicle, bool> chooseVehicleType = x => x.GetType().Equals(typeof(Lorry)) || x.GetType().Equals(typeof(Bus));
             Func<Vehicle, SerialClass> proectionCondition = x => new SerialClass(x.VehicleEngine.EngineType, x.VehicleEngine.SerialNumber, x.VehicleEngine.Power);
 
             string fileForVehiclesName = "Vehicles.xml";

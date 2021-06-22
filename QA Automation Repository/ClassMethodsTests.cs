@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using Task4.Entities.Details;
 using Task4.Entities.Vehicles;
@@ -42,80 +43,61 @@ namespace MSTestsForTask4
         private static readonly string resultTextForLorry = "A lorry, produced by Mercedes with Petrol engine of 2,5 liters with 250 horse powers and serial number: 123456, chassis with 4 wheels, maximal load of 500,5 kilograms and serial number: 123456, 2x2 transmission with 6 gears, pruduced by BMW, that can also carry 250,5 kilogramms";
         private static readonly string resultTextForScooter = "A scooter, produced by BMW with Petrol engine of 2,5 liters with 250 horse powers and serial number: 123456, chassis with 4 wheels, maximal load of 500,5 kilograms and serial number: 123456, 2x2 transmission with 6 gears, pruduced by BMW, that can reach 100 km/h in just 7,25 seconds, wow!";
 
+        private static readonly Action<object, object> objectComparePositive = (x, y) => Assert.IsTrue(x.Equals(y));
+        private static readonly Action<object, object> objectCompareNegative = (x, y) => Assert.IsFalse(x.Equals(y));
+        private static readonly Action<object, object> equaltyCheckPositive = (x, y) => Assert.AreEqual(x.GetHashCode(), y.GetHashCode());
+        private static readonly Action<object, object> equaltyCheckNegative = (x, y) => Assert.AreNotEqual(x.GetHashCode(), y.GetHashCode());
+
         [TestMethod]
-        [DynamicData(nameof(GetDataForEqualsMethodPositiveTest), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetDataForEqualsMethodTest), DynamicDataSourceType.Method)]
    
-        public void EqualsMethodPositiveTest(object obj1, object obj2)
+        public void EqualsMethodTest(Action<object, object> action, object obj1, object obj2)
         {
-            Assert.IsTrue(obj1.Equals(obj2));
+            action(obj1, obj2);
         }
 
-        public static IEnumerable<object[]> GetDataForEqualsMethodPositiveTest()
+        public static IEnumerable<object[]> GetDataForEqualsMethodTest()
         {
-            yield return new object[] { _engine, _engineToPositiveCompare };
-            yield return new object[] { _chassis, _chassisToPositiveCompare };
-            yield return new object[] { _transmission, _transmissionToPositiveCompare };
-            yield return new object[] { _car, _carToPositiveCompare };
-            yield return new object[] { _bus, _busToPositiveCompare };
-            yield return new object[] { _lorry, _lorryToPositiveCompare };
-            yield return new object[] { _scooter, _scooterToPositiveCompare };
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GetDataForEqualsMethodNegativeTest), DynamicDataSourceType.Method)]
-        
-        public void EqualsMethodNegativeTest(object obj1, object obj2)
-        {
-            Assert.IsFalse(obj1.Equals(obj2));
-        }
-
-        public static IEnumerable<object[]> GetDataForEqualsMethodNegativeTest()
-        {
-            yield return new object[] { _engine, _engineToNegativeCompare };
-            yield return new object[] { _chassis, _chassisToNegativeCompare };
-            yield return new object[] { _transmission, _transmissionToNegativeCompare };
-            yield return new object[] { _car, _carToNegativeCompare };
-            yield return new object[] { _bus, _busToNegativeCompare };
-            yield return new object[] { _lorry, _lorryToNegativeCompare };
-            yield return new object[] { _scooter, _scooterToNegativeCompare };
+            yield return new object[] { objectComparePositive, _engine, _engineToPositiveCompare };
+            yield return new object[] { objectComparePositive, _chassis, _chassisToPositiveCompare };
+            yield return new object[] { objectComparePositive, _transmission, _transmissionToPositiveCompare };
+            yield return new object[] { objectComparePositive, _car, _carToPositiveCompare };
+            yield return new object[] { objectComparePositive, _bus, _busToPositiveCompare };
+            yield return new object[] { objectComparePositive, _lorry, _lorryToPositiveCompare };
+            yield return new object[] { objectComparePositive, _scooter, _scooterToPositiveCompare };
+            yield return new object[] { objectCompareNegative, _engine, _engineToNegativeCompare };
+            yield return new object[] { objectCompareNegative, _chassis, _chassisToNegativeCompare };
+            yield return new object[] { objectCompareNegative, _transmission, _transmissionToNegativeCompare };
+            yield return new object[] { objectCompareNegative, _car, _carToNegativeCompare };
+            yield return new object[] { objectCompareNegative, _bus, _busToNegativeCompare };
+            yield return new object[] { objectCompareNegative, _lorry, _lorryToNegativeCompare };
+            yield return new object[] { objectCompareNegative, _scooter, _scooterToNegativeCompare };
         }
 
         [TestMethod]
         [DynamicData(nameof(GetDataForGetHashCodeMethodPositiveTest), DynamicDataSourceType.Method)]
 
-        public void GetHashCodeMethodPositiveTest(object obj1, object obj2)
+        public void GetHashCodeMethodPositiveTest(Action<object, object> action, object obj1, object obj2)
         {
-            Assert.AreEqual(obj1.GetHashCode(), obj2.GetHashCode());
+            action(obj1, obj2);
         }
 
         public static IEnumerable<object[]> GetDataForGetHashCodeMethodPositiveTest()
         {
-            yield return new object[] { _engine, _engineToPositiveCompare };
-            yield return new object[] { _chassis, _chassisToPositiveCompare };
-            yield return new object[] { _transmission, _transmissionToPositiveCompare };
-            yield return new object[] { _car, _carToPositiveCompare };
-            yield return new object[] { _bus, _busToPositiveCompare };
-            yield return new object[] { _lorry, _lorryToPositiveCompare };
-            yield return new object[] { _scooter, _scooterToPositiveCompare };
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GetDataForGetHashCodeMethodNegativeTest), DynamicDataSourceType.Method)]
-
-        public void GetHashCodeMethodNegativeTest(object obj1, object obj2)
-        {
-            Assert.AreNotEqual(obj1.GetHashCode(), obj2.GetHashCode());
-        }
-
-        public static IEnumerable<object[]> GetDataForGetHashCodeMethodNegativeTest()
-        {
-            yield return new object[] { _engine, _engineToNegativeCompare };
-            yield return new object[] { _chassis, _chassisToNegativeCompare };
-            yield return new object[] { _transmission, _transmissionToNegativeCompare };
-            yield return new object[] { _car, _carToNegativeCompare };
-            yield return new object[] { _bus, _busToNegativeCompare };
-            yield return new object[] { _lorry, _lorryToNegativeCompare };
-            yield return new object[] { _scooter, _scooterToNegativeCompare };
+            yield return new object[] { equaltyCheckPositive, _engine, _engineToPositiveCompare };
+            yield return new object[] { equaltyCheckPositive, _chassis, _chassisToPositiveCompare };
+            yield return new object[] { equaltyCheckPositive, _transmission, _transmissionToPositiveCompare };
+            yield return new object[] { equaltyCheckPositive, _car, _carToPositiveCompare };
+            yield return new object[] { equaltyCheckPositive, _bus, _busToPositiveCompare };
+            yield return new object[] { equaltyCheckPositive, _lorry, _lorryToPositiveCompare };
+            yield return new object[] { equaltyCheckPositive, _scooter, _scooterToPositiveCompare };
+            yield return new object[] { equaltyCheckNegative, _engine, _engineToNegativeCompare };
+            yield return new object[] { equaltyCheckNegative, _chassis, _chassisToNegativeCompare };
+            yield return new object[] { equaltyCheckNegative, _transmission, _transmissionToNegativeCompare };
+            yield return new object[] { equaltyCheckNegative, _car, _carToNegativeCompare };
+            yield return new object[] { equaltyCheckNegative, _bus, _busToNegativeCompare };
+            yield return new object[] { equaltyCheckNegative, _lorry, _lorryToNegativeCompare };
+            yield return new object[] { equaltyCheckNegative, _scooter, _scooterToNegativeCompare };
         }
 
         [TestMethod]

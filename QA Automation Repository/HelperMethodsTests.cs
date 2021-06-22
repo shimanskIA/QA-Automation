@@ -39,91 +39,60 @@ namespace MSTestsForTask4
             new Chassis(2, 250, 123784),
             new Transmission("1x1", 8, Manufacturers.Ferrari),
             5000);
+
         private static readonly List<Vehicle> _vehiclesForPositiveTest = new List<Vehicle>() { _auto1, _bus1, _lorry1, _scooter1, _auto2 };
         private static readonly List<Vehicle> _vehiclesForNegativeTest = new List<Vehicle>() { _auto1, _scooter1, _auto2 };
+
+        private static readonly XmlDiff xmlDiff = new XmlDiff(XmlDiffOptions.IgnoreChildOrder | XmlDiffOptions.IgnoreNamespaces | XmlDiffOptions.IgnorePrefixes);
 
         private static readonly string resultFileName = "Vehicles.xml";
         private static readonly string fileForPositiveTestName = "VehiclesPositiveTest.xml";
         private static readonly string fileForNegativeTestName = "VehiclesNegativeTest.xml";
 
-        private void XmlWriterMethodPositiveTestHelper<T>(List<T> objects, string fileName, string resFileName)
+        private static Action<string, string> fileComparePositive = (x, y) => Assert.IsTrue(xmlDiff.Compare(x, y, false));
+        private static Action<string, string> fileCompareNegative = (x, y) => Assert.IsFalse(xmlDiff.Compare(x, y, false));
+        private static Action<List<Vehicle>, string> listComparePositive = (x, y) => Assert.IsTrue(x.SequenceEqual(Helper.XmlReader<Vehicle>(y)));
+        private static Action<List<Vehicle>, string> listCompareNegative = (x, y) => Assert.IsFalse(x.SequenceEqual(Helper.XmlReader<Vehicle>(y)));
+
+        private void XmlWriterMethodTestHelper<T>(Action<string, string> action, List<T> objects, string fileName, string resFileName)
         {
             Helper.XmlWriter(objects, fileName);
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(fileName);
-            XmlDiff xmlDiff = new XmlDiff(XmlDiffOptions.IgnoreChildOrder | XmlDiffOptions.IgnoreNamespaces | XmlDiffOptions.IgnorePrefixes);
-            Assert.IsTrue(xmlDiff.Compare(fileName, resFileName, false));
+            action(fileName, resFileName);
         }
 
         [TestMethod]
-        [DynamicData(nameof(GetDataXmlWriterMethodPositiveTest), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetDataXmlWriterMethodTest), DynamicDataSourceType.Method)]
 
-        public void XmlWriterMethodPositiveTest(List<Vehicle> objects, string fileName, string resFileName)
+        public void XmlWriterMethodTest(Action<string, string> action, List<Vehicle> objects, string fileName, string resFileName)
         {
-            XmlWriterMethodPositiveTestHelper(objects, fileName, resFileName);
+            XmlWriterMethodTestHelper(action, objects, fileName, resFileName);
         }
 
-        public static IEnumerable<object[]> GetDataXmlWriterMethodPositiveTest()
+        public static IEnumerable<object[]> GetDataXmlWriterMethodTest()
         {
-            yield return new object[] { _vehiclesForPositiveTest, fileForPositiveTestName,  resultFileName};
+            yield return new object[] { fileComparePositive, _vehiclesForPositiveTest, fileForPositiveTestName, resultFileName };
+            yield return new object[] { fileCompareNegative, _vehiclesForNegativeTest, fileForNegativeTestName, resultFileName };
         }
 
-        private void XmlWriterMethodNegativeTestHelper<T>(List<T> objects, string fileName, string resFileName)
+        private void XmlReaderMethodTestHelper<T>(Action<List<T>, string> action, List<T> objects, string fileName)
         {
-            Helper.XmlWriter(objects, fileName);
-            XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.Load(fileName);
-            XmlDiff xmlDiff = new XmlDiff(XmlDiffOptions.IgnoreChildOrder | XmlDiffOptions.IgnoreNamespaces | XmlDiffOptions.IgnorePrefixes);
-            Assert.IsFalse(xmlDiff.Compare(fileName, resFileName, false));
+            action(objects, fileName);
         }
 
         [TestMethod]
-        [DynamicData(nameof(GetDataXmlWriterMethodNegativeTest), DynamicDataSourceType.Method)]
+        [DynamicData(nameof(GetDataXmReaderMethodTest), DynamicDataSourceType.Method)]
 
-        public void XmlWriterMethodNegativeTest(List<Vehicle> objects, string fileName, string resFileName)
+        public void XmlReaderMethodTest(Action<List<Vehicle>, string> action, List<Vehicle> objects, string fileName)
         {
-            XmlWriterMethodNegativeTestHelper(objects, fileName, resFileName);
+            XmlReaderMethodTestHelper(action, objects, fileName);
         }
 
-        public static IEnumerable<object[]> GetDataXmlWriterMethodNegativeTest()
+        public static IEnumerable<object[]> GetDataXmReaderMethodTest()
         {
-            yield return new object[] { _vehiclesForNegativeTest, fileForNegativeTestName, resultFileName };
-        }
-
-        private void XmlReaderMethodPostiveTestHelper<T>(List<T> objects, string fileName)
-        {
-            Assert.IsTrue(objects.SequenceEqual(Helper.XmlReader<T>(fileName)));
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GetDataXmReaderMethodPositiveTest), DynamicDataSourceType.Method)]
-
-        public void XmlReaderMethodPositiveTest(List<Vehicle> objects, string fileName)
-        {
-            XmlReaderMethodPostiveTestHelper(objects, fileName);
-        }
-
-        public static IEnumerable<object[]> GetDataXmReaderMethodPositiveTest()
-        {
-            yield return new object[] { _vehiclesForPositiveTest, resultFileName };
-        }
-
-        private void XmlReaderMethodNegativeTestHelper<T>(List<T> objects, string fileName)
-        {
-            Assert.IsFalse(objects.SequenceEqual(Helper.XmlReader<T>(fileName)));
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GetDataXmReaderMethodNegativeTest), DynamicDataSourceType.Method)]
-
-        public void XmlReaderMethodNegativeTest(List<Vehicle> objects, string fileName)
-        {
-            XmlReaderMethodNegativeTestHelper(objects, fileName);
-        }
-
-        public static IEnumerable<object[]> GetDataXmReaderMethodNegativeTest()
-        {
-            yield return new object[] { _vehiclesForNegativeTest, resultFileName };
+            yield return new object[] { listComparePositive, _vehiclesForPositiveTest, resultFileName };
+            yield return new object[] { listCompareNegative, _vehiclesForNegativeTest, resultFileName };
         }
     }
 }
