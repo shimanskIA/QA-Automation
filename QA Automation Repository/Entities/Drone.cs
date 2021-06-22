@@ -3,27 +3,23 @@ using Task5.Interfaces;
 
 namespace Task5.Entities
 {
-    public class Drone : IFlyable
+    public class Drone : FlyingObject, IFlyable
     {
-        public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
         public double Price { get; set; } // in us dollars
-
         public double Speed { get; set; } // in km/h
         public double MaximalHeight { get; set; } // in kilometers
         public double MaximalDistance { get; set; } // in kilometers
 
-        public Drone(Coordinate coordinate, double price, double maximalHeight, double maximalDistance, double speed)
+        public Drone(Coordinate coordinate, double price, double maximalHeight, double maximalDistance, double speed) : base (coordinate)
         {
-            ActualCoordinate = new Coordinate(coordinate.X, coordinate.Y, coordinate.Z);
             Price = price;
             MaximalHeight = maximalHeight;
             MaximalDistance = maximalDistance;
             Speed = speed;
         }
 
-        public Drone()
+        public Drone() : base()
         {
-            ActualCoordinate = default;
             Price = default;
             MaximalHeight = default;
             MaximalDistance = default;

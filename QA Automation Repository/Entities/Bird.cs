@@ -4,24 +4,21 @@ using Task5.Interfaces;
 
 namespace Task5.Entities
 {
-    public class Bird : IFlyable
+    public class Bird : FlyingObject, IFlyable
     {
-        public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
         public BirdSpecies Species { get; set; } 
         public bool IsExtincting { get; set; } // whether this species is in a 'red book'
         public double Speed { get; set; } // in km/h
 
-        public Bird(Coordinate coordinate, BirdSpecies species, bool isExtincting, double speed)
+        public Bird(Coordinate coordinate, BirdSpecies species, bool isExtincting, double speed) : base(coordinate)
         {
-            ActualCoordinate = new Coordinate(coordinate.X, coordinate.Y, coordinate.Z);
             Species = species;
             IsExtincting = isExtincting;
             Speed = speed;
         }
 
-        public Bird()
+        public Bird() : base()
         {
-            ActualCoordinate = default;
             Species = default;
             IsExtincting = default;
             Speed = default;

@@ -4,9 +4,8 @@ using Task5.Interfaces;
 
 namespace Task5.Entities
 {
-    public class Plane : IFlyable
+    public class Plane : FlyingObject, IFlyable
     {
-        public Coordinate ActualCoordinate { get; set; } // coordinates are given in kilometers
         public PlaneManufacturers Manufacturers { get; set; }
         public double MaximalSpeed { get; set; } // in km/h
         public double TakeoffSpeed { get; set; } // in km/h
@@ -14,9 +13,8 @@ namespace Task5.Entities
         public int AmountOfEngines { get; set; }
         public double Wingspan { get; set; } // in meters
 
-        public Plane(Coordinate coordinate, PlaneManufacturers manufacturers, double maximalHeight, double maximalSpeed, double takeoffSpeed, int amountOfEngines, double wingspan)
+        public Plane(Coordinate coordinate, PlaneManufacturers manufacturers, double maximalHeight, double maximalSpeed, double takeoffSpeed, int amountOfEngines, double wingspan) : base(coordinate)
         {
-            ActualCoordinate = new Coordinate(coordinate.X, coordinate.Y, coordinate.Z);
             Manufacturers = manufacturers;
             MaximalHeight = maximalHeight;
             MaximalSpeed = maximalSpeed;
@@ -25,7 +23,7 @@ namespace Task5.Entities
             Wingspan = wingspan;
         }
 
-        public Plane()
+        public Plane() : base()
         {
             Manufacturers = default;
             MaximalHeight = default;

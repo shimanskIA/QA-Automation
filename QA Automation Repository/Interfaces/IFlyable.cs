@@ -6,6 +6,5 @@ namespace Task5.Interfaces
     {
         public void FlyTo(Coordinate coordinate);
         public double GetFlyTime(Coordinate coordinate);
-
     }
 }
