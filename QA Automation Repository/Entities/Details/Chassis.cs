@@ -5,9 +5,11 @@ namespace Task4.Entities.Details
 {
     [Serializable]
     public class Chassis : IReadable
-    {
+    { 
         public int AmountOfWheels { get; set; }
+
         public double MaximalLoad { get; set; } // in kilograms
+        
         public int SerialNumber { get; set; } // 7 numbers
 
         public Chassis(int amountOfWheels, double maximalLoad, int serialNumber)
@@ -44,12 +46,10 @@ namespace Task4.Entities.Details
                 return false;
             }
         }
-
         public override int GetHashCode()
         {
             return HashCode.Combine(AmountOfWheels, Math.Round(MaximalLoad, 5), SerialNumber);
         }
-
         public string GetInformation()
         {
             return "chassis with " + AmountOfWheels + " wheels, maximal load of " + MaximalLoad + " kilograms and serial number: " + SerialNumber;

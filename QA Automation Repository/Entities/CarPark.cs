@@ -21,29 +21,29 @@ namespace Task4.Entities
             Vehicles = default;
         }
 
-        public void SaveToFile(string fileName) // saves all vehicles to file
+        public void SaveToFile(string fileName)
         {
-            Helper.XmlWriter(Vehicles, fileName);
+            Helper.WriteToXmlFile(Vehicles, fileName);
         }
 
-        public void SaveToFileWithCondition(string fileName, Func<Vehicle, bool> function) // saves some vehicles to file depends on condition
+        public void SaveToFileWithCondition(string fileName, Func<Vehicle, bool> function) 
         {
-            Helper.XmlWriter(Vehicles.Where(function).ToList(), fileName);
+            Helper.WriteToXmlFile(Vehicles.Where(function).ToList(), fileName);
         }
 
-        public void SaveToFileSort<T>(string fileName, Func<Vehicle, T> comparer) // saves sorted list of vehicles to file
+        public void SaveToFileSort<T>(string fileName, Func<Vehicle, T> comparer)
         {
-            Helper.XmlWriter(Vehicles.OrderBy(comparer).ToList(), fileName);
+            Helper.WriteToXmlFile(Vehicles.OrderBy(comparer).ToList(), fileName);
         }
 
-        public void SaveToFileProection<T>(string fileName, Func<Vehicle, bool> function, Func<Vehicle, T> condition) // saves some complex proection of list of vehicles to file
+        public void SaveToFileProection<T>(string fileName, Func<Vehicle, bool> function, Func<Vehicle, T> condition) 
         {
-            Helper.XmlWriter(Vehicles.Where(function).Select(condition).ToList(), fileName);
+            Helper.WriteToXmlFile(Vehicles.Where(function).Select(condition).ToList(), fileName);
         }
 
-        public List<T> ReadFromFile<T>(string fileName) // reads objects from file
+        public List<T> ReadFromFile<T>(string fileName) 
         {
-            return Helper.XmlReader<T>(fileName);
+            return Helper.ReadFromXmlFile<T>(fileName);
         }
 
         public string GetInformation() // gets information about all vehicles in a list

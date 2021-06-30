@@ -7,6 +7,7 @@ using System.Xml;
 using Task4.Entities;
 using Task4.Entities.Details;
 using Task4.Entities.Vehicles;
+using Task4.Enums;
 using Task4.Helpers;
 using Task4.Interfaces;
 
@@ -15,31 +16,31 @@ namespace MSTestsForTask4
     [TestClass]
     public class CarParkMethodsTests
     {
-        private static readonly Car _auto1 = new Car(Manufacturers.BMW,
+        private static readonly Car _auto1 = new Car(ManufacturersForTransmissionsAndVehicles.BMW,
             new Engine(250, 2.5, EngineTypes.Petrol, 123),
             new Chassis(4, 4000, 321),
-            new Transmission("2x2", 6, Manufacturers.BMW),
-            4);
-        private static readonly Car _auto2 = new Car(Manufacturers.Mitsubishi,
+            new Transmission("2x2", 6, ManufacturersForTransmissionsAndVehicles.BMW),
+                 4);
+        private static readonly Car _auto2 = new Car(ManufacturersForTransmissionsAndVehicles.Mitsubishi,
             new Engine(90, 1.1, EngineTypes.Hybrid, 123877),
             new Chassis(4, 4000, 321),
-            new Transmission("2x2", 5, Manufacturers.Mitsubishi),
+            new Transmission("2x2", 5, ManufacturersForTransmissionsAndVehicles.Mitsubishi),
             4);
-        private static readonly Bus _bus1 = new Bus(Manufacturers.Mercedes,
+        private static readonly Bus _bus1 = new Bus(ManufacturersForTransmissionsAndVehicles.Mercedes,
             new Engine(385, 6.2, EngineTypes.Diesel, 777),
             new Chassis(6, 2000, 751),
-            new Transmission("2x4", 7, Manufacturers.Mercedes),
+            new Transmission("2x4", 7, ManufacturersForTransmissionsAndVehicles.Mercedes),
             48,
             2);
-        private static readonly Lorry _lorry1 = new Lorry(Manufacturers.Citroen,
+        private static readonly Lorry _lorry1 = new Lorry(ManufacturersForTransmissionsAndVehicles.Citroen,
             new Engine(350, 5.45, EngineTypes.Diesel, 500500),
             new Chassis(4, 1200, 123789),
-            new Transmission("2x2", 6, Manufacturers.Kia),
+            new Transmission("2x2", 6, ManufacturersForTransmissionsAndVehicles.Kia),
             5000);
-        private static readonly Scooter _scooter1 = new Scooter(Manufacturers.Ducati,
+        private static readonly Scooter _scooter1 = new Scooter(ManufacturersForTransmissionsAndVehicles.Ducati,
             new Engine(290, 2.2, EngineTypes.Petrol, 222222),
             new Chassis(2, 250, 123784),
-            new Transmission("1x1", 8, Manufacturers.Ferrari),
+            new Transmission("1x1", 8, ManufacturersForTransmissionsAndVehicles.Ferrari),
             5000);
 
         private static readonly List<Vehicle> _vehiclesForPositiveTest = new List<Vehicle>() { _auto1, _bus1, _lorry1, _scooter1, _auto2 };
@@ -55,7 +56,11 @@ namespace MSTestsForTask4
         private static readonly string resultFileNameForSort = "SortedTransmissions.xml";
         private static readonly string resultFileNameForProection = "LorryAndBusEngines.xml";
 
-        private static readonly string resultTextForCarPark = Helper.resultTextForCarPark;
+        private static readonly string resultTextForCarPark = "A car, produced by BMW with Petrol engine of 2,5 liters with 250 horse powers and serial number: 123, chassis with 4 wheels, maximal load of 4000 kilograms and serial number: 321, 2x2 transmission with 6 gears, pruduced by BMW, that can also carry 4 passengers" +
+            "\nA bus, produced by Mercedes with Diesel engine of 6,2 liters with 385 horse powers and serial number: 777, chassis with 6 wheels, maximal load of 2000 kilograms and serial number: 751, 2x4 transmission with 7 gears, pruduced by Mercedes, that can also carry 48 passengers and has 2 ecological level" +
+            "\nA lorry, produced by Citroen with Diesel engine of 5,45 liters with 350 horse powers and serial number: 500500, chassis with 4 wheels, maximal load of 1200 kilograms and serial number: 123789, 2x2 transmission with 6 gears, pruduced by Kia, that can also carry 5000 kilogramms" +
+            "\nA scooter, produced by Ducati with Petrol engine of 2,2 liters with 290 horse powers and serial number: 222222, chassis with 2 wheels, maximal load of 250 kilograms and serial number: 123784, 1x1 transmission with 8 gears, pruduced by Ferrari, that can reach 100 km/h in just 5000 seconds, wow!" +
+            "\nA car, produced by Mitsubishi with Hybrid engine of 1,1 liters with 90 horse powers and serial number: 123877, chassis with 4 wheels, maximal load of 4000 kilograms and serial number: 321, 2x2 transmission with 5 gears, pruduced by Mitsubishi, that can also carry 4 passengers\n";
 
         private static readonly string fileForPositiveTestName = "VehiclesPositiveTest.xml";
         private static readonly string fileForNegativeTestName = "VehiclesNegativeTest.xml";

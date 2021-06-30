@@ -1,4 +1,6 @@
-﻿namespace Task4.Helpers
+﻿using Task4.Enums;
+
+namespace Task4.Helpers
 {
     public class SerialClass // a class created to enable serialization of an object of anonymous class that appears in one of linq statementns
     {

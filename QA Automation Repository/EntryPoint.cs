@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Task4.Entities;
 using Task4.Entities.Details;
 using Task4.Entities.Vehicles;
+using Task4.Enums;
 using Task4.Helpers;
 
 namespace Task4
 {
-    class Program
+    class EntryPoint
     {
         static void Main(string[] args)
         {
@@ -24,31 +24,31 @@ namespace Task4
             string fileVehiclesWith2x2Transmission = "2x2VehicleTypes.xml";
             string fileForSortedByTransmissionVehicles = "SortedTransmissions.xml";
 
-            Car auto1 = new Car(Manufacturers.BMW, 
+            Car auto1 = new Car(ManufacturersForTransmissionsAndVehicles.BMW, 
                 new Engine(250, 2.5, EngineTypes.Petrol, 123), 
                 new Chassis(4, 4000, 321), 
-                new Transmission("2x2", 6, Manufacturers.BMW), 
+                new Transmission("2x2", 6, ManufacturersForTransmissionsAndVehicles.BMW), 
                 4);
-            Car auto2 = new Car(Manufacturers.Mitsubishi,
+            Car auto2 = new Car(ManufacturersForTransmissionsAndVehicles.Mitsubishi,
                 new Engine(90, 1.1, EngineTypes.Hybrid, 123877),
                 new Chassis(4, 4000, 321),
-                new Transmission("2x2", 5, Manufacturers.Mitsubishi),
+                new Transmission("2x2", 5, ManufacturersForTransmissionsAndVehicles.Mitsubishi),
                 4);
-            Bus bus1 = new Bus(Manufacturers.Mercedes, 
+            Bus bus1 = new Bus(ManufacturersForTransmissionsAndVehicles.Mercedes, 
                 new Engine(385, 6.2, EngineTypes.Diesel, 777), 
                 new Chassis(6, 2000, 751), 
-                new Transmission("2x4", 7, Manufacturers.Mercedes), 
+                new Transmission("2x4", 7, ManufacturersForTransmissionsAndVehicles.Mercedes), 
                 48, 
                 2);
-            Lorry lorry1 = new Lorry(Manufacturers.Citroen, 
+            Lorry lorry1 = new Lorry(ManufacturersForTransmissionsAndVehicles.Citroen, 
                 new Engine(350, 5.45, EngineTypes.Diesel, 500500), 
                 new Chassis(4, 1200, 123789), 
-                new Transmission("2x2", 6, Manufacturers.Kia), 
+                new Transmission("2x2", 6, ManufacturersForTransmissionsAndVehicles.Kia), 
                 5000);
-            Scooter scooter1 = new Scooter(Manufacturers.Ducati,
+            Scooter scooter1 = new Scooter(ManufacturersForTransmissionsAndVehicles.Ducati,
                 new Engine(290, 2.2, EngineTypes.Petrol, 222222),
                 new Chassis(2, 250, 123784),
-                new Transmission("1x1", 8, Manufacturers.Ferrari),
+                new Transmission("1x1", 8, ManufacturersForTransmissionsAndVehicles.Ferrari),
                 5000);
 
             List<Vehicle> vehicles = new List<Vehicle>() { auto1, bus1, lorry1, scooter1, auto2 };
