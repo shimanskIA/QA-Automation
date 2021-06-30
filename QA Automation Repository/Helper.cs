@@ -4,24 +4,20 @@ using System.Text;
 
 namespace Task1
 {
-    public class Helpers
+    public class Helper
     {
-        public static int FindLongestString(string[] inputString) // methode finding the longest substring in which characters are not repeated
+        public static int FindLongestStringLength(string inputString) // methode finding the longest substring in which characters are not repeated
         {
-            if (inputString.Length > 1  || inputString.Length == 0 || inputString[0] == null)
-            {
-                return 0;
-            }
-            else
+            if (inputString != null)
             {
                 int maxLength = 0;
-                for (int j = 0; j < inputString[0].Length; j++)
+                for (int j = 0; j < inputString.Length; j++)
                 {
-                    if (j + maxLength > inputString[0].Length)
+                    if (j + maxLength > inputString.Length)
                     {
                         break;
                     }
-                    var tempLength = FindLongestStringStartingFormAnElementNumber(j, inputString[0]); // finding the longest substring starting at a given element number
+                    var tempLength = FindLongestStringLengthStartingFormAnElementNumber(j, inputString); // finding the longest substring starting at a given element number
                     if (tempLength > maxLength)
                     {
                         maxLength = tempLength;
@@ -29,17 +25,21 @@ namespace Task1
                 }
                 return maxLength;
             }
+            else
+            {
+                return 0;
+            }
         }
 
-        public static int FindLongestStringStartingFormAnElementNumber(int element_number, string inputString) // methode finding the longest substring starting at a given element number
+        public static int FindLongestStringLengthStartingFormAnElementNumber(int elementNumber, string inputString) 
         {
             if (inputString != null)
             {
                 int maxLength = 0;
                 string symbolArray = "";
-                for (int i = element_number; i < inputString.Length; i++)
+                for (int i = elementNumber; i < inputString.Length; i++)
                 {
-                    if (i == element_number)
+                    if (i == elementNumber)
                     {
                         symbolArray += inputString[i];
                         maxLength++;

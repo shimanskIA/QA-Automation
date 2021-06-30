@@ -4,7 +4,7 @@ using Task1;
 namespace MSTestsForTask1
 {
     [TestClass]
-    public class HelperMethodesTests
+    public class StringLengthCalculatingMethodsTests
     {
         [TestMethod]
         [DataRow(5, "aaaaa", 0)]
@@ -16,9 +16,10 @@ namespace MSTestsForTask1
         [DataRow(0, "abcabcaaaa", 3)]
         [DataRow(0, null, 0)]
         [DataRow(0, "", 0)]
+
         public void FindLongestStringStartingFromAnElementNumberTest(int startSymbolNumber, string inputString, int result)
         {
-            Assert.AreEqual(result, Helpers.FindLongestStringStartingFormAnElementNumber(startSymbolNumber, inputString));
+            Assert.AreEqual(result, Helper.FindLongestStringLengthStartingFormAnElementNumber(startSymbolNumber, inputString));
         }
 
         [TestMethod]
@@ -31,7 +32,7 @@ namespace MSTestsForTask1
 
         public void FindLongestStringTest(string inputString, int result)
         {
-            Assert.AreEqual(result, Helpers.FindLongestString(new string[] { inputString }));
+            Assert.AreEqual(result, Helper.FindLongestStringLength(inputString));
         }
     }
 }
