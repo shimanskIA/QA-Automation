@@ -1,15 +1,7 @@
-﻿namespace Task5.Helpers
+﻿namespace Task5.Enums
 {
-    public enum BirdSpecies
-    {
-        Raven,
-        Eagle,
-        Magpie,
-        Tit
-    }
-
     public enum PlaneManufacturers
-    { 
+    {
         Boeing,
         Airbus,
         Il,
@@ -17,5 +9,4 @@
         Mitsubishi,
         Comac
     }
-
 }

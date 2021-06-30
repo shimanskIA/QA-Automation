@@ -1,16 +1,25 @@
 ﻿using System;
-using Task5.Helpers;
+using Task5.Enums;
 using Task5.Interfaces;
 
 namespace Task5.Entities
 {
     public class Plane : FlyingObject, IFlyable
     {
+        private const int _maximalDistance = 25000; // in kilometers
+        private const int _speedInscrease = 10; // in km/h
+        private const int _increaseInterval = 10; // in kilometers
+
         public PlaneManufacturers Manufacturers { get; set; }
+
         public double MaximalSpeed { get; set; } // in km/h
+
         public double TakeoffSpeed { get; set; } // in km/h
+
         public double MaximalHeight { get; set; } // in kilometers
+
         public int AmountOfEngines { get; set; }
+
         public double Wingspan { get; set; } // in meters
 
         public Plane(Coordinate coordinate, PlaneManufacturers manufacturers, double maximalHeight, double maximalSpeed, double takeoffSpeed, int amountOfEngines, double wingspan) : base(coordinate)
@@ -35,7 +44,7 @@ namespace Task5.Entities
 
         public void FlyTo(Coordinate coordinate) // changes the actual coordinate if distance is less than 25000 km
         {
-            if (ActualCoordinate.GetDistance(coordinate) <= 25000)
+            if (ActualCoordinate.GetDistance(coordinate) <= _maximalDistance)
             {
                 ActualCoordinate.X = coordinate.X;
                 ActualCoordinate.Y = coordinate.Y;
@@ -54,28 +63,28 @@ namespace Task5.Entities
         {
             double distance = ActualCoordinate.GetDistance(coordinate);
             double actualSpeed = TakeoffSpeed;
-            if (distance <= 25000)
+            if (distance <= _maximalDistance)
             {
-                int amountOfSpeedChanges = (int)(distance / 10);
-                double lastDistance = distance - amountOfSpeedChanges * 10;
+                int amountOfSpeedChanges = (int)(distance / _increaseInterval);
+                double lastDistance = distance - amountOfSpeedChanges * _increaseInterval;
                 double time = 0;
                 for (int i = 0; i < amountOfSpeedChanges; i++)
                 {
-                    time += 10 / actualSpeed;
-                    if (MaximalSpeed - 10 - actualSpeed < 0)
+                    time += _increaseInterval / actualSpeed;
+                    if (MaximalSpeed - _speedInscrease - actualSpeed < 0)
                     {
                         actualSpeed = MaximalSpeed;
                     }
                     else
                     {
-                        actualSpeed += 10;
+                        actualSpeed += _speedInscrease;
                     }
                 }
                 return time += (lastDistance / actualSpeed);
             }
             else
             {
-                throw new ArgumentOutOfRangeException("planes are not able to fly more than 25000 km");
+                throw new ArgumentOutOfRangeException("planes are not able to fly more than" + _maximalDistance + "km");
             }
         }
     }

@@ -1,21 +1,87 @@
 ﻿using System;
-using Task5.Helpers;
 
 namespace Task5.Entities
 {
     public class Coordinate
     {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }
+        private double _x;
+
+        public double X
+        { 
+            get
+            {
+                return _x;
+            }
+
+            set
+            {
+                if (value >= 0 && value < 1e150)
+                {
+                    _x = value;
+                }
+                else
+                {
+                    throw new ArgumentException("coordinates can not have negative or too big (>=1e154) values");
+                }
+            }
+        }
+
+
+        private double _y;
+
+        public double Y
+        {
+            get
+            {
+                return _y;
+            }
+
+            set
+            {
+                if (value >= 0 && value < 1e150)
+                {
+                    _y = value;
+                }
+                else
+                {
+                    throw new ArgumentException("coordinates can not have negative or too big (>=1e154) values");
+                }
+            }
+        }
+
+        private double _z;
+
+        public double Z
+        {
+            get
+            {
+                return _z;
+            }
+
+            set
+            {
+                if (value >= 0 && value < 1e150)
+                {
+                    _z = value;
+                }
+                else
+                {
+                    throw new ArgumentException("coordinates can not have negative or too big (>=1e154) values");
+                }
+            }
+        }
 
         public Coordinate(double x, double y, double z)
         {
-            if (Helper.Validate(x, y, z))
+            if (x >= 0 && x < 1e150 && y >= 0 && y < 1e150 && z >= 0 && z < 1e150)
             {
                 X = x;
                 Y = y;
                 Z = z;
+            }
+            else
+            {
+                throw new ArgumentException("coordinates can not have negative or too big (>=1e154) values");
             }
         }
 
@@ -28,40 +94,7 @@ namespace Task5.Entities
 
         public double GetDistance(Coordinate coordinate)
         {
-            if (coordinate.X < 1e154 && coordinate.Y < 1e154 && coordinate.Z < 1e154)
-            {
-                return Math.Sqrt(Math.Pow((coordinate.X - X), 2) + Math.Pow((coordinate.Y - Y), 2) + Math.Pow((coordinate.Z - Z), 2));
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("the square of the argument must not exceed maximal double value");
-            }
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj.GetType().Equals(typeof(Coordinate)))
-            {
-                if (Math.Abs((obj as Coordinate).X - X) < 1e-10 &&
-                    Math.Abs((obj as Coordinate).Y - Y) < 1e-10 &&
-                    Math.Abs((obj as Coordinate).Z - Z) < 1e-10)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Math.Round(X, 5), Math.Round(Y, 5), Math.Round(Z, 5));
+            return Math.Sqrt(Math.Pow((coordinate.X - X), 2) + Math.Pow((coordinate.Y - Y), 2) + Math.Pow((coordinate.Z - Z), 2));
         }
     }
 }

@@ -5,9 +5,15 @@ namespace Task5.Entities
 {
     public class Drone : FlyingObject, IFlyable
     {
+        private const double _tenMinutesInHours = 1.0 / 6.0;
+        private const double _oneMinuteInHours = 1.0 / 60.0;
+
         public double Price { get; set; } // in us dollars
+
         public double Speed { get; set; } // in km/h
+
         public double MaximalHeight { get; set; } // in kilometers
+
         public double MaximalDistance { get; set; } // in kilometers
 
         public Drone(Coordinate coordinate, double price, double maximalHeight, double maximalDistance, double speed) : base (coordinate)
@@ -45,10 +51,9 @@ namespace Task5.Entities
             double distance = ActualCoordinate.GetDistance(coordinate);
             if (distance <= MaximalDistance)
             {
-                double speed = 50;
-                double baseTime = distance / speed;
-                int amountOfStops = (int)(baseTime / (1.0 / 6.0));
-                return baseTime + amountOfStops * (1.0 / 60.0);
+                double baseTime = distance / Speed;
+                int amountOfStops = (int)(baseTime / _tenMinutesInHours);
+                return baseTime + amountOfStops * _oneMinuteInHours;
             }
             else
             {

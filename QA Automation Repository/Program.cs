@@ -1,6 +1,6 @@
 ﻿using System;
 using Task5.Entities;
-using Task5.Helpers;
+using Task5.Enums;
 
 namespace Task5
 {
@@ -9,7 +9,7 @@ namespace Task5
         static void Main(string[] args)
         {
             Random random = new Random();
-            Bird raven = new Bird(new Coordinate(0, 1, 0),BirdSpecies.Raven, false, random.NextDouble() * 20);
+            Bird raven = new Bird(new Coordinate(0, 1, 0), BirdSpecies.Raven, false, random.NextDouble() * 20);
             raven.GetFlyTime(new Coordinate(100, 150, 80));
             raven.FlyTo(new Coordinate(1, 1, 200));
             Plane plane = new Plane(new Coordinate(12, 25, 633), PlaneManufacturers.Boeing, 13000.5, 900.8, 212.7, 4, 19.35);

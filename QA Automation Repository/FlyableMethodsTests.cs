@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using Task5.Entities;
-using Task5.Helpers;
+using Task5.Enums;
 using Task5.Interfaces;
 
 namespace MSTestsForTask5
 {
     [TestClass]
-    public class ClassMethodsTests
+    public class FlyableMethodsTests
     {
         private static readonly Coordinate _coordinate = new Coordinate(1, 1, 1);
         private static readonly double _speed = new Random().NextDouble() * 20;
@@ -16,43 +16,11 @@ namespace MSTestsForTask5
         private readonly Plane _plane;
         private readonly Drone _drone;
 
-        public ClassMethodsTests()
+        public FlyableMethodsTests()
         {
             _bird = new Bird(_coordinate, BirdSpecies.Raven, false, _speed);
             _plane = new Plane(_coordinate, PlaneManufacturers.Boeing, 13000.5, 900.8, 205.6, 4, 19.35);
             _drone = new Drone(_coordinate, 1000, 8000, 1200, 80);
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GetDataForCoordinateEqualsPositiveTest), DynamicDataSourceType.Method)]
-
-        public void CoordinateEqualsPositiveTest(Coordinate coordinate)
-        {
-            Assert.IsTrue(_coordinate.Equals(coordinate));
-        }
-
-        public static IEnumerable<object[]> GetDataForCoordinateEqualsPositiveTest()
-        {
-            yield return new object[] { new Coordinate(1, 1, 1) };
-            yield return new object[] { new Coordinate(1.000000000000001, 1.00000000000000000001, 1) };
-            yield return new object[] { new Coordinate(1.6 - 0.6, 0.7 + 0.1 + 0.2, 1) };
-        }
-
-        [TestMethod]
-        [DynamicData(nameof(GetDataForCoordinateEqualsNegativeTest), DynamicDataSourceType.Method)]
-
-        public void CoordinateEqualsNegativeTest(Coordinate coordinate)
-        {
-            Assert.IsFalse(_coordinate.Equals(coordinate));
-        }
-
-        public static IEnumerable<object[]> GetDataForCoordinateEqualsNegativeTest()
-        {
-            yield return new object[] { new Coordinate(1, 1, 2) };
-            yield return new object[] { new Coordinate(5, 5, 5) };
-            yield return new object[] { new Coordinate(1.0001, 1, 1) };
-            yield return new object[] { new Coordinate(1, 1.0001, 1) };
-            yield return new object[] { new Coordinate(1, 1, 1.0001) };
         }
 
         [TestMethod]
@@ -71,24 +39,6 @@ namespace MSTestsForTask5
             yield return new object[] { new Coordinate(1, 1, 1), Math.Sqrt(0) };
         }
 
-        [TestMethod]
-        [DynamicData(nameof(GetDataForGetDistanceExceptionTest), DynamicDataSourceType.Method)]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), "the square of the argument must not exceed maximal double value")]
-
-        public void GetDistanceExceptionTest(Coordinate coordinate)
-        {
-            _coordinate.GetDistance(coordinate);
-        }
-
-        public static IEnumerable<object[]> GetDataForGetDistanceExceptionTest()
-        {
-            yield return new object[] { new Coordinate(1e154, 0, 0) };
-            yield return new object[] { new Coordinate(0, 1e154, 0) };
-            yield return new object[] { new Coordinate(0, 0, 1e154) };
-            yield return new object[] { new Coordinate(1e154, 1e154, 1e154) };
-            yield return new object[] { new Coordinate(Double.MaxValue, 1, 11) };
-        }
-
         
         [TestMethod]
         [DynamicData(nameof(GetDataForBirdFlyToMethodPositiveTest), DynamicDataSourceType.Method)]
@@ -96,7 +46,7 @@ namespace MSTestsForTask5
         public void BirdFlyToMethodPositiveTest(Coordinate coordinate)
         {
             _bird.FlyTo(coordinate);
-            Assert.IsTrue(_bird.ActualCoordinate.Equals(coordinate));
+            Assert.IsTrue(AreCoordinatesEqual(_bird.ActualCoordinate, coordinate));
         }
 
         public static IEnumerable<object[]> GetDataForBirdFlyToMethodPositiveTest()
@@ -118,9 +68,9 @@ namespace MSTestsForTask5
         public static IEnumerable<object[]> GetDataForBirdFlyToMethodExceptionTest()
         {
             yield return new object[] { new Coordinate(1, 1, 1502) };
-            yield return new object[] { new Coordinate(Double.MaxValue, 1, 1) };
-            yield return new object[] { new Coordinate(1, Double.MaxValue, 1) };
-            yield return new object[] { new Coordinate(1, 1, Double.MaxValue) };
+            yield return new object[] { new Coordinate(1, 1, 9.999e149) };
+            yield return new object[] { new Coordinate(9.999e149, 1, 1) };
+            yield return new object[] { new Coordinate(1, 9.999e149, 1) };
         }
 
         [TestMethod]
@@ -129,7 +79,7 @@ namespace MSTestsForTask5
         public void PlaneFlyToMethodPositiveTest(Coordinate coordinate, Coordinate resultCoordinate)
         {
             _plane.FlyTo(coordinate);
-            Assert.IsTrue(_plane.ActualCoordinate.Equals(resultCoordinate));
+            Assert.IsTrue(AreCoordinatesEqual(_plane.ActualCoordinate, resultCoordinate));
         }
 
         public static IEnumerable<object[]> GetDataForPlaneFlyToMethodPositiveTest()
@@ -147,7 +97,7 @@ namespace MSTestsForTask5
         public void DroneFlyToMethodPositiveTest(Coordinate coordinate)
         {
             _drone.FlyTo(coordinate);
-            Assert.IsTrue(_drone.ActualCoordinate.Equals(coordinate));
+            Assert.IsTrue(AreCoordinatesEqual(_drone.ActualCoordinate, coordinate));
         }
 
         public static IEnumerable<object[]> GetDataForDroneFlyToMethodPositiveTest()
@@ -169,9 +119,9 @@ namespace MSTestsForTask5
         public static IEnumerable<object[]> GetDataForDroneFlyToMethodExceptionTest()
         {
             yield return new object[] { new Coordinate(1, 1, 1202) };
-            yield return new object[] { new Coordinate(Double.MaxValue, 1, 1) };
-            yield return new object[] { new Coordinate(1, Double.MaxValue, 1) };
-            yield return new object[] { new Coordinate(1, 1, Double.MaxValue) };
+            yield return new object[] { new Coordinate(9.999e149, 1, 1) };
+            yield return new object[] { new Coordinate(1, 9.999e149, 1) };
+            yield return new object[] { new Coordinate(1, 1, 9.999e149) };
         }
 
         [TestMethod]
@@ -204,14 +154,14 @@ namespace MSTestsForTask5
         public static IEnumerable<object[]> GetDataForGetFlyTimeExceptionTest()
         {
             yield return new object[] { new Bird(_coordinate, BirdSpecies.Raven, false, _speed), new Coordinate(1, 1, 1502) };
-            yield return new object[] { new Bird(_coordinate, BirdSpecies.Raven, false, _speed), new Coordinate(Double.MaxValue, 1, 1) };
+            yield return new object[] { new Bird(_coordinate, BirdSpecies.Raven, false, _speed), new Coordinate(9.999e149, 1, 1) };
             yield return new object[] { new Drone(_coordinate, 2000, 6.5, 950, 45), new Coordinate(1, 1, 952) };
-            yield return new object[] { new Drone(_coordinate, 2000, 6.5, 950, 45), new Coordinate(Double.MaxValue, 1, 1) };
+            yield return new object[] { new Drone(_coordinate, 2000, 6.5, 950, 45), new Coordinate(9.999e149, 1, 1) };
             yield return new object[] { new Plane(_coordinate, PlaneManufacturers.Airbus, 11, 950, 220, 4, 33.5), new Coordinate(1, 1, 25002) };
-            yield return new object[] { new Plane(_coordinate, PlaneManufacturers.Airbus, 11, 950, 220, 4, 33.5), new Coordinate(Double.MaxValue, 100, 100) };
+            yield return new object[] { new Plane(_coordinate, PlaneManufacturers.Airbus, 11, 950, 220, 4, 33.5), new Coordinate(9.999e149, 100, 100) };
         }
 
-        private static double GetTimeForPlane(double takeoffSpeed, double maximalSpeed, double distance) // when we imagine that someone else wrote GetFlyTime() method in task5 for plane and i have to test it
+        private static double GetTimeForPlane(double takeoffSpeed, double maximalSpeed, double distance)
         {
             double time = 0.0;
             double speed = takeoffSpeed;
@@ -229,6 +179,20 @@ namespace MSTestsForTask5
                 }
             }
             return time + (distance % 10) * speed;
+        }
+
+        private static bool AreCoordinatesEqual(Coordinate inputCoordinate1, Coordinate inputCoordinate2)
+        {
+            if (Math.Abs(inputCoordinate2.X - inputCoordinate1.X) < 1e-10 &&
+                Math.Abs(inputCoordinate2.Y - inputCoordinate1.Y) < 1e-10 &&
+                Math.Abs(inputCoordinate2.Z - inputCoordinate1.Z) < 1e-10)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
