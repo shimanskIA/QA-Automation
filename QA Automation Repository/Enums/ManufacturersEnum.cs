@@ -1,16 +1,6 @@
-﻿
-namespace Task4.Helpers
+﻿namespace Task4.Enums
 {
-    public enum EngineTypes
-    { 
-        Diesel,
-        Petrol,
-        Electric,
-        Gas,
-        Hybrid
-    }
-
-    public enum Manufacturers // suits as for chassis as for vehicles
+    public enum ManufacturersForTransmissionsAndVehicles
     {
         BMW,
         Mercedes,

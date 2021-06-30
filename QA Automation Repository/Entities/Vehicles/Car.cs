@@ -1,44 +1,26 @@
-﻿using System;
+﻿//using System;
+using Task4.Enums;
 using Task4.Entities.Details;
-using Task4.Helpers;
+//using Task4.Helpers;
 
 namespace Task4.Entities.Vehicles
 {
+    //[Serializable]
     public class Car : Vehicle
     {
-        public byte AmountOfPassengerPlaces { get; set; } // should be less than 255
+        public byte AmountOfPassengerPlaces { get; set; }
         
-        public Car(Manufacturers manufacturer, Engine engine, Chassis chassis, Transmission transmission, byte amountOfPassengerPlaces) : base (manufacturer, engine, chassis, transmission)
+        public Car(ManufacturersForTransmissionsAndVehicles manufacturer, Engine engine, Chassis chassis, Transmission transmission, byte amountOfPassengerPlaces) : base (manufacturer, engine, chassis, transmission)
         {
             AmountOfPassengerPlaces = amountOfPassengerPlaces;
         }
 
-        public override bool Equals(object obj)
+        public Car()
         {
-            if (obj.GetType().Equals(typeof(Car)))
-            {
-                if ((obj as Car).AmountOfPassengerPlaces == AmountOfPassengerPlaces &&
-                    base.Equals(obj))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            AmountOfPassengerPlaces = default;
         }
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(base.GetHashCode(), AmountOfPassengerPlaces);
-        }
-
-        public override string GetInformation() // method to get infos about this car
+        public override string GetInformation() 
         {
             return "A car" + base.GetInformation() + ", that can also carry " + AmountOfPassengerPlaces + " passengers";
         }

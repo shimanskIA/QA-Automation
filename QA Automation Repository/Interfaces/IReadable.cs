@@ -1,5 +1,4 @@
-﻿
-namespace Task4.Interfaces
+﻿namespace Task4.Interfaces
 {
     public interface IReadable
     {
