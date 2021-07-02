@@ -1,17 +1,14 @@
-﻿//using System;
-using Task4.Enums;
-//using Task4.Helpers;
-using Task4.Interfaces;
+﻿using Task4new.Enums;
+using Task4new.Interfaces;
 
-namespace Task4.Entities.Details
+namespace Task4new.Entities.Details
 {
-   // [Serializable]
     public class Transmission : IReadable
     {
         public string TransmissionType { get; set; } // like 2x2 or 2x4 or so
-        
+
         public int AmountOfGears { get; set; }
-        
+
         public ManufacturersForTransmissionsAndVehicles Manufacturer { get; set; }
 
         public Transmission(string transmissionType, int amountOfGears, ManufacturersForTransmissionsAndVehicles manufacturer)

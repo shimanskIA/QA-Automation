@@ -1,15 +1,12 @@
-﻿//using System;
-using Task4.Enums;
-using Task4.Entities.Details;
-//using Task4.Helpers;
+﻿using Task4new.Enums;
+using Task4new.Entities.Details;
 
-namespace Task4.Entities.Vehicles
+namespace Task4new.Entities.Vehicles
 {
-    //[Serializable]
     public class Bus : Vehicle
     {
         public int AmountOfPassengerPlaces { get; set; }
-        
+
         public byte EcologicalLevel { get; set; } // 1, 2, 3 or so
 
         public Bus(ManufacturersForTransmissionsAndVehicles manufacturer, Engine engine, Chassis chassis, Transmission transmission, int amountOfPassengerPlaces, byte ecologicalLevel) : base(manufacturer, engine, chassis, transmission)
@@ -24,7 +21,7 @@ namespace Task4.Entities.Vehicles
             EcologicalLevel = default;
         }
 
-        public override string GetInformation() 
+        public override string GetInformation()
         {
             return "A bus" + base.GetInformation() + ", that can also carry " + AmountOfPassengerPlaces + " passengers and has " + EcologicalLevel + " ecological level";
         }

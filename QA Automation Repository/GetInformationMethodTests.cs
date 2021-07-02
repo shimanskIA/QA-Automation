@@ -1,13 +1,11 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using Task4.Entities.Details;
-using Task4.Entities.Vehicles;
-using Task4.Enums;
-//using Task4.Helpers;
-using Task4.Interfaces;
+using Task4new.Entities.Details;
+using Task4new.Entities.Vehicles;
+using Task4new.Enums;
+using Task4new.Interfaces;
 
-namespace MSTestsForTask4
+namespace MSTestsForTask4new
 {
     [TestClass]
     public class GetInformationMethodTests
@@ -37,13 +35,13 @@ namespace MSTestsForTask4
 
         public static IEnumerable<object[]> GetDataForGetInformationTest()
         {
-            yield return new object[] { _engine, resultTextForEngine};
-            yield return new object[] { _chassis, resultTextForChassis};
-            yield return new object[] { _transmission, resultTextForTransmission};
-            yield return new object[] { _car, resultTextForCar};
-            yield return new object[] { _bus, resultTextForBus};
-            yield return new object[] { _lorry, resultTextForLorry};
-            yield return new object[] { _scooter, resultTextForScooter};
+            yield return new object[] { _engine, resultTextForEngine };
+            yield return new object[] { _chassis, resultTextForChassis };
+            yield return new object[] { _transmission, resultTextForTransmission };
+            yield return new object[] { _car, resultTextForCar };
+            yield return new object[] { _bus, resultTextForBus };
+            yield return new object[] { _lorry, resultTextForLorry };
+            yield return new object[] { _scooter, resultTextForScooter };
         }
     }
 }

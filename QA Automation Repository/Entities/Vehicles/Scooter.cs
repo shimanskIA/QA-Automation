@@ -1,11 +1,8 @@
-﻿//using System;
-using Task4.Enums;
-using Task4.Entities.Details;
-//using Task4.Helpers;
+﻿using Task4new.Enums;
+using Task4new.Entities.Details;
 
-namespace Task4.Entities.Vehicles
+namespace Task4new.Entities.Vehicles
 {
-    //[Serializable]
     public class Scooter : Vehicle
     {
         public double TimeFrom0To100 { get; set; } // time to reach 100 kilometers per hour in seconds
@@ -20,7 +17,7 @@ namespace Task4.Entities.Vehicles
             TimeFrom0To100 = default;
         }
 
-        public override string GetInformation() 
+        public override string GetInformation()
         {
             return "A scooter" + base.GetInformation() + ", that can reach 100 km/h in just " + TimeFrom0To100 + " seconds, wow!";
         }

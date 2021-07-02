@@ -1,17 +1,9 @@
-﻿//using System;
-//using System.Xml.Serialization;
-using Task4.Enums;
-using Task4.Entities.Details;
-//using Task4.Helpers;
-using Task4.Interfaces;
+﻿using Task4new.Enums;
+using Task4new.Entities.Details;
+using Task4new.Interfaces;
 
-namespace Task4.Entities.Vehicles
+namespace Task4new.Entities.Vehicles
 {
-    /*[Serializable]
-    [XmlInclude(typeof(Car))]
-    [XmlInclude(typeof(Bus))]
-    [XmlInclude(typeof(Lorry))]
-    [XmlInclude(typeof(Scooter))]*/
     public abstract class Vehicle : IReadable
     {
         public ManufacturersForTransmissionsAndVehicles Manufacturer { get; set; }
@@ -35,10 +27,9 @@ namespace Task4.Entities.Vehicles
             VehicleTransmission = default;
         }
 
-        public virtual string GetInformation() 
+        public virtual string GetInformation()
         {
             return ", produced by " + Manufacturer + " with " + VehicleEngine.GetInformation() + ", " + VehicleChassis.GetInformation() + ", " + VehicleTransmission.GetInformation();
         }
     }
-
 }

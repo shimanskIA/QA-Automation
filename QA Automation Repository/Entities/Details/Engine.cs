@@ -1,11 +1,8 @@
-﻿using System;
-using Task4.Enums;
-//using Task4.Helpers;
-using Task4.Interfaces;
+﻿using Task4new.Enums;
+using Task4new.Interfaces;
 
-namespace Task4.Entities.Details
+namespace Task4new.Entities.Details
 {
-    //[Serializable]
     public class Engine : IReadable
     {
         public uint Power { get; set; } // in horse powers
@@ -34,7 +31,7 @@ namespace Task4.Entities.Details
 
         public string GetInformation()
         {
-            return EngineType + " engine of " + Volume + " liters with " + Power + " horse powers and serial number: " + SerialNumber; 
+            return EngineType + " engine of " + Volume + " liters with " + Power + " horse powers and serial number: " + SerialNumber;
         }
     }
 }

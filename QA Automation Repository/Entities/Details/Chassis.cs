@@ -1,15 +1,13 @@
-﻿//using System;
-using Task4.Interfaces;
+﻿using Task4new.Interfaces;
 
-namespace Task4.Entities.Details
+namespace Task4new.Entities.Details
 {
-    //[Serializable]
     public class Chassis : IReadable
-    { 
+    {
         public int AmountOfWheels { get; set; }
 
         public double MaximalLoad { get; set; } // in kilograms
-        
+
         public int SerialNumber { get; set; } // 7 numbers
 
         public Chassis(int amountOfWheels, double maximalLoad, int serialNumber)

@@ -1,11 +1,8 @@
-﻿//using System;
-using Task4.Enums;
-using Task4.Entities.Details;
-//using Task4.Helpers;
+﻿using Task4new.Enums;
+using Task4new.Entities.Details;
 
-namespace Task4.Entities.Vehicles
+namespace Task4new.Entities.Vehicles
 {
-    //[Serializable]
     public class Lorry : Vehicle
     {
         public double LiftingCapacity { get; set; } // in kilograms
@@ -20,7 +17,7 @@ namespace Task4.Entities.Vehicles
             LiftingCapacity = default;
         }
 
-        public override string GetInformation() 
+        public override string GetInformation()
         {
             return "A lorry" + base.GetInformation() + ", that can also carry " + LiftingCapacity + " kilogramms";
         }
