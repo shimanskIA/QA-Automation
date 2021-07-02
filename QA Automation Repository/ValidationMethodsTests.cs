@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using Task3;
+using Task3.Helpers;
 
 namespace MSTestsForTask3
 {
@@ -13,7 +13,7 @@ namespace MSTestsForTask3
 
         public void ValidatepositiveTest(string inputString1, string inputString2)
         {
-            Assert.IsTrue(Helper.Validate(inputString1, inputString2));
+            Assert.IsTrue(ValidationHelper.Validate(inputString1, inputString2));
         }
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace MSTestsForTask3
 
         public void ValidateArgumentOutOfRangeExceptionTest(string inputString1, string inputString2)
         {
-            Helper.Validate(inputString1, inputString2);
+            ValidationHelper.Validate(inputString1, inputString2);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace MSTestsForTask3
 
         public void ValidateArgumentExceptionTest(string inputString1, string inputString2)
         {
-            Helper.Validate(inputString1, inputString2);
+            ValidationHelper.Validate(inputString1, inputString2);
         }
     }
 }

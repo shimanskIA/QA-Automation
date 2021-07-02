@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using Task3;
+using Task3.Helpers;
 
 namespace MSTestsForTask3
 {
@@ -17,7 +16,7 @@ namespace MSTestsForTask3
         [DataRow((uint)32432743, (uint)16, "1EEE267")]
         public void ConvertFrom10Test(uint number, uint notation, string result)
         {
-            Assert.AreEqual(result, Helper.ConvertNumberFrom10NotationToAnyOtherNotation(number, notation));
+            Assert.AreEqual(result, ConvertionHelper.ConvertNumberFrom10NotationToAnyOtherNotation(number, notation));
         }
     }
 }

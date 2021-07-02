@@ -1,4 +1,5 @@
 ﻿using System;
+using Task3.Helpers;
 
 namespace Task3
 {
@@ -6,9 +7,9 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            if (Helper.Validate(args[0], args[1]))
+            if (ValidationHelper.Validate(args[0], args[1]))
             {
-                Console.WriteLine(Helper.ConvertNumberFrom10NotationToAnyOtherNotation(UInt32.Parse(args[0]), UInt32.Parse(args[1])));
+                Console.WriteLine(ConvertionHelper.ConvertNumberFrom10NotationToAnyOtherNotation(UInt32.Parse(args[0]), UInt32.Parse(args[1])));
             }
         }
     }
