@@ -31,7 +31,7 @@ namespace Task1
             }
         }
 
-        public static int FindLongestStringLengthStartingFormAnElementNumber(int elementNumber, string inputString) 
+        private static int FindLongestStringLengthStartingFormAnElementNumber(int elementNumber, string inputString) 
         {
             if (inputString != null)
             {
