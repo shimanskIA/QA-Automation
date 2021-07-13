@@ -14,7 +14,7 @@ namespace Task10.Commands
         
         public override void Execute()
         {
-            App.Output = StatsManager.CountTypes().ToString();
+            App.Output = StatsManager.CountTypes();
         }
     }
 }

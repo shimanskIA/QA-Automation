@@ -8,28 +8,42 @@ namespace Task10.Managers
 {
     class StatisticsManager
     {
-        public int CountTypes()
+        public string CountTypes()
         {
-            return CarDealer.GetInstance().Cars.Select(x => x.Manufacturer).Distinct().Count();
+            return CarDealer.GetInstance().Cars.Select(x => x.Manufacturer).Distinct().Count().ToString();
         }
 
-        public int CountAll()
+        public string CountAll()
         {
-             return CarDealer.GetInstance().Cars.Count;
+            return CarDealer.GetInstance().Cars.Count.ToString();
         }
 
-        public double CalculateAveragePrice()
+        public string CalculateAveragePrice()
         {
-            double sumPrice = CarDealer.GetInstance().Cars.Select(x => x.Price).Sum();
             double amount = CarDealer.GetInstance().Cars.Count();
-            return sumPrice / amount;
+            if (amount > 0)
+            {
+                double sumPrice = CarDealer.GetInstance().Cars.Select(x => x.Price).Sum();
+                return (sumPrice / amount).ToString();
+            }
+            else
+            {
+                return "There're any cars added!";
+            }
         }
 
-        public double CalculateAveragePrice(string type)
+        public string CalculateAveragePrice(string type)
         {
-            double sumPrice = CarDealer.GetInstance().Cars.Where(x => x.Manufacturer == type).Select(x => x.Price).Sum();
             double amount = CarDealer.GetInstance().Cars.Where(x => x.Manufacturer == type).Count();
-            return sumPrice / amount;
+            if (amount > 0)
+            {
+                double sumPrice = CarDealer.GetInstance().Cars.Where(x => x.Manufacturer == type).Select(x => x.Price).Sum();
+                return (sumPrice / amount).ToString();
+            }
+            else
+            {
+                return "There're any cars of this manufacturer added!";
+            }
         }
     }
 }

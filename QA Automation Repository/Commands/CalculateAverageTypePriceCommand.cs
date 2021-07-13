@@ -15,7 +15,7 @@ namespace Task10.Commands
 
         public override void Execute()
         {
-            App.Output = StatsManager.CalculateAveragePrice(Type).ToString();
+            App.Output = StatsManager.CalculateAveragePrice(Type);
         }
     }
 }

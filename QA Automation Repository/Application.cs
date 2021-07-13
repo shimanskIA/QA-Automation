@@ -66,8 +66,15 @@ namespace Task10
             {
                 try
                 {
-                    string[] parameters = incomingCommandText.Split(' ', 6);
-                    ExecuteCommand(new InputCommand(parameters[2].ToLower(), parameters[3].ToLower(), UInt32.Parse(parameters[4]), Double.Parse(parameters[5]), this, InManager));
+                    string[] parameters = incomingCommandText.Split(' ');
+                    if (parameters.Length <= 6)
+                    {
+                        ExecuteCommand(new InputCommand(parameters[2].ToLower(), parameters[3].ToLower(), UInt32.Parse(parameters[4]), Double.Parse(parameters[5]), this, InManager));
+                    }
+                    else
+                    {
+                        ExecuteCommand(new InputCommand((parameters[2] + " " + parameters[3]).ToLower(), parameters[4].ToLower(), UInt32.Parse(parameters[5]), Double.Parse(parameters[6]), this, InManager));
+                    }
                     Console.WriteLine(Output);
                 }
                 catch
