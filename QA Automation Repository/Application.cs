@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Task10.Commands;
 using Task10.Managers;
 
@@ -85,6 +83,7 @@ namespace Task10
             }
             else if (incomingCommandText == "exit")
             {
+                Console.WriteLine("Thanks for using, goodbye!");
                 return false;
             }
             else

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Task10.Managers;
+﻿using Task10.Managers;
 
 namespace Task10.Commands
 {

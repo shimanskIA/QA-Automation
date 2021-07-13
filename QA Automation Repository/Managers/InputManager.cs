@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Task10.Entities;
+﻿using Task10.Entities;
 
 namespace Task10.Managers
 {
