@@ -6,7 +6,7 @@ namespace Task11
 {
     public class StringHelper
     {
-        public static int FindLongestStringLength(string inputString) // methode finding the longest substring in which characters are not repeated
+        public static int FindLongestStringLength(string inputString) 
         {
             if (inputString != null)
             {
@@ -17,7 +17,7 @@ namespace Task11
                     {
                         break;
                     }
-                    var tempLength = FindLongestStringLengthStartingFormAnElementNumber(j, inputString); // finding the longest substring starting at a given element number
+                    var tempLength = FindLongestStringLengthStartingFormAnElementNumber(j, inputString); 
                     if (tempLength > maxLength)
                     {
                         maxLength = tempLength;

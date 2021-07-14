@@ -16,8 +16,6 @@ namespace Task11
             {
                 Console.WriteLine(0);
             }
-            int a = StringHelper.FindLongestStringLengthWithTheSameElements("zzzz", StringHelper.GetNextSymbol);
-            a = StringHelper.FindLongestStringLengthWithTheSameElements("abcdddd5555ggggrededwsuuuuuuudshjds", StringHelper.GetNextNumber);
         }
     }
 }
