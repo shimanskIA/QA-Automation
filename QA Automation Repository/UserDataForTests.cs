@@ -10,7 +10,7 @@
 
         public static string UserIncorrectPassword { get; set; } = "fakepassword";
 
-        public static string UserMessage { get; set; } = "Hello epamfake@mail.ru";
+        public static string UserMessage { get; set; } = "Hello epamfake2@mail.ru";
 
         public static string Destination { get; set; } = "epamfake2@mail.ru";
 

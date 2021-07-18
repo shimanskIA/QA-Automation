@@ -8,7 +8,9 @@ namespace Task13.PageObjects
     {
         private IWebDriver _webDriver;
 
-        private readonly By _readMessageButton = By.XPath("//a[@class='llc js-tooltip-direction_letter-bottom js-letter-list-item llc_normal']");
+        private readonly By _amountOfIncomingMessages = By.XPath("//span[@class='badge__text']");
+        private readonly By _openLatestMessageButton = By.XPath("//div[@class='llc__read-status']/ancestor::a");
+        private readonly By _latestMessageState = By.XPath("//div[@class='llc__read-status']/child::span");
 
         public MailRuMailMainPageObject(IWebDriver webDriver)
         {
@@ -18,15 +20,22 @@ namespace Task13.PageObjects
         public MailRuMessagePageObject OpenMessage()
         {
             WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_readMessageButton));
-            _webDriver.FindElement(_readMessageButton).Click();
+            waiter.Until(ExpectedConditions.ElementToBeClickable(_openLatestMessageButton));
+            _webDriver.FindElement(_openLatestMessageButton).Click();
             return new MailRuMessagePageObject(_webDriver);
         }
 
-        /*public string GetMessageState()
+        public void WaitUntilMessageRecieved()
         {
             WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_readMessageButton));
-        }*/
+            waiter.Until(ExpectedConditions.ElementIsVisible(_amountOfIncomingMessages));
+        }
+
+        public string GetMessageState()
+        {
+            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
+            waiter.Until(ExpectedConditions.ElementIsVisible(_latestMessageState));
+            return _webDriver.FindElement(_latestMessageState).GetAttribute("title");
+        }
     }
 }
