@@ -18,29 +18,29 @@ namespace Task13.Tests
             _webDriver.Navigate().GoToUrl("https://gmail.com");
         }
 
-        [Test]
+        //[Test]
 
         public void SuccessfullLoginTest()
         {
-            var authorizationPage = new AuthorizationPageObject(_webDriver);
+            var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
             authorizationPage
-                .Login(UserInputDataForTests.UserCorrectLogin, UserInputDataForTests.UserCorrectPassword)
+                .Login(UserDataForTests.UserCorrectLogin, UserDataForTests.UserCorrectPassword)
                 .GoToAccountInfo();
         }
 
-        [Test]
+        //[Test]
 
         public void UnseccussfullLoginTest()
         {
-            var authorizationPage = new AuthorizationPageObject(_webDriver);
-            Assert.AreEqual(authorizationPage.UnsuccessfullLogin(UserInputDataForTests.UserIncorrectLogin), "Не удалось найти аккаунт Google.");
+            var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            Assert.AreEqual(authorizationPage.UnsuccessfullLogin(UserDataForTests.UserIncorrectLogin), "Не удалось найти аккаунт Google.");
         }
 
-        [Test]
+        //[Test]
         public void UnseccussfullPasswordTest()
         {
-            var authorizationPage = new AuthorizationPageObject(_webDriver);
-            Assert.AreEqual(authorizationPage.UnsuccessfullPassword(UserInputDataForTests.UserCorrectLogin, UserInputDataForTests.UserIncorrectPassword), "Неверный пароль. Повторите попытку или нажмите на ссылку \"Забыли пароль?\", чтобы сбросить его.");
+            var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            Assert.AreEqual(authorizationPage.UnsuccessfullPassword(UserDataForTests.UserCorrectLogin, UserDataForTests.UserIncorrectPassword), "Неверный пароль. Повторите попытку или нажмите на ссылку \"Забыли пароль?\", чтобы сбросить его.");
         }
 
         [TearDown]
@@ -49,7 +49,5 @@ namespace Task13.Tests
         {
             _webDriver.Quit();
         }
-
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Task13
 {
-    class UserInputDataForTests
+    class UserDataForTests
     {
         public static string UserCorrectLogin { get; set; } = "epamfake1@gmail.com";
 
@@ -9,5 +9,11 @@
         public static string UserCorrectPassword { get; set; } = "fakepassword1";
 
         public static string UserIncorrectPassword { get; set; } = "fakepassword";
+
+        public static string UserMessage { get; set; } = "Hello epamfake@mail.ru";
+
+        public static string Destination { get; set; } = "epamfake2@mail.ru";
+
+        public static string DestinationPassword { get; set; } = "fakepassword2";
     }
 }
