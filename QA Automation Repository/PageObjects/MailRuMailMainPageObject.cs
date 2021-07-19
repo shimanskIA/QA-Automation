@@ -4,7 +4,7 @@ using System;
 
 namespace Task13.PageObjects
 {
-    class MailRuMailMainPageObject
+    public class MailRuMailMainPageObject
     {
         private IWebDriver _webDriver;
 
@@ -19,22 +19,19 @@ namespace Task13.PageObjects
 
         public MailRuMessagePageObject OpenMessage()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_openLatestMessageButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _openLatestMessageButton, 10);
             _webDriver.FindElement(_openLatestMessageButton).Click();
             return new MailRuMessagePageObject(_webDriver);
         }
 
         public void WaitUntilMessageRecieved()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_amountOfIncomingMessages));
+            WaitersWrapper.WaitElementVisiable(_webDriver, _amountOfIncomingMessages, 10);
         }
 
         public string GetMessageState()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_latestMessageState));
+            WaitersWrapper.WaitElementVisiable(_webDriver, _latestMessageState, 10);
             return _webDriver.FindElement(_latestMessageState).GetAttribute("title");
         }
     }

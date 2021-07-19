@@ -6,6 +6,7 @@ using Task13.PageObjects;
 
 namespace Task13.Tests
 {
+    [Order(2)]
     class SendMailTests
     {
         private IWebDriver _webDriver;
@@ -38,7 +39,7 @@ namespace Task13.Tests
             _webDriver.Navigate().GoToUrl("https://mail.ru");
         }
 
-        //[Test, Order(2)]
+        [Test, Order(2)]
 
         public void SendMailContentTest()
         {
@@ -50,7 +51,7 @@ namespace Task13.Tests
             Assert.AreEqual(UserDataForTests.UserMessage, recievedMessage);
         }
 
-       // [Test, Order(3)]
+        [Test, Order(3)]
 
         public void SendMailSenderTest()
         {
@@ -62,7 +63,7 @@ namespace Task13.Tests
             Assert.AreEqual(UserDataForTests.UserCorrectLogin, senderName);
         }
 
-        //[Test, Order(1)]
+        [Test, Order(1)]
 
         public void SendMailUnreadMessageStateTest()
         {
@@ -73,7 +74,7 @@ namespace Task13.Tests
             Assert.AreEqual(ServiceNotificationsForTest.UnreadMessageTitle, messageState);
         }
 
-        //[Test, Order(4)]
+        [Test, Order(4)]
 
         public void SendMailReadMessageStateTest()
         {
@@ -102,7 +103,7 @@ namespace Task13.Tests
             mailRuAuthorizationPage
                 .Login(UserDataForTests.Destination, UserDataForTests.DestinationPassword)
                 .OpenMessage()
-                .Respond(UserDataForTests.NewName);
+                .Respond(UserDataForTests.NewName + " " + UserDataForTests.NewSurname);
             _webDriver.Quit();
         }
     }

@@ -4,7 +4,7 @@ using System;
 
 namespace Task13.PageObjects
 {
-    class GoogleMailSettingsPageObject
+    public class GoogleMailSettingsPageObject
     {
         private IWebDriver _webDriver;
 
@@ -17,8 +17,7 @@ namespace Task13.PageObjects
 
         public GooglePersonalInfoPageObject GoToPersonalInfo()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_personalInfoButton));
+            WaitersWrapper.WaitElementVisiable(_webDriver, _personalInfoButton, 10);
             _webDriver.FindElement(_personalInfoButton).Click();
             return new GooglePersonalInfoPageObject(_webDriver);
         }

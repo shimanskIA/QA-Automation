@@ -1,12 +1,10 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Task13.PageObjects
 {
-    class GooglePersonalInfoPageObject
+    public class GooglePersonalInfoPageObject
     {
         private IWebDriver _webDriver;
 
@@ -19,8 +17,7 @@ namespace Task13.PageObjects
 
         public GoogleMailNamePageObject GoToGoogleMailNameInfo()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_nameButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _nameButton, 10);
             _webDriver.FindElement(_nameButton).Click();
             return new GoogleMailNamePageObject(_webDriver);
         }

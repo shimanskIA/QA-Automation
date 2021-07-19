@@ -1,14 +1,11 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using Task13.PageObjects;
 
 namespace Task13.Tests
 {
+    [Order(3)]
     class ChangeAccountNameTests
     {
         private IWebDriver _webDriver;
@@ -36,7 +33,7 @@ namespace Task13.Tests
             _webDriver.Navigate().GoToUrl("https://gmail.com");
         }
 
-        [Test]
+        [Test, Order(8)]
         
         public void ChangeAccountNameTest()
         {

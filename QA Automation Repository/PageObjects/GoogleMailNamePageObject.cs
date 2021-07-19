@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Task13.PageObjects
 {
-    class GoogleMailNamePageObject
+    public class GoogleMailNamePageObject
     {
         private IWebDriver _webDriver;
 
@@ -21,16 +21,13 @@ namespace Task13.PageObjects
 
         public void ChangeName(string newName, string newSurname)
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_nameInputButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _nameInputButton, 10);
             _webDriver.FindElement(_nameInputButton).SendKeys(Keys.Control + "a" + Keys.Backspace);
             _webDriver.FindElement(_nameInputButton).SendKeys(newName);
             _webDriver.FindElement(_surnameInputButton).SendKeys(Keys.Control + "a" + Keys.Backspace);
             _webDriver.FindElement(_surnameInputButton).SendKeys(newSurname);
             _webDriver.FindElement(_saveButton).Click();
-            waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_confirmationMessage));
-            waiter.Until(ExpectedConditions.InvisibilityOfElementLocated(_confirmationMessage));
+            WaitersWrapper.WaitElementAppearDisappear(_webDriver, _confirmationMessage, 10);
         }
     }
 }

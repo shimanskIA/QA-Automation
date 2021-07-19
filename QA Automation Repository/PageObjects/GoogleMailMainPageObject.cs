@@ -1,11 +1,8 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Threading;
 
 namespace Task13.PageObjects
 {
-    class GoogleMailMainPageObject
+    public class GoogleMailMainPageObject
     {
         private IWebDriver _webDriver;
 
@@ -14,7 +11,7 @@ namespace Task13.PageObjects
         private readonly By _destinationAddressButton = By.XPath("//textarea[@name='to']");
         private readonly By _messageTextButton = By.XPath("//div[@class='Am Al editable LW-avf tS-tW']");
         private readonly By _sendButton = By.XPath("//div[@class='T-I J-J5-Ji aoO v7 T-I-atl L3']");
-        private readonly By _sendConfirmation = By.XPath("//span[text()='Письмо отправлено.']");
+        private readonly By _sendConfirmation = By.XPath("//span[@class='bAo']/child::span[position()=1]");
         private readonly By _openLatestMessageButton = By.XPath("//tr[@jscontroller='ZdOxDb']");
         private readonly By _amountOfIncomingMessages = By.XPath("//div[@class='bsU']");
         private readonly By _loggedUserName = By.XPath("//div[@class='gb_lb gb_mb']");
@@ -26,45 +23,38 @@ namespace Task13.PageObjects
 
         public void GoToAccountInfo()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_accountInfoButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _accountInfoButton, 10);
+            _webDriver.FindElement(_accountInfoButton).Click();
         }
 
         public void SendMessage(string destination, string message)
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_writeButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _writeButton, 10);
             _webDriver.FindElement(_writeButton).Click();
-            waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_destinationAddressButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _destinationAddressButton, 10);
             _webDriver.FindElement(_destinationAddressButton).SendKeys(destination);
             _webDriver.FindElement(_messageTextButton).SendKeys(message);
             _webDriver.FindElement(_sendButton).Click();
-            waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_sendConfirmation));
+            WaitersWrapper.WaitElementAppearDisappear(_webDriver, _sendConfirmation, 20);
         }
 
         public void WaitUntilMessageRecieved()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_amountOfIncomingMessages));
+            WaitersWrapper.WaitElementVisiable(_webDriver, _amountOfIncomingMessages, 10);
         }
 
         public GoogleMessagePageObject OpenMessage()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_openLatestMessageButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _openLatestMessageButton, 10);
             _webDriver.FindElement(_openLatestMessageButton).Click();
             return new GoogleMessagePageObject(_webDriver);
         }
 
         public string GetLoggedUserName()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_accountInfoButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _accountInfoButton, 10);
             _webDriver.FindElement(_accountInfoButton).Click();
-            waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_loggedUserName));
+            WaitersWrapper.WaitElementVisiable(_webDriver, _loggedUserName, 10);
             return _webDriver.FindElement(_loggedUserName).Text;
         }
     }

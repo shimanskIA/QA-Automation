@@ -5,6 +5,7 @@ using Task13.PageObjects;
 
 namespace Task13.Tests
 {
+    [Order(1)]
     class AuthorizationPageTests
     {
         private IWebDriver _webDriver;
@@ -18,7 +19,7 @@ namespace Task13.Tests
             _webDriver.Navigate().GoToUrl("https://gmail.com");
         }
 
-        //[Test]
+        [Test, Order(1)]
 
         public void SuccessfullLoginTest()
         {
@@ -28,7 +29,7 @@ namespace Task13.Tests
                 .GoToAccountInfo();
         }
 
-        //[Test]
+        [Test, Order(2)]
 
         public void UnseccussfullLoginTest()
         {
@@ -36,7 +37,7 @@ namespace Task13.Tests
             Assert.AreEqual(authorizationPage.UnsuccessfullLogin(UserDataForTests.UserIncorrectLogin), ServiceNotificationsForTest.LoginFailureText);
         }
 
-        //[Test]
+        [Test, Order(3)]
         public void UnseccussfullPasswordTest()
         {
             var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);

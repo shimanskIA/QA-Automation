@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Task13.PageObjects
 {
-    class GoogleMessagePageObject
+    public class GoogleMessagePageObject
     {
         private IWebDriver _webDriver;
 
@@ -22,18 +22,15 @@ namespace Task13.PageObjects
 
         public string GetMessageText()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementIsVisible(_messageText));
+            WaitersWrapper.WaitElementVisiable(_webDriver, _messageText, 10);
             return _webDriver.FindElement(_messageText).Text;
         }
 
         public GoogleMailSettingsPageObject GoToAccountSettings()
         {
-            WebDriverWait waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_accountInfoButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _accountInfoButton, 10);
             _webDriver.FindElement(_accountInfoButton).Click();
-            waiter = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(_accountSettingsButton));
+            WaitersWrapper.WaitElementInteractable(_webDriver, _accountSettingsButton, 10);
             _webDriver.FindElement(_accountSettingsButton).Click();
             _webDriver.SwitchTo().Window(_webDriver.WindowHandles.Last());
             return new GoogleMailSettingsPageObject(_webDriver);
