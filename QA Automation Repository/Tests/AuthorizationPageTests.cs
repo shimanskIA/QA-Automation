@@ -23,7 +23,7 @@ namespace Task13.Tests
 
         public void SuccessfullLoginTest()
         {
-            var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            GoogleAuthorizationPageObject authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
             authorizationPage
                 .Login(UserDataForTests.UserCorrectLogin, UserDataForTests.UserCorrectPassword)
                 .GoToAccountInfo();
@@ -33,14 +33,14 @@ namespace Task13.Tests
 
         public void UnseccussfullLoginTest()
         {
-            var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            GoogleAuthorizationPageObject authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
             Assert.AreEqual(authorizationPage.UnsuccessfullLogin(UserDataForTests.UserIncorrectLogin), ServiceNotificationsForTest.LoginFailureText);
         }
 
         [Test, Order(3)]
         public void UnseccussfullPasswordTest()
         {
-            var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            GoogleAuthorizationPageObject authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
             Assert.AreEqual(authorizationPage.UnsuccessfullPassword(UserDataForTests.UserCorrectLogin, UserDataForTests.UserIncorrectPassword), ServiceNotificationsForTest.PasswordFailureText);
         }
 

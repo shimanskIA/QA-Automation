@@ -4,22 +4,20 @@ using System;
 
 namespace Task13.PageObjects
 {
-    public class GooglePersonalInfoPageObject
+    public class GoogleAccountPersonalInfoPageObject : GoogleAccountPageObject
     {
-        private IWebDriver _webDriver;
-
         private readonly By _nameButton = By.XPath("//a[@href='name?gar=1']");
 
-        public GooglePersonalInfoPageObject(IWebDriver webDriver)
+        public GoogleAccountPersonalInfoPageObject(IWebDriver webDriver) : base(webDriver)
         {
-            _webDriver = webDriver;
+
         }
 
-        public GoogleMailNamePageObject GoToGoogleMailNameInfo()
+        public GoogleAccountNamePageObject GoToGoogleMailNameInfo()
         {
             WaitersWrapper.WaitElementInteractable(_webDriver, _nameButton, 10);
             _webDriver.FindElement(_nameButton).Click();
-            return new GoogleMailNamePageObject(_webDriver);
+            return new GoogleAccountNamePageObject(_webDriver);
         }
     }
 }

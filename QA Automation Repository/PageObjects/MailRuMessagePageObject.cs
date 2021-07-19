@@ -2,19 +2,17 @@
 
 namespace Task13.PageObjects
 {
-    public class MailRuMessagePageObject
+    public class MailRuMessagePageObject : MailRuMailPageObject
     {
-        private IWebDriver _webDriver;
-
         private readonly By _messageText = By.XPath("//div[@class='letter-body']");
         private readonly By _senderNameButton = By.XPath("//span[@class='letter-contact']");
         private readonly By _respondButton = By.XPath("//span[@class='button2 button2_has-ico button2_has-ico-s button2_reply button2_clean button2_hover-support js-shortcut']");
         private readonly By _respondInput = By.XPath("//div[@class='container--2Rl8H']/descendant::div[@role='textbox']");
         private readonly By _sendButton = By.XPath("//span[@class='button2 button2_base button2_primary button2_hover-support js-shortcut']/child::span");
 
-        public MailRuMessagePageObject(IWebDriver webDriver)
+        public MailRuMessagePageObject(IWebDriver webDriver) : base(webDriver)
         {
-            _webDriver = webDriver;
+
         }
 
         public string GetMessageText()

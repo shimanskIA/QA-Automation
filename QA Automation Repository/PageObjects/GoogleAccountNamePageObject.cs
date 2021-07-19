@@ -5,18 +5,16 @@ using System.Threading;
 
 namespace Task13.PageObjects
 {
-    public class GoogleMailNamePageObject
+    public class GoogleAccountNamePageObject : GoogleAccountPageObject
     {
-        private IWebDriver _webDriver;
-
         private readonly By _nameInputButton = By.XPath("//div[@class='aJvDTb lY6Rwe'][position()=1]/descendant::input");
         private readonly By _surnameInputButton = By.XPath("//div[@class='aJvDTb lY6Rwe'][position()=2]/descendant::input");
         private readonly By _saveButton = By.XPath("//button[@class='VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-k8QpJ VfPpkd-LgbsSe-OWXEXe-dgl2Hf nCP5yc AjY5Oe DuMIQc']");
         private readonly By _confirmationMessage = By.XPath("//div[@class='aGJE1b']");
 
-        public GoogleMailNamePageObject(IWebDriver webDriver)
+        public GoogleAccountNamePageObject(IWebDriver webDriver) : base(webDriver)
         {
-            _webDriver = webDriver;
+
         }
 
         public void ChangeName(string newName, string newSurname)

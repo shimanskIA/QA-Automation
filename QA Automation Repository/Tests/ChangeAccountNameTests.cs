@@ -17,7 +17,7 @@ namespace Task13.Tests
             _webDriver = new ChromeDriver();
             _webDriver.Manage().Window.Maximize();
             _webDriver.Navigate().GoToUrl("https://gmail.com");
-            var googleAuthorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            GoogleAuthorizationPageObject googleAuthorizationPage = new GoogleAuthorizationPageObject(_webDriver);
             googleAuthorizationPage
                 .Login(UserDataForTests.UserCorrectLogin, UserDataForTests.UserCorrectPassword)
                 .WaitUntilMessageRecieved();
@@ -37,7 +37,7 @@ namespace Task13.Tests
         
         public void ChangeAccountNameTest()
         {
-            var authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            GoogleAuthorizationPageObject authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
             var messagePage = authorizationPage
                 .Login(UserDataForTests.UserCorrectLogin, UserDataForTests.UserCorrectPassword)
                 .OpenMessage();
@@ -48,8 +48,7 @@ namespace Task13.Tests
                 .GoToPersonalInfo()
                 .GoToGoogleMailNameInfo()
                 .ChangeName(newName[0], newName[1]);
-            var mainPage = messagePage.ReturnToMainPage();
-            Assert.AreEqual(mainPage.GetLoggedUserName(), recievedName);
+            Assert.AreEqual(messagePage.GetLoggedUserName(), recievedName);
         }
 
         [TearDown]
@@ -57,7 +56,7 @@ namespace Task13.Tests
         public void TearDown()
         {
             _webDriver.Navigate().GoToUrl("https://gmail.com");
-            var mainPage = new GoogleMessagePageObject(_webDriver);
+            GoogleMailMainPageObject mainPage = new GoogleMailMainPageObject(_webDriver);
             mainPage
                 .GoToAccountSettings()
                 .GoToPersonalInfo()
