@@ -38,7 +38,7 @@ namespace Task13.Tests
             _webDriver.Navigate().GoToUrl("https://mail.ru");
         }
 
-        [Test, Order(2)]
+        //[Test, Order(2)]
 
         public void SendMailContentTest()
         {
@@ -50,35 +50,35 @@ namespace Task13.Tests
             Assert.AreEqual(UserDataForTests.UserMessage, recievedMessage);
         }
 
-        [Test, Order(3)]
+       // [Test, Order(3)]
 
         public void SendMailSenderTest()
         {
-            var mailruAuthorizationPage = new MailRuAuthorizationPageObject(_webDriver);
-            string senderName = mailruAuthorizationPage
+            var mailRuAuthorizationPage = new MailRuAuthorizationPageObject(_webDriver);
+            string senderName = mailRuAuthorizationPage
                 .Login(UserDataForTests.Destination, UserDataForTests.DestinationPassword)
                 .OpenMessage()
                 .GetSenderName();
             Assert.AreEqual(UserDataForTests.UserCorrectLogin, senderName);
         }
 
-        [Test, Order(1)]
+        //[Test, Order(1)]
 
         public void SendMailUnreadMessageStateTest()
         {
-            var mailruAuthorizationPage = new MailRuAuthorizationPageObject(_webDriver);
-            string messageState = mailruAuthorizationPage
+            var mailRuAuthorizationPage = new MailRuAuthorizationPageObject(_webDriver);
+            string messageState = mailRuAuthorizationPage
                 .Login(UserDataForTests.Destination, UserDataForTests.DestinationPassword)
                 .GetMessageState();
             Assert.AreEqual(ServiceNotificationsForTest.UnreadMessageTitle, messageState);
         }
 
-        [Test, Order(4)]
+        //[Test, Order(4)]
 
         public void SendMailReadMessageStateTest()
         {
-            var mailruAuthorizationPage = new MailRuAuthorizationPageObject(_webDriver);
-            string messageState = mailruAuthorizationPage
+            var mailRuAuthorizationPage = new MailRuAuthorizationPageObject(_webDriver);
+            string messageState = mailRuAuthorizationPage
                 .Login(UserDataForTests.Destination, UserDataForTests.DestinationPassword)
                 .GetMessageState();
             Assert.AreEqual(ServiceNotificationsForTest.ReadMessageTitle, messageState);
@@ -88,6 +88,21 @@ namespace Task13.Tests
 
         public void TearDown()
         {
+            _webDriver.Quit();
+        }
+
+        [OneTimeTearDown]
+
+        public void OneTimeTearDown()
+        {
+            _webDriver = new ChromeDriver();
+            _webDriver.Manage().Window.Maximize();
+            _webDriver.Navigate().GoToUrl("https://mail.ru");
+            var mailRuAuthorizationPage = new MailRuAuthorizationPageObject(_webDriver);
+            mailRuAuthorizationPage
+                .Login(UserDataForTests.Destination, UserDataForTests.DestinationPassword)
+                .OpenMessage()
+                .Respond(UserDataForTests.NewName);
             _webDriver.Quit();
         }
     }

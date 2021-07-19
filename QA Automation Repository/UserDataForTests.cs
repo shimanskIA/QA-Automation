@@ -15,5 +15,14 @@
         public static string Destination { get; set; } = "epamfake2@mail.ru";
 
         public static string DestinationPassword { get; set; } = "fakepassword2";
+
+        public static string NewName { get; set; } = "Name";
+
+        public static string NewSurname { get; set; } = "Surname";
+
+        public static string OldName { get; set; } = "Ivan";
+
+        public static string OldSurname { get; set; } = "Shymanski";
+
     }
 }
