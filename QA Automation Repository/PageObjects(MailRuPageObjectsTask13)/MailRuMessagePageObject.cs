@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using HelperTask13.Helpers;
+using OpenQA.Selenium;
 
-namespace Task13.PageObjects
+namespace MailRuPageObjectsTask13.PageObjects
 {
     public class MailRuMessagePageObject : MailRuMailPageObject
     {

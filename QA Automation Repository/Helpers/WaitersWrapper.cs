@@ -1,10 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Task13
+namespace HelperTask13.Helpers
 {
     public static class WaitersWrapper
     {

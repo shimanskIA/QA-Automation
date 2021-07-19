@@ -1,10 +1,8 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
+﻿using HelperTask13.Helpers;
+using OpenQA.Selenium;
 using System.Linq;
-using System.Text;
 
-namespace Task13.PageObjects
+namespace GooglePageObjectsTask13.PageObjects
 {
     public abstract class GoogleAccountPageObject
     {

@@ -1,9 +1,7 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using HelperTask13.Helpers;
+using OpenQA.Selenium;
 
-namespace Task13.PageObjects
+namespace GooglePageObjectsTask13.PageObjects
 {
     public abstract class GoogleMailPageObject : GoogleAccountPageObject
     {

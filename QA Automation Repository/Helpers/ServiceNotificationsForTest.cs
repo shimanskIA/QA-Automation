@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Task13
+﻿namespace HelperTask13.Helpers
 {
-    class ServiceNotificationsForTest
+    public class ServiceNotificationsForTest
     {
         public static string LoginFailureText { get; set; } = "Не удалось найти аккаунт Google.";
 

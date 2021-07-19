@@ -1,8 +1,7 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
+﻿using HelperTask13.Helpers;
+using OpenQA.Selenium;
 
-namespace Task13.PageObjects
+namespace GooglePageObjectsTask13.PageObjects
 {
     public class GoogleAuthorizationPageObject
     {

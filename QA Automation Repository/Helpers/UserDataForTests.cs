@@ -1,6 +1,6 @@
-﻿namespace Task13
+﻿namespace HelperTask13.Helpers
 {
-    class UserDataForTests
+    public class UserDataForTests
     {
         public static string UserCorrectLogin { get; set; } = "epamfake1@gmail.com";
 

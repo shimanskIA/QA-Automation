@@ -15,4 +15,10 @@
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="91.0.4472.10100" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GooglePageObjectsTask13\GooglePageObjectsTask13.csproj" />
+    <ProjectReference Include="..\HelperTask13\HelperTask13.csproj" />
+    <ProjectReference Include="..\MailRuPageObjectsTask13\MailRuPageObjectsTask13.csproj" />
+  </ItemGroup>
+
 </Project>

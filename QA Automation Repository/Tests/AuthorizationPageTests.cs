@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using GooglePageObjectsTask13.PageObjects;
+using HelperTask13.Helpers;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Task13.PageObjects;
 
 namespace Task13.Tests
 {

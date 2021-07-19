@@ -1,7 +1,8 @@
-﻿using NUnit.Framework;
+﻿using GooglePageObjectsTask13.PageObjects;
+using HelperTask13.Helpers;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Task13.PageObjects;
 
 namespace Task13.Tests
 {
@@ -10,20 +11,6 @@ namespace Task13.Tests
     {
         private IWebDriver _webDriver;
 
-        [OneTimeSetUp]
-
-        public void OneTimeSetUp()
-        {
-            _webDriver = new ChromeDriver();
-            _webDriver.Manage().Window.Maximize();
-            _webDriver.Navigate().GoToUrl("https://gmail.com");
-            GoogleAuthorizationPageObject googleAuthorizationPage = new GoogleAuthorizationPageObject(_webDriver);
-            googleAuthorizationPage
-                .Login(UserDataForTests.UserCorrectLogin, UserDataForTests.UserCorrectPassword)
-                .WaitUntilMessageRecieved();
-            _webDriver.Quit();
-        }
-        
         [SetUp]
 
         public void Setup()
@@ -37,18 +24,18 @@ namespace Task13.Tests
         
         public void ChangeAccountNameTest()
         {
-            GoogleAuthorizationPageObject authorizationPage = new GoogleAuthorizationPageObject(_webDriver);
-            var messagePage = authorizationPage
-                .Login(UserDataForTests.UserCorrectLogin, UserDataForTests.UserCorrectPassword)
-                .OpenMessage();
+            GoogleAuthorizationPageObject googleAuthorizationPage = new GoogleAuthorizationPageObject(_webDriver);
+            var mainPage = googleAuthorizationPage.Login(UserDataForTests.UserCorrectLogin, UserDataForTests.UserCorrectPassword);
+            mainPage.WaitUntilMessageRecieved();
+            var messagePage = mainPage.OpenMessage();
             string recievedName = messagePage.GetMessageText();
             var newName = recievedName.Split(' ');
-            messagePage
+            var namePage = messagePage
                 .GoToAccountSettings()
                 .GoToPersonalInfo()
-                .GoToGoogleMailNameInfo()
-                .ChangeName(newName[0], newName[1]);
-            Assert.AreEqual(messagePage.GetLoggedUserName(), recievedName);
+                .GoToGoogleMailNameInfo();
+            namePage.ChangeName(newName[0], newName[1]);
+            Assert.AreEqual(namePage.ReturnToMainPage().GetLoggedUserName(), recievedName);
         }
 
         [TearDown]
