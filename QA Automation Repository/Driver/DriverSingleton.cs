@@ -24,20 +24,18 @@ namespace TestProject.Driver
         {
             if (_webDriver == null)
             {
-                switch (TestContext.Parameters["browser"])
+                switch (TestContext.Parameters["Browser"])
                 {
-                    case "firefox":
+                    case "Firefox":
                         {
                             new DriverManager().SetUpDriver(new FirefoxConfig());
                             _webDriver = new FirefoxDriver();
-                            _webDriver.Manage().Timeouts().ImplicitWait.Add(TimeSpan.FromSeconds(20));
                             break;
                         }
                     default:
                         {
                             new DriverManager().SetUpDriver(new ChromeConfig());
                             _webDriver = new ChromeDriver();
-                            _webDriver.Manage().Timeouts().ImplicitWait.Add(TimeSpan.FromSeconds(20));
                             break;
                         }
                 }

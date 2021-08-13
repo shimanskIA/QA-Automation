@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<RunSettings>
+  <BrowserParameters>
+    <Browser>Chrome</Browser>
+    <WaitingTime>20</WaitingTime>
+  </BrowserParameters>
+</RunSettings>
