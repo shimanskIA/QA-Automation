@@ -13,16 +13,34 @@ namespace TestProject.PageObjects
         
         public EmailYourEstimateLoginPageObject(IWebDriver webDriver) : base(webDriver)
         {
-
+            LoggerWrapper.LogInfo("Email your estimate form was successfully opened!");
         }
 
         public GoogleCloudPricingCalculatorPageObject SendEmail(string address)
         {
-            WaitersWrapper.WaitElementInteractable(_webDriver, _emailField, _waitingTime);
-            _webDriver.FindElement(_emailField).Click();
-            _webDriver.FindElement(_emailField).SendKeys(address);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _sendEmailButton, _waitingTime);
-            _webDriver.FindElement(_sendEmailButton).Click();
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _emailField, WaitingTime);
+                _webDriver.FindElement(_emailField).Click();
+                _webDriver.FindElement(_emailField).SendKeys(address);
+                LoggerWrapper.LogInfo("Email field was filled!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Email field: unable to fill.");
+                throw;
+            }
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _sendEmailButton, WaitingTime);
+                _webDriver.FindElement(_sendEmailButton).Click();
+                LoggerWrapper.LogInfo("Send email button was pushed!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Send email button: unable to push.");
+                throw;
+            }
             return new GoogleCloudPricingCalculatorPageObject(_webDriver);
         }
     }

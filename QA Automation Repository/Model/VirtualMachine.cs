@@ -1,96 +1,81 @@
 ﻿using System;
 using TestProject.Enums;
+using TestProject.Utils;
 
 namespace TestProject.Model
 {
     public class VirtualMachine
     {
-        private uint _numberOfInstances;
-        public uint NumberOfInstances
-        {
-            get
-            {
-                return _numberOfInstances;
-            }
-            set
-            {
-                _numberOfInstances = value;
-            }
-        }
+        public uint NumberOfInstances { get; set; }
 
-        private VMSeries _vMSerial;
-
-        public VMSeries VMSerial
-        {
-            get
-            {
-                return _vMSerial;
-            }
-            set
-            {
-                _vMSerial = value;
-            }
-        }
+        public VMSeries VMSerial { get; set; }
 
         public string VMType { get; set; }
 
         public string VMVolume { get; set; }
 
-        private uint _numberOfGPUs;
+        public uint NumberOfGPUs { get; set; }
 
-        public uint NumberOfGPUs
-        {
-            get
-            {
-                return _numberOfGPUs;
-            }
-            set
-            {
-                _numberOfGPUs = value;
-            }
-        }
-
-        private GPUTypes _gPUType;
-
-        public GPUTypes GPUType
-        {
-            get
-            {
-                return _gPUType;
-            }
-            set
-            {
-                _gPUType = value;
-            }
-        }
+        public GPUTypes GPUType { get; set; }
 
         public string Region { get; set; }
 
-        private uint _commitedUsage;
-
-        public uint CommitedUsage
-        {
-            get
-            {
-                return _commitedUsage;
-            }
-            set
-            {
-                _commitedUsage = value;
-            }
-        }
+        public uint CommitedUsage { get; set; }
 
         public VirtualMachine(string numberOfInstances, string vMSerial, string vMType, string vMVolume, string numberOfGPUs, string gPUType, string region, string commitedUsage)
         {
-            UInt32.TryParse(numberOfInstances, out _numberOfInstances);
-            Enum.TryParse(vMSerial, out _vMSerial);
+            try
+            {
+                NumberOfInstances = UInt32.Parse(numberOfInstances);
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"Number of instances: {numberOfInstances} is an invalid value");
+                throw;
+            }
+            try
+            {
+                VMSerial = (VMSeries)Enum.Parse(typeof(VMSeries), vMSerial, true);
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"VM serial: {vMSerial} is an invalid value");
+                throw;
+            }
+
             VMType = vMType;
             VMVolume = vMVolume;
-            UInt32.TryParse(numberOfGPUs, out _numberOfGPUs);
-            Enum.TryParse(gPUType, out _gPUType);
-            Region = region;
-            UInt32.TryParse(commitedUsage, out _commitedUsage);
-        }
 
+            try
+            {
+                NumberOfGPUs = UInt32.Parse(numberOfGPUs);
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"Number of GPUs: {numberOfGPUs} is an invalid value");
+                throw;
+            }
+            try
+            {
+                GPUType = (GPUTypes)Enum.Parse(typeof(GPUTypes), gPUType, true);
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"GPU type: {gPUType} is an invalid value");
+                throw;
+            }
+
+            Region = region;
+
+            try
+            {
+                CommitedUsage = UInt32.Parse(commitedUsage);
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"Commited usage: {commitedUsage} is an invalid value");
+                throw;
+            }
+        }
     }
 }

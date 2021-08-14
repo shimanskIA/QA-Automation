@@ -15,21 +15,56 @@ namespace TestProject.PageObjects
 
         public YopMailMailMainPageObject(IWebDriver webDriver) : base(webDriver)
         {
-
+            LoggerWrapper.LogInfo("YopMail main page was successfully opened!");
         }
 
         public YopMailMessagePageObject OpenLatestMessage()
         {
             WaitersWrapper.Wait(5);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _refreshButton, _waitingTime);
-            _webDriver.FindElement(_refreshButton).Click();
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _refreshButton, WaitingTime);
+                _webDriver.FindElement(_refreshButton).Click();
+                LoggerWrapper.LogInfo("Refresh button was pushed!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Refresh button: unable to push.");
+                throw;
+            }
             WaitersWrapper.Wait(5);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _frame, _waitingTime);
-            IWebElement frame = _webDriver.FindElement(_frame);
-            _webDriver.SwitchTo().Frame(frame);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _latestMessage, _waitingTime);
-            _webDriver.FindElement(_latestMessage).Click();
-            _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _frame, WaitingTime);
+                IWebElement frame = _webDriver.FindElement(_frame);
+                _webDriver.SwitchTo().Frame(frame);
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Frame wasn't found or XPath (or CSSSelector) is incorrect.");
+                throw;
+            }
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _latestMessage, WaitingTime);
+                _webDriver.FindElement(_latestMessage).Click();
+                LoggerWrapper.LogInfo("Latest message was opened!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Latest message: unable to open.");
+                throw;
+            }
+            try
+            {
+                _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
+                LoggerWrapper.LogInfo("Browser tab was switched!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Browser tab wasn't switched.");
+                throw;
+            }
             return new YopMailMessagePageObject(_webDriver);
         }
     }

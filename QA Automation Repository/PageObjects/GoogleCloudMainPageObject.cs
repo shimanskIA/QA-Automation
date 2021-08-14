@@ -12,15 +12,23 @@ namespace TestProject.PageObjects
 
         public GoogleCloudMainPageObject(IWebDriver webDriver) : base(webDriver)
         {
-
+            LoggerWrapper.LogInfo("Google Cloud main page was successfully opened!");
         }
 
         public SearchResultsPageObject Search(string serviceToSearch)
         {
-            WaitersWrapper.WaitElementInteractable(_webDriver, _searchButton, _waitingTime);
-            _webDriver.FindElement(_searchButton).Click();
-            WaitersWrapper.WaitElementInteractable(_webDriver, _searchButton, _waitingTime);
-            _webDriver.FindElement(_searchButton).SendKeys(serviceToSearch + Keys.Enter);
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _searchButton, WaitingTime);
+                _webDriver.FindElement(_searchButton).Click();
+                _webDriver.FindElement(_searchButton).SendKeys(serviceToSearch + Keys.Enter);
+                LoggerWrapper.LogInfo("Search button was pushed!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Search button: unable to push.");
+                throw;
+            }
             return new SearchResultsPageObject(_webDriver);
         }
     }

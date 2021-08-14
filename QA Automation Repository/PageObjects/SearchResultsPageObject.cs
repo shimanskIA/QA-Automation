@@ -12,14 +12,23 @@ namespace TestProject.PageObjects
 
         public SearchResultsPageObject(IWebDriver webDriver) : base(webDriver)
         {
-
+            LoggerWrapper.LogInfo("Search results page was successfully opened!");
         }
 
         public GoogleCloudPricingCalculatorPageObject ClickTheSearchedLink(string keyWord)
         {
             _searchedLink = By.XPath($"//a[contains(text(), '{keyWord}')]");
-            WaitersWrapper.WaitElementInteractable(_webDriver, _searchedLink, _waitingTime);
-            _webDriver.FindElement(_searchedLink).Click();
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _searchedLink, WaitingTime);
+                _webDriver.FindElement(_searchedLink).Click();
+                LoggerWrapper.LogInfo($"Searched element ({keyWord}) was found!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"Searched element ({keyWord}) wasn't found or XPath (or CSSSelector) is incorrect.");
+                throw;
+            }
             return new GoogleCloudPricingCalculatorPageObject(_webDriver);
         }
     }

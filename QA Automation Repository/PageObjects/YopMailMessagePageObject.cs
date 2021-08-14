@@ -13,18 +13,35 @@ namespace TestProject.PageObjects
         private readonly By _totalEstimatedCostLabel = By.XPath("//h2[contains(text(), 'Estimated Monthly Cost')]");
         public YopMailMessagePageObject(IWebDriver webDriver) : base(webDriver)
         {
-
+            LoggerWrapper.LogInfo("YopMail message page was successfully opened!");
         }
 
         public string GetPrice()
         {
-            WaitersWrapper.WaitElementInteractable(_webDriver, _frame, _waitingTime);
-            IWebElement frame = _webDriver.FindElement(_frame);
-            _webDriver.SwitchTo().Frame(frame);
-            WaitersWrapper.WaitElementVisiable(_webDriver, _totalEstimatedCostLabel, _waitingTime);
-            string totalEstimatedCostLabel = _webDriver.FindElement(_totalEstimatedCostLabel).Text;
-            var labelParts = totalEstimatedCostLabel.Split(' ');
-            return labelParts[4];
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _frame, WaitingTime);
+                IWebElement frame = _webDriver.FindElement(_frame);
+                _webDriver.SwitchTo().Frame(frame);
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Frame wasn't found or XPath (or CSSSelector) is incorrect.");
+                throw;
+            }
+            try
+            {
+                WaitersWrapper.WaitElementVisiable(_webDriver, _totalEstimatedCostLabel, WaitingTime);
+                string totalEstimatedCostLabel = _webDriver.FindElement(_totalEstimatedCostLabel).Text;
+                var labelParts = totalEstimatedCostLabel.Split(' ');
+                LoggerWrapper.LogInfo("Pricing label was successfully parsed!");
+                return labelParts[4];
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Pricing label wasn't parse.");
+                throw;
+            }
         }
     }
 }

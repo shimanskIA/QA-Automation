@@ -13,16 +13,34 @@ namespace TestProject.PageObjects
         
         public YopMailMainPageObject(IWebDriver webDriver) : base(webDriver)
         {
-
+            LoggerWrapper.LogInfo("YopMail main page was successfully opened!");
         }
 
         public YopMailMailMainPageObject LoginToMail(string login)
         {
-            WaitersWrapper.WaitElementInteractable(_webDriver, _loginInput, _waitingTime);
-            _webDriver.FindElement(_loginInput).Click();
-            _webDriver.FindElement(_loginInput).SendKeys(login);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _enterButton, _waitingTime);
-            _webDriver.FindElement(_enterButton).Click();
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _loginInput, WaitingTime);
+                _webDriver.FindElement(_loginInput).Click();
+                _webDriver.FindElement(_loginInput).SendKeys(login);
+                LoggerWrapper.LogInfo("Login input field was filled!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Login input field: unable to fill.");
+                throw;
+            }
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _enterButton, WaitingTime);
+                _webDriver.FindElement(_enterButton).Click();
+                LoggerWrapper.LogInfo("Enter button was pushed!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Enter button: unable to push.");
+                throw;
+            }
             return new YopMailMailMainPageObject(_webDriver);
         }
     }

@@ -6,9 +6,11 @@ using System.Linq;
 using System.Text;
 using TestProject.Model;
 using TestProject.PageObjects;
+using TestProject.Utils;
 
 namespace TestProject.Tests
 {
+    [TestFixture]
     public class GoogleCloudTest : BaseTest
     {
         [Test]
@@ -24,7 +26,15 @@ namespace TestProject.Tests
                     .SetParametersOfVM(VirtualMachineCreator.CreateVM())
                     .SendEmail(_mailLogin + _mailPostfix)
                     .GetPrice();
-                _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
+                try
+                {
+                    _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
+                    LoggerWrapper.LogInfo("Browser tab was switched!");
+                }
+                catch
+                {
+                    LoggerWrapper.LogError("Browser tab wasn't switched.");
+                }
                 YopMailMainPageObject yopMailMainPageObject = new YopMailMainPageObject(_webDriver);
                 string estimateCostRecieved = yopMailMainPageObject
                     .LoginToMail(_mailLogin)

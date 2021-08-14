@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using TestProject.Driver;
+using TestProject.Utils;
 
 namespace TestProject.Tests
 {
@@ -30,8 +31,27 @@ namespace TestProject.Tests
             }
             catch (Exception)
             {
-                var screenshot = _webDriver.TakeScreenshot(); 
-                screenshot.SaveAsFile(_screenshotsFilePath + $"{DateTime.Now}.png".Replace(':', '-'), ScreenshotImageFormat.Png);
+                try
+                {
+                    var screenshot = _webDriver.TakeScreenshot();
+                    screenshot.SaveAsFile(_screenshotsFilePath + $"{DateTime.Now}.png".Replace(':', '-'), ScreenshotImageFormat.Png);
+                    LoggerWrapper.LogInfo("Screenshot was made!");
+                }
+                catch(WebDriverException)
+                {
+                    LoggerWrapper.LogError("Screenshot wasn't made: inner web driver error");
+                    throw;
+                }
+                catch(DirectoryNotFoundException)
+                {
+                    LoggerWrapper.LogError("Screenshot wasn't made: directory doesn't exist");
+                    throw;
+                }
+                catch(IOException)
+                {
+                    LoggerWrapper.LogError("Screenshot wasn't made: disallowed file name");
+                    throw;
+                }
                 throw;
             }
         }
@@ -42,12 +62,38 @@ namespace TestProject.Tests
         {
             _webDriver = DriverSingleton.GetInstance();
             _webDriver.Manage().Window.Maximize();
-            _webDriver.Navigate().GoToUrl(_mailServiceAddress);
-            IJavaScriptExecutor js = (IJavaScriptExecutor)_webDriver;
-            js.ExecuteScript("window.open();");
-            _webDriver.SwitchTo().Window(_webDriver.WindowHandles.Last());
-            _webDriver.Navigate().GoToUrl(_cloudServiceAddress);
-            _webDriver.TakeScreenshot();
+            try
+            {
+                _webDriver.Navigate().GoToUrl(_mailServiceAddress);
+                LoggerWrapper.LogInfo("E-Mail generator page was successfully opened!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("E-Mail generator page wasn't opened.");
+                throw;
+            }
+            try
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)_webDriver;
+                js.ExecuteScript("window.open();");
+                LoggerWrapper.LogInfo("The new tab in browser was successfully opened!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("The new tab in browser wasn't opened.");
+                throw;
+            }
+            try
+            {
+                _webDriver.SwitchTo().Window(_webDriver.WindowHandles.Last());
+                _webDriver.Navigate().GoToUrl(_cloudServiceAddress);
+                LoggerWrapper.LogInfo("Cloud service page was successfully opened!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Cloud service page wasn't opened.");
+                throw;
+            }
         }
 
         [TearDown]

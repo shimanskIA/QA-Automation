@@ -33,7 +33,7 @@ namespace TestProject.PageObjects
 
         public GoogleCloudPricingCalculatorPageObject(IWebDriver webDriver) : base(webDriver)
         {
-
+            LoggerWrapper.LogInfo("Google Cloud pricing calculator page was successfully opened!");
         }
 
         public EmailYourEstimateLoginPageObject SetParametersOfVM(VirtualMachine virtualMachine)
@@ -45,44 +45,116 @@ namespace TestProject.PageObjects
             _chooseSSDVolume = By.XPath($"//div[contains(text(), '{virtualMachine.VMVolume}')]/parent::md-option[@ng-repeat='item in listingCtrl.dynamicSsd.computeServer']"); 
             _chooseRegion = By.XPath($"//div[@id='select_container_97']/descendant::div[contains(text(), '{virtualMachine.Region}')]");
             _chooseCommitedUsage = By.XPath($"//div[@id='select_container_104']/descendant::div[contains(text(), '{virtualMachine.CommitedUsage}')]");
-            WaitersWrapper.WaitElementInteractable(_webDriver, _outerFrame, _waitingTime);
-            IWebElement outerFrame = _webDriver.FindElement(_outerFrame);
-            _webDriver.SwitchTo().Frame(outerFrame);
-            IWebElement innerFrame = _webDriver.FindElement(_innerFrame);
-            _webDriver.SwitchTo().Frame(innerFrame);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _numberOfInstancesInput, _waitingTime);
-            _webDriver.FindElement(_numberOfInstancesInput).Click();
-            _webDriver.FindElement(_numberOfInstancesInput).SendKeys(virtualMachine.NumberOfInstances.ToString());
-            SelectAndChooseOneFromTable(_selectVMSeriesType, _chooseVMSeriesType);
-            SelectAndChooseOneFromTable(_selectMachineType, _chooseMachineType);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _addGPUsCheckbox, _waitingTime);
-            _webDriver.FindElement(_addGPUsCheckbox).Click();
-            SelectAndChooseOneFromTable(_selectNumberOfGPUs, _chooseNumberOfGPUs);
-            SelectAndChooseOneFromTable(_selectGPUType, _chooseGPUType);
-            SelectAndChooseOneFromTable(_selectSSDVolume, _chooseSSDVolume);
-            SelectAndChooseOneFromTable(_selectRegion, _chooseRegion);
-            SelectAndChooseOneFromTable(_selectCommitedUsage, _chooseCommitedUsage);
-            WaitersWrapper.WaitElementInteractable(_webDriver, _addToEstimateButton, _waitingTime);
-            _webDriver.FindElement(_addToEstimateButton).Click();
-            WaitersWrapper.WaitElementInteractable(_webDriver, _emailEstimateButton, _waitingTime);
-            _webDriver.FindElement(_emailEstimateButton).Click();
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _outerFrame, WaitingTime);
+                IWebElement outerFrame = _webDriver.FindElement(_outerFrame);
+                _webDriver.SwitchTo().Frame(outerFrame);
+                IWebElement innerFrame = _webDriver.FindElement(_innerFrame);
+                _webDriver.SwitchTo().Frame(innerFrame);
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Frame wasn't found or XPath (or CSSSelector) is incorrect.");
+                throw;
+            }
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _numberOfInstancesInput, WaitingTime);
+                _webDriver.FindElement(_numberOfInstancesInput).Click();
+                _webDriver.FindElement(_numberOfInstancesInput).SendKeys(virtualMachine.NumberOfInstances.ToString());
+                LoggerWrapper.LogInfo("Number of instances field was filled!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Number of instances field: unable to fill.");
+                throw;
+            }
+            SelectAndChooseOneFromTable(_selectVMSeriesType, _chooseVMSeriesType, "VMSeries");
+            SelectAndChooseOneFromTable(_selectMachineType, _chooseMachineType, "Machine type");
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _addGPUsCheckbox, WaitingTime);
+                _webDriver.FindElement(_addGPUsCheckbox).Click();
+                LoggerWrapper.LogInfo("Add GPU checkbox was checked!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Add GPU checkbox: unable to check.");
+                throw;
+            }
+            SelectAndChooseOneFromTable(_selectNumberOfGPUs, _chooseNumberOfGPUs, "Number of GPUs");
+            SelectAndChooseOneFromTable(_selectGPUType, _chooseGPUType, "GPU Type");
+            SelectAndChooseOneFromTable(_selectSSDVolume, _chooseSSDVolume, "SSD Volume");
+            SelectAndChooseOneFromTable(_selectRegion, _chooseRegion, "Region");
+            SelectAndChooseOneFromTable(_selectCommitedUsage, _chooseCommitedUsage, "Commited usage");
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _addToEstimateButton, WaitingTime);
+                _webDriver.FindElement(_addToEstimateButton).Click();
+                LoggerWrapper.LogInfo("Add to estimate button was pushed!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Add to estimate button: unable to push.");
+                throw;
+            }
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, _emailEstimateButton, WaitingTime);
+                _webDriver.FindElement(_emailEstimateButton).Click();
+                LoggerWrapper.LogInfo("Email estimate button was pushed!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Email estimate button: unable to push.");
+                throw;
+            }
             return new EmailYourEstimateLoginPageObject(_webDriver);
         }
 
         public string GetPrice()
         {
-            WaitersWrapper.WaitElementVisiable(_webDriver, _totalEstimatedCostLabel, _waitingTime);
-            string totalEstimatedCostLabel = _webDriver.FindElement(_totalEstimatedCostLabel).Text;
-            var labelParts = totalEstimatedCostLabel.Split(' ');
-            return labelParts[4];
+            try
+            {
+                WaitersWrapper.WaitElementVisiable(_webDriver, _totalEstimatedCostLabel, WaitingTime);
+                string totalEstimatedCostLabel = _webDriver.FindElement(_totalEstimatedCostLabel).Text;
+                var labelParts = totalEstimatedCostLabel.Split(' ');
+                LoggerWrapper.LogInfo("Pricing label was successfully parsed!");
+                return labelParts[4];
+            }
+            catch
+            {
+                LoggerWrapper.LogError("Pricing label wasn't parsed.");
+                throw;
+            }
+            
         }
 
-        private void SelectAndChooseOneFromTable(By selectPath, By choosePath)
+        private void SelectAndChooseOneFromTable(By selectPath, By choosePath, string name)
         {
-            WaitersWrapper.WaitElementInteractable(_webDriver, selectPath, _waitingTime);
-            _webDriver.FindElement(selectPath).Click();
-            WaitersWrapper.WaitElementInteractable(_webDriver, choosePath, _waitingTime);
-            _webDriver.FindElement(choosePath).Click();
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, selectPath, WaitingTime);
+                _webDriver.FindElement(selectPath).Click();
+                LoggerWrapper.LogInfo($"{name} field was found!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"{name} field wasn't found or XPath (or CSSSelector) is incorrect.");
+                throw;
+            }
+            try
+            {
+                WaitersWrapper.WaitElementInteractable(_webDriver, choosePath, WaitingTime);
+                _webDriver.FindElement(choosePath).Click();
+                LoggerWrapper.LogInfo($"{name} field was filled!");
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"{name} field: unable to fill.");
+                throw;
+            }
         }
     }
 }
