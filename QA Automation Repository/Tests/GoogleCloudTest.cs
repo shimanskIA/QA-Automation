@@ -13,22 +13,25 @@ namespace TestProject.Tests
     {
         [Test]
 
-        public void TestMethod()
+        public void GoogleCloudTestMethod()
         {
-            GoogleCloudMainPageObject googleCloudTestPage = new GoogleCloudMainPageObject(_webDriver);
-            string estimateCostSent = googleCloudTestPage
-                .Search(_searchKeyWord)
-                .ClickTheSearchedLink(_searchKeyWord)
-                .SetParametersOfVM(VirtualMachineCreator.CreateVM())
-                .SendEmail(_mailLogin + _mailPostfix)
-                .GetPrice();
-            _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
-            YopMailMainPageObject yopMailMainPageObject = new YopMailMainPageObject(_webDriver);
-            string estimateCostRecieved = yopMailMainPageObject
-                .LoginToMail(_mailLogin)
-                .OpenLatestMessage()
-                .GetPrice();
-            Assert.AreEqual(estimateCostSent, estimateCostRecieved);
+            TestWrapper(() =>
+            {
+                GoogleCloudMainPageObject googleCloudTestPage = new GoogleCloudMainPageObject(_webDriver);
+                string estimateCostSent = googleCloudTestPage
+                    .Search(_searchKeyWord)
+                    .ClickTheSearchedLink(_searchKeyWord)
+                    .SetParametersOfVM(VirtualMachineCreator.CreateVM())
+                    .SendEmail(_mailLogin + _mailPostfix)
+                    .GetPrice();
+                _webDriver.SwitchTo().Window(_webDriver.WindowHandles.First());
+                YopMailMainPageObject yopMailMainPageObject = new YopMailMainPageObject(_webDriver);
+                string estimateCostRecieved = yopMailMainPageObject
+                    .LoginToMail(_mailLogin)
+                    .OpenLatestMessage()
+                    .GetPrice();
+                Assert.AreEqual(estimateCostSent, estimateCostRecieved);
+            });
         }
     }
 }
