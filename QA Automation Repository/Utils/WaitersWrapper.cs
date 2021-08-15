@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -7,25 +8,40 @@ using System.Threading.Tasks;
 
 namespace TestProject.Utils
 {
-    public static class WaitersWrapper
+    public class WaitersWrapper
     {
-        public static void WaitElementVisiable(IWebDriver webDriver, By locator, int seconds)
+        private static WebDriverWait _waiter;
+        
+        public static void SetWaiter(IWebDriver webDriver, string waitingTime)
         {
-            new WebDriverWait(webDriver, TimeSpan.FromSeconds(seconds)).Until(ExpectedConditions.ElementIsVisible(locator));
+            int convertedWaitingTime;
+            try
+            {
+                convertedWaitingTime = Int32.Parse(waitingTime);
+            }
+            catch
+            {
+                LoggerWrapper.LogError($"Waiting time: {waitingTime} is an invalid value.");
+                throw;
+            }
+            _waiter = new WebDriverWait(webDriver, TimeSpan.FromSeconds(convertedWaitingTime));
         }
 
-        public static void WaitElementAppearDisappear(IWebDriver webDriver, By locator, int seconds)
+        public static void WaitElementVisiable(By locator)
         {
-            WebDriverWait waiter = new WebDriverWait(webDriver, TimeSpan.FromSeconds(seconds));
-            waiter.Until(ExpectedConditions.ElementIsVisible(locator));
-            waiter.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+            _waiter.Until(ExpectedConditions.ElementIsVisible(locator));
         }
 
-        public static void WaitElementInteractable(IWebDriver webDriver, By locator, int seconds)
+        public static void WaitElementAppearDisappear(By locator)
         {
-            WebDriverWait waiter = new WebDriverWait(webDriver, TimeSpan.FromSeconds(seconds));
-            waiter.Until(ExpectedConditions.ElementIsVisible(locator));
-            waiter.Until(ExpectedConditions.ElementToBeClickable(locator));
+            _waiter.Until(ExpectedConditions.ElementIsVisible(locator));
+            _waiter.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+        }
+
+        public static void WaitElementInteractable(By locator)
+        {
+            _waiter.Until(ExpectedConditions.ElementIsVisible(locator));
+            _waiter.Until(ExpectedConditions.ElementToBeClickable(locator));
         }
 
         public static void Wait(int seconds)

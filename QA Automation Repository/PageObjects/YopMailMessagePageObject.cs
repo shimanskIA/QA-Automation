@@ -20,7 +20,7 @@ namespace TestProject.PageObjects
         {
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _frame, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_frame);
                 IWebElement frame = _webDriver.FindElement(_frame);
                 _webDriver.SwitchTo().Frame(frame);
             }
@@ -31,7 +31,7 @@ namespace TestProject.PageObjects
             }
             try
             {
-                WaitersWrapper.WaitElementVisiable(_webDriver, _totalEstimatedCostLabel, WaitingTime);
+                WaitersWrapper.WaitElementVisiable(_totalEstimatedCostLabel);
                 string totalEstimatedCostLabel = _webDriver.FindElement(_totalEstimatedCostLabel).Text;
                 var labelParts = totalEstimatedCostLabel.Split(' ');
                 LoggerWrapper.LogInfo("Pricing label was successfully parsed!");

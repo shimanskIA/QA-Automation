@@ -23,7 +23,7 @@ namespace TestProject.PageObjects
             WaitersWrapper.Wait(5);
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _refreshButton, WaitingTime);
+                WaitersWrapper.WaitElementInteractable( _refreshButton);
                 _webDriver.FindElement(_refreshButton).Click();
                 LoggerWrapper.LogInfo("Refresh button was pushed!");
             }
@@ -35,7 +35,7 @@ namespace TestProject.PageObjects
             WaitersWrapper.Wait(5);
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _frame, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_frame);
                 IWebElement frame = _webDriver.FindElement(_frame);
                 _webDriver.SwitchTo().Frame(frame);
             }
@@ -46,7 +46,7 @@ namespace TestProject.PageObjects
             }
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _latestMessage, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_latestMessage);
                 _webDriver.FindElement(_latestMessage).Click();
                 LoggerWrapper.LogInfo("Latest message was opened!");
             }

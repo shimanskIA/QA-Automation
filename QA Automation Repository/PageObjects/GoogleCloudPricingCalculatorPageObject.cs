@@ -47,7 +47,7 @@ namespace TestProject.PageObjects
             _chooseCommitedUsage = By.XPath($"//div[@id='select_container_104']/descendant::div[contains(text(), '{virtualMachine.CommitedUsage}')]");
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _outerFrame, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_outerFrame);
                 IWebElement outerFrame = _webDriver.FindElement(_outerFrame);
                 _webDriver.SwitchTo().Frame(outerFrame);
                 IWebElement innerFrame = _webDriver.FindElement(_innerFrame);
@@ -60,7 +60,7 @@ namespace TestProject.PageObjects
             }
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _numberOfInstancesInput, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_numberOfInstancesInput);
                 _webDriver.FindElement(_numberOfInstancesInput).Click();
                 _webDriver.FindElement(_numberOfInstancesInput).SendKeys(virtualMachine.NumberOfInstances.ToString());
                 LoggerWrapper.LogInfo("Number of instances field was filled!");
@@ -74,7 +74,7 @@ namespace TestProject.PageObjects
             SelectAndChooseOneFromTable(_selectMachineType, _chooseMachineType, "Machine type");
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _addGPUsCheckbox, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_addGPUsCheckbox);
                 _webDriver.FindElement(_addGPUsCheckbox).Click();
                 LoggerWrapper.LogInfo("Add GPU checkbox was checked!");
             }
@@ -90,7 +90,7 @@ namespace TestProject.PageObjects
             SelectAndChooseOneFromTable(_selectCommitedUsage, _chooseCommitedUsage, "Commited usage");
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _addToEstimateButton, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_addToEstimateButton);
                 _webDriver.FindElement(_addToEstimateButton).Click();
                 LoggerWrapper.LogInfo("Add to estimate button was pushed!");
             }
@@ -101,7 +101,7 @@ namespace TestProject.PageObjects
             }
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _emailEstimateButton, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_emailEstimateButton);
                 _webDriver.FindElement(_emailEstimateButton).Click();
                 LoggerWrapper.LogInfo("Email estimate button was pushed!");
             }
@@ -117,7 +117,7 @@ namespace TestProject.PageObjects
         {
             try
             {
-                WaitersWrapper.WaitElementVisiable(_webDriver, _totalEstimatedCostLabel, WaitingTime);
+                WaitersWrapper.WaitElementVisiable(_totalEstimatedCostLabel);
                 string totalEstimatedCostLabel = _webDriver.FindElement(_totalEstimatedCostLabel).Text;
                 var labelParts = totalEstimatedCostLabel.Split(' ');
                 LoggerWrapper.LogInfo("Pricing label was successfully parsed!");
@@ -135,7 +135,7 @@ namespace TestProject.PageObjects
         {
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, selectPath, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(selectPath);
                 _webDriver.FindElement(selectPath).Click();
                 LoggerWrapper.LogInfo($"{name} field was found!");
             }
@@ -146,7 +146,7 @@ namespace TestProject.PageObjects
             }
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, choosePath, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(choosePath);
                 _webDriver.FindElement(choosePath).Click();
                 LoggerWrapper.LogInfo($"{name} field was filled!");
             }

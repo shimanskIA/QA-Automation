@@ -161,3 +161,85 @@
 2021-08-15 01:38:47.4425|INFO|TestProject.Utils.LoggerWrapper|Machine type field was found!
 2021-08-15 01:39:09.6799|ERROR|TestProject.Utils.LoggerWrapper|Machine type field: unable to fill.
 2021-08-15 01:39:11.0162|INFO|TestProject.Utils.LoggerWrapper|Screenshot was made!
+2021-08-15 23:03:56.6948|INFO|TestProject.Utils.LoggerWrapper|E-Mail generator page was successfully opened!
+2021-08-15 23:03:56.9197|INFO|TestProject.Utils.LoggerWrapper|The new tab in browser was successfully opened!
+2021-08-15 23:04:04.6560|INFO|TestProject.Utils.LoggerWrapper|Cloud service page was successfully opened!
+2021-08-15 23:04:04.7308|INFO|TestProject.Utils.LoggerWrapper|Google Cloud main page was successfully opened!
+2021-08-15 23:04:05.4769|INFO|TestProject.Utils.LoggerWrapper|Search button was pushed!
+2021-08-15 23:04:05.4769|INFO|TestProject.Utils.LoggerWrapper|Search results page was successfully opened!
+2021-08-15 23:04:14.0349|INFO|TestProject.Utils.LoggerWrapper|Searched element (Google Cloud Platform Pricing Calculator) was found!
+2021-08-15 23:04:14.0349|INFO|TestProject.Utils.LoggerWrapper|Google Cloud pricing calculator page was successfully opened!
+2021-08-15 23:04:14.9932|INFO|TestProject.Utils.LoggerWrapper|Number of instances field was filled!
+2021-08-15 23:04:15.2883|INFO|TestProject.Utils.LoggerWrapper|VMSeries field was found!
+2021-08-15 23:04:16.1488|INFO|TestProject.Utils.LoggerWrapper|VMSeries field was filled!
+2021-08-15 23:04:16.4486|INFO|TestProject.Utils.LoggerWrapper|Machine type field was found!
+2021-08-15 23:04:17.2643|INFO|TestProject.Utils.LoggerWrapper|Machine type field was filled!
+2021-08-15 23:04:17.5628|INFO|TestProject.Utils.LoggerWrapper|Add GPU checkbox was checked!
+2021-08-15 23:04:17.9085|INFO|TestProject.Utils.LoggerWrapper|Number of GPUs field was found!
+2021-08-15 23:04:18.6552|INFO|TestProject.Utils.LoggerWrapper|Number of GPUs field was filled!
+2021-08-15 23:04:18.8795|INFO|TestProject.Utils.LoggerWrapper|GPU Type field was found!
+2021-08-15 23:04:19.6850|INFO|TestProject.Utils.LoggerWrapper|GPU Type field was filled!
+2021-08-15 23:04:19.9329|INFO|TestProject.Utils.LoggerWrapper|SSD Volume field was found!
+2021-08-15 23:04:20.7284|INFO|TestProject.Utils.LoggerWrapper|SSD Volume field was filled!
+2021-08-15 23:04:20.9507|INFO|TestProject.Utils.LoggerWrapper|Region field was found!
+2021-08-15 23:04:21.7693|INFO|TestProject.Utils.LoggerWrapper|Region field was filled!
+2021-08-15 23:04:22.1024|INFO|TestProject.Utils.LoggerWrapper|Commited usage field was found!
+2021-08-15 23:04:22.8720|INFO|TestProject.Utils.LoggerWrapper|Commited usage field was filled!
+2021-08-15 23:04:23.3534|INFO|TestProject.Utils.LoggerWrapper|Add to estimate button was pushed!
+2021-08-15 23:04:23.8905|INFO|TestProject.Utils.LoggerWrapper|Email estimate button was pushed!
+2021-08-15 23:04:23.8905|INFO|TestProject.Utils.LoggerWrapper|Email your estimate form was successfully opened!
+2021-08-15 23:04:24.8865|INFO|TestProject.Utils.LoggerWrapper|Email field was filled!
+2021-08-15 23:04:25.1180|INFO|TestProject.Utils.LoggerWrapper|Send email button was pushed!
+2021-08-15 23:04:25.1180|INFO|TestProject.Utils.LoggerWrapper|Google Cloud pricing calculator page was successfully opened!
+2021-08-15 23:04:25.2244|INFO|TestProject.Utils.LoggerWrapper|Pricing label was successfully parsed!
+2021-08-15 23:04:25.2977|INFO|TestProject.Utils.LoggerWrapper|Browser tab was switched!
+2021-08-15 23:04:25.2977|INFO|TestProject.Utils.LoggerWrapper|YopMail main page was successfully opened!
+2021-08-15 23:04:25.6059|INFO|TestProject.Utils.LoggerWrapper|Login input field was filled!
+2021-08-15 23:04:26.6015|INFO|TestProject.Utils.LoggerWrapper|Enter button was pushed!
+2021-08-15 23:04:26.6031|INFO|TestProject.Utils.LoggerWrapper|YopMail main page was successfully opened!
+2021-08-15 23:04:31.7423|INFO|TestProject.Utils.LoggerWrapper|Refresh button was pushed!
+2021-08-15 23:04:37.0396|INFO|TestProject.Utils.LoggerWrapper|Latest message was opened!
+2021-08-15 23:04:37.0576|INFO|TestProject.Utils.LoggerWrapper|Browser tab was switched!
+2021-08-15 23:04:37.0576|INFO|TestProject.Utils.LoggerWrapper|YopMail message page was successfully opened!
+2021-08-15 23:04:37.2739|INFO|TestProject.Utils.LoggerWrapper|Pricing label was successfully parsed!
+2021-08-15 23:20:48.5484|INFO|TestProject.Utils.LoggerWrapper|E-Mail generator page was successfully opened!
+2021-08-15 23:20:48.8760|INFO|TestProject.Utils.LoggerWrapper|The new tab in browser was successfully opened!
+2021-08-15 23:20:54.3190|INFO|TestProject.Utils.LoggerWrapper|Cloud service page was successfully opened!
+2021-08-15 23:20:54.3337|INFO|TestProject.Utils.LoggerWrapper|Google Cloud main page was successfully opened!
+2021-08-15 23:20:55.1898|INFO|TestProject.Utils.LoggerWrapper|Search button was pushed!
+2021-08-15 23:20:55.1898|INFO|TestProject.Utils.LoggerWrapper|Search results page was successfully opened!
+2021-08-15 23:21:02.3989|INFO|TestProject.Utils.LoggerWrapper|Searched element (Google Cloud Platform Pricing Calculator) was found!
+2021-08-15 23:21:02.3989|INFO|TestProject.Utils.LoggerWrapper|Google Cloud pricing calculator page was successfully opened!
+2021-08-15 23:21:03.5756|INFO|TestProject.Utils.LoggerWrapper|Number of instances field was filled!
+2021-08-15 23:21:04.1453|INFO|TestProject.Utils.LoggerWrapper|VMSeries field was found!
+2021-08-15 23:21:05.1890|INFO|TestProject.Utils.LoggerWrapper|VMSeries field was filled!
+2021-08-15 23:21:05.6944|INFO|TestProject.Utils.LoggerWrapper|Machine type field was found!
+2021-08-15 23:21:06.5901|INFO|TestProject.Utils.LoggerWrapper|Machine type field was filled!
+2021-08-15 23:21:07.1712|INFO|TestProject.Utils.LoggerWrapper|Add GPU checkbox was checked!
+2021-08-15 23:21:07.5851|INFO|TestProject.Utils.LoggerWrapper|Number of GPUs field was found!
+2021-08-15 23:21:08.3829|INFO|TestProject.Utils.LoggerWrapper|Number of GPUs field was filled!
+2021-08-15 23:21:08.5941|INFO|TestProject.Utils.LoggerWrapper|GPU Type field was found!
+2021-08-15 23:21:09.3387|INFO|TestProject.Utils.LoggerWrapper|GPU Type field was filled!
+2021-08-15 23:21:09.5849|INFO|TestProject.Utils.LoggerWrapper|SSD Volume field was found!
+2021-08-15 23:21:10.3516|INFO|TestProject.Utils.LoggerWrapper|SSD Volume field was filled!
+2021-08-15 23:21:10.5812|INFO|TestProject.Utils.LoggerWrapper|Region field was found!
+2021-08-15 23:21:11.3645|INFO|TestProject.Utils.LoggerWrapper|Region field was filled!
+2021-08-15 23:21:11.6399|INFO|TestProject.Utils.LoggerWrapper|Commited usage field was found!
+2021-08-15 23:21:12.4097|INFO|TestProject.Utils.LoggerWrapper|Commited usage field was filled!
+2021-08-15 23:21:12.9233|INFO|TestProject.Utils.LoggerWrapper|Add to estimate button was pushed!
+2021-08-15 23:21:13.5732|INFO|TestProject.Utils.LoggerWrapper|Email estimate button was pushed!
+2021-08-15 23:21:13.5732|INFO|TestProject.Utils.LoggerWrapper|Email your estimate form was successfully opened!
+2021-08-15 23:21:14.5481|INFO|TestProject.Utils.LoggerWrapper|Email field was filled!
+2021-08-15 23:21:14.7839|INFO|TestProject.Utils.LoggerWrapper|Send email button was pushed!
+2021-08-15 23:21:14.7839|INFO|TestProject.Utils.LoggerWrapper|Google Cloud pricing calculator page was successfully opened!
+2021-08-15 23:21:14.8717|INFO|TestProject.Utils.LoggerWrapper|Pricing label was successfully parsed!
+2021-08-15 23:21:14.9426|INFO|TestProject.Utils.LoggerWrapper|Browser tab was switched!
+2021-08-15 23:21:14.9426|INFO|TestProject.Utils.LoggerWrapper|YopMail main page was successfully opened!
+2021-08-15 23:21:15.1531|INFO|TestProject.Utils.LoggerWrapper|Login input field was filled!
+2021-08-15 23:21:15.9364|INFO|TestProject.Utils.LoggerWrapper|Enter button was pushed!
+2021-08-15 23:21:15.9364|INFO|TestProject.Utils.LoggerWrapper|YopMail main page was successfully opened!
+2021-08-15 23:21:21.0747|INFO|TestProject.Utils.LoggerWrapper|Refresh button was pushed!
+2021-08-15 23:21:26.3867|INFO|TestProject.Utils.LoggerWrapper|Latest message was opened!
+2021-08-15 23:21:26.4137|INFO|TestProject.Utils.LoggerWrapper|Browser tab was switched!
+2021-08-15 23:21:26.4153|INFO|TestProject.Utils.LoggerWrapper|YopMail message page was successfully opened!
+2021-08-15 23:21:26.6427|INFO|TestProject.Utils.LoggerWrapper|Pricing label was successfully parsed!

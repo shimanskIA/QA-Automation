@@ -20,7 +20,7 @@ namespace TestProject.PageObjects
         {
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _emailField, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_emailField);
                 _webDriver.FindElement(_emailField).Click();
                 _webDriver.FindElement(_emailField).SendKeys(address);
                 LoggerWrapper.LogInfo("Email field was filled!");
@@ -32,7 +32,7 @@ namespace TestProject.PageObjects
             }
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _sendEmailButton, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_sendEmailButton);
                 _webDriver.FindElement(_sendEmailButton).Click();
                 LoggerWrapper.LogInfo("Send email button was pushed!");
             }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TestProject.Utils
 {
-    public static class LoggerWrapper
+    public class LoggerWrapper
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 

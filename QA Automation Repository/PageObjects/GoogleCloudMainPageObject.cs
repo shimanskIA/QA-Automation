@@ -19,7 +19,7 @@ namespace TestProject.PageObjects
         {
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _searchButton, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_searchButton);
                 _webDriver.FindElement(_searchButton).Click();
                 _webDriver.FindElement(_searchButton).SendKeys(serviceToSearch + Keys.Enter);
                 LoggerWrapper.LogInfo("Search button was pushed!");

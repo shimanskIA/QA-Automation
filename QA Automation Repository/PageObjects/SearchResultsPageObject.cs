@@ -20,7 +20,7 @@ namespace TestProject.PageObjects
             _searchedLink = By.XPath($"//a[contains(text(), '{keyWord}')]");
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _searchedLink, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_searchedLink);
                 _webDriver.FindElement(_searchedLink).Click();
                 LoggerWrapper.LogInfo($"Searched element ({keyWord}) was found!");
             }

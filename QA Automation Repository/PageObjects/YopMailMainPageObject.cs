@@ -20,7 +20,7 @@ namespace TestProject.PageObjects
         {
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _loginInput, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_loginInput);
                 _webDriver.FindElement(_loginInput).Click();
                 _webDriver.FindElement(_loginInput).SendKeys(login);
                 LoggerWrapper.LogInfo("Login input field was filled!");
@@ -32,7 +32,7 @@ namespace TestProject.PageObjects
             }
             try
             {
-                WaitersWrapper.WaitElementInteractable(_webDriver, _enterButton, WaitingTime);
+                WaitersWrapper.WaitElementInteractable(_enterButton);
                 _webDriver.FindElement(_enterButton).Click();
                 LoggerWrapper.LogInfo("Enter button was pushed!");
             }
