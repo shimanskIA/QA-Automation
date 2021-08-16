@@ -2,6 +2,7 @@
 using System.Linq;
 using TestProject.Model;
 using TestProject.PageObjects;
+using TestProject.Service;
 using TestProject.Utils;
 
 namespace TestProject.Tests

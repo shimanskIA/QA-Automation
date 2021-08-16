@@ -1,9 +1,10 @@
 ﻿using NUnit.Framework;
 using System.IO;
 using System.Xml.Serialization;
+using TestProject.Model;
 using TestProject.Utils;
 
-namespace TestProject.Model
+namespace TestProject.Service
 {
     public class UserCreator
     {

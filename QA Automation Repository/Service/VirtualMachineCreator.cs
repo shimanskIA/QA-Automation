@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
+using TestProject.Model;
 
-namespace TestProject.Model
+namespace TestProject.Service
 {
     public class VirtualMachineCreator
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestProject.Enums
+﻿namespace TestProject.Enums
 {
     public enum GPUTypes
     {
