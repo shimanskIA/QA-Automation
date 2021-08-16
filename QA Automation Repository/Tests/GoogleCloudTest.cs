@@ -1,9 +1,5 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TestProject.Model;
 using TestProject.PageObjects;
 using TestProject.Utils;

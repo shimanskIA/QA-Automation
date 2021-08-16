@@ -1,17 +1,11 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.Extensions;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
-using System.Xml.Serialization;
 using TestProject.Driver;
-using TestProject.Model;
 using TestProject.Utils;
 
 namespace TestProject.Tests

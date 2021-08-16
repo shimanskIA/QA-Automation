@@ -1,8 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TestProject.Enums;
 
 namespace TestProject.Model
 {

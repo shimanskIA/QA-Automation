@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TestProject.Model
+﻿namespace TestProject.Model
 {
     public class User
     {

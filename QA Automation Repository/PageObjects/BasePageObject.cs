@@ -1,10 +1,4 @@
-﻿using NLog;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TestProject.Utils;
+﻿using OpenQA.Selenium;
 
 namespace TestProject.PageObjects
 {
