@@ -41,5 +41,14 @@ namespace TestProject.Tests
                 Assert.AreEqual(estimateCostSent, estimateCostRecieved);
             });
         }
+
+        [Test]
+        [Category("Smoke")]
+
+        public void TestExample()
+        {
+            int a = 1;
+            Assert.AreEqual(a, 1);
+        }
     }
 }
