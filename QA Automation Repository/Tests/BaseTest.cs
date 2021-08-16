@@ -8,7 +8,9 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 using TestProject.Driver;
+using TestProject.Model;
 using TestProject.Utils;
 
 namespace TestProject.Tests

@@ -20,11 +20,12 @@ namespace TestProject.Tests
             TestWrapper(() =>
             {
                 GoogleCloudMainPageObject googleCloudTestPage = new GoogleCloudMainPageObject(_webDriver);
+                User user = UserCreator.CreateUser();
                 string estimateCostSent = googleCloudTestPage
                     .Search(_searchKeyWord)
                     .ClickTheSearchedLink(_searchKeyWord)
                     .SetParametersOfVM(VirtualMachineCreator.CreateVM())
-                    .SendEmail(_mailLogin + _mailPostfix)
+                    .SendEmail(user.Login + _mailPostfix)
                     .GetPrice();
                 try
                 {
@@ -37,7 +38,7 @@ namespace TestProject.Tests
                 }
                 YopMailMainPageObject yopMailMainPageObject = new YopMailMainPageObject(_webDriver);
                 string estimateCostRecieved = yopMailMainPageObject
-                    .LoginToMail(_mailLogin)
+                    .LoginToMail(user)
                     .OpenLatestMessage()
                     .GetPrice();
                 Assert.AreEqual(estimateCostSent, estimateCostRecieved);

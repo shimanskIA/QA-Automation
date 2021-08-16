@@ -6,7 +6,7 @@ using TestProject.Enums;
 
 namespace TestProject.Model
 {
-    public static class VirtualMachineCreator
+    public class VirtualMachineCreator
     {
         public static VirtualMachine CreateVM()
         {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TestProject.Model;
 using TestProject.Utils;
 
 namespace TestProject.PageObjects
@@ -16,13 +17,13 @@ namespace TestProject.PageObjects
             LoggerWrapper.LogInfo("YopMail main page was successfully opened!");
         }
 
-        public YopMailMailMainPageObject LoginToMail(string login)
+        public YopMailMailMainPageObject LoginToMail(User user)
         {
             try
             {
                 WaitersWrapper.WaitElementInteractable(_loginInput);
                 _webDriver.FindElement(_loginInput).Click();
-                _webDriver.FindElement(_loginInput).SendKeys(login);
+                _webDriver.FindElement(_loginInput).SendKeys(user.Login);
                 LoggerWrapper.LogInfo("Login input field was filled!");
             }
             catch
