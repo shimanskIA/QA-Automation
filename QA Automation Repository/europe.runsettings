@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <TestRunParameters>
+    <Parameter name="NumberOfInstances" value="4" />
+    <Parameter name="VMSerial" value="N1" />
+    <Parameter name="VMType" value="n1-standard-8" />
+    <Parameter name="VMVolume" value="1x375" />
+    <Parameter name="NumberOfGPUs" value="2" />
+    <Parameter name="GPUType" value="V100" />
+    <Parameter name="Region" value="Frankfurt" />
+    <Parameter name="CommitedUsage" value="1" />
+  </TestRunParameters>
+</RunSettings> 
